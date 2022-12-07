@@ -12,3 +12,7 @@
 - [Linux 守护进程的启动方法](https://www.ruanyifeng.com/blog/2016/02/linux-daemon.html)
 - [Systemd 入门教程：命令篇](https://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)。
 - [SSH 教程](https://wangdoc.com/ssh/)。
+
+## Summaries
+
+[Locale Environment Variables](https://www.baeldung.com/linux/locale-environment-variables).
