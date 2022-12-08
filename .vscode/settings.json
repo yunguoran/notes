@@ -25,6 +25,7 @@
     "JNDI",
     "journalctl",
     "kwest",
+    "metacharacter",
     "metastore",
     "Mongock",
     "MyBatis",
