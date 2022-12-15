@@ -6,6 +6,11 @@
 - [Javadoc: @see and @link](https://www.baeldung.com/javadoc-see-vs-link).
 - [javadoc](https://docs.oracle.com/en/java/javase/11/tools/javadoc.html).
 
+## Try catch
+
+- [Try with Resources](https://www.baeldung.com/java-try-with-resources).
+- [The try-with-resources Statement](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html).
+
 ## Libraries
 
 [Array.sort() in Java8](https://www.geeksforgeeks.org/dual-pivot-quicksort/).
