@@ -6,11 +6,13 @@
     "ˈdæmzl",
     "ˈmɪnstrəl",
     "Aerosmith",
+    "alnum",
     "autoproxy",
     "Autowired",
     "autowiring",
     "Baeldung",
     "classpath",
+    "cntrl",
     "Configurer",
     "CSDN",
     "ctxt",
@@ -33,8 +35,10 @@
     "Partitioner",
     "pbcopy",
     "pointcut",
+    "POSIX",
     "pɔːrtˈfoʊlioʊ",
     "println",
+    "punct",
     "pushdown",
     "pyecharts",
     "pymongo",
@@ -43,7 +47,8 @@
     "soundsystem",
     "springframework",
     "sqls",
-    "xclip"
+    "xclip",
+    "xdigit"
   ],
   "editor.rulers": [
     120
