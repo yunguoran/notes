@@ -1,5 +1,21 @@
 # Java
 
+## Stream
+
+### Peek()
+
+- [Java 8 Streams peek() API](https://www.baeldung.com/java-streams-peek-api).
+- This method exists mainly to support debugging, where you want to see the elements as they flow past a certain point in a pipeline.
+- `peek()` can be useful in another scenario: when we want to alter the inner state of an element.
+
+```java
+Stream<User> userStream = Stream.of(new User("Alice"), new User("Bob"), new User("Chuck"));
+userStream.peek(u -> u.setName(u.getName().toLowerCase()))
+  .forEach(System.out::println);
+```
+
+Alternatively, we could have used map(), but `peek()` is more convenient since we don't want to replace the element.
+
 ## Javadoc
 
 - [Introduction to Javadoc](https://www.baeldung.com/javadoc#3-javadoc-at-field-level).
