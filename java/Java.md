@@ -1,5 +1,9 @@
 # Java
 
+## Concatenate Two Arrays
+
+[Concatenate Two Arrays in Java](https://www.baeldung.com/java-concatenate-arrays).
+
 ## Stream
 
 ### Peek()
@@ -29,7 +33,8 @@ Alternatively, we could have used map(), but `peek()` is more convenient since w
 
 ## Libraries
 
-[Array.sort() in Java8](https://www.geeksforgeeks.org/dual-pivot-quicksort/).
+- [Array.sort() in Java8](https://www.geeksforgeeks.org/dual-pivot-quicksort/).
+- [Apache Commons Lang 3](https://www.baeldung.com/java-commons-lang-3).
 
 ## Cron Expression
 
