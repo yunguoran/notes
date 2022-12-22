@@ -6,7 +6,7 @@
 
 - Join strategies execution sequence.
 
-![joinStrategies](/images/joinStrategies.png)
+    ![joinStrategies](/images/joinStrategies.png)
 
 ## Hints
 
@@ -15,6 +15,5 @@
 
 ## Performance Tuning
 
-[Performance Tuning](https://spark.apache.org/docs/latest/sql-performance-tuning.html#performance-tuning).
-
+- [Performance Tuning](https://spark.apache.org/docs/latest/sql-performance-tuning.html#performance-tuning).
 - When there are few columns, you can try to cache intermediate results to prevent **BroadcastNestedLoopJoin**.

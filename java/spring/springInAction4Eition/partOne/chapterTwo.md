@@ -80,7 +80,7 @@ public CDPlayer cdPlayer(CompactDisc compactDisc) {
 
 创建 XML 配置文件创建和管理 Spring XML 配置文件的一种简便方式是使用 [Spring Tool Suite](https://spring.io/tools/sts) 。在 Spring Tool Suite 的菜单中， 选择 File>New>Spring Bean Configuration File，能够创建 Spring XML 配置文件，并且可以选择可用的配置命名空间。
 
-### 声明一个简单的 <bean>
+### 声明一个简单的 `<bean>`
 
 ```xml
 <bean class="soundsystem.SgtPeppers" />
@@ -97,10 +97,10 @@ public CDPlayer cdPlayer(CompactDisc compactDisc) {
 
 ### 借助构造器注入初始化 bean
 
-在 Spring XML 配置中，只有一种声明 bean 的方式：使用 <bean> 元素并指定 class 属性。Spring 会从这里获取必要的信息来创建 bean。
+在 Spring XML 配置中，只有一种声明 bean 的方式：使用 `<bean>` 元素并指定 class 属性。Spring 会从这里获取必要的信息来创建 bean。
 但是，在 XML 中声明 DI 时，会有多种可选的配置方案和风格。具体到构造器注入，有两种基本的配置方案可供选择：
 
-- <constructor-arg> 元素
+- `<constructor-arg>` 元素
 - 使用 Spring 3.0 所引入的 c- 命名空间
 
 ```xml

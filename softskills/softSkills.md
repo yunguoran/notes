@@ -8,8 +8,8 @@
 
 - The 4 quadrant method.
 
-![The 4 quadrant method](/images/fourQuadrantMethod.png)
+    ![The 4 quadrant method](/images/fourQuadrantMethod.png)
 
 ## Communications Guidelines
 
-- [Closed-loop communication](https://www.zhihu.com/question/37973833/answer/923803321).
+[Closed-loop communication](https://www.zhihu.com/question/37973833/answer/923803321).

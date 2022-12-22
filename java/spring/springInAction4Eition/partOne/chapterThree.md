@@ -230,10 +230,10 @@ disc.artist=The Beatles
 
 getProperty() 方法有四个重载的变种形式：
 
-- String getProperty(String key)
-- String getProperty(String key, String defaultValue)
-- T getProperty(String key, Class<T> type)
-- T getProperty(String key, Class<T> type, T defaultValue)
+- `String getProperty(String key)`
+- `String getProperty(String key, String defaultValue)`
+- `T getProperty(String key, Class<T> type)`
+- `T getProperty(String key, Class<T> type, T defaultValue)`
 
 如果你在使用 getProperty() 方法的时候没有指定默认值，并且这个属性没有定义的话，获取到的值是 null。如果你希望这个属性必须要定义，那么可以使用 getRequiredProperty() 方法。如果想将属性解析为类的话，可以使用 getPropertyAsClass() 方法。
 
