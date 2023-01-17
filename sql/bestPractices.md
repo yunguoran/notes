@@ -67,3 +67,49 @@ for column in columns:
 sql = 'UNION ALL'.join(sqls)
 spark.sql(sql).show()
 ```
+
+## Divide the number field infinitely by fixed step
+
+[reference here](https://stackoverflow.com/questions/75066077/how-to-divide-the-number-field-infinitely-by-fixed-step-in-spark-sql).
+
+```sql
+SELECT
+    intervalLeft,
+    concat("[", intervalLeft, ", ", intervalLeft + 5, ")") AS numInterval,
+    count(number) AS count
+FROM (
+    SELECT number, floor(number / 5 ) * 5 AS intervalLeft
+    FROM example
+)
+GROUP BY intervalLeft
+ORDER BY intervalLeft;
+```
+
+## Convert two columns of dataFrame into orderedDict
+
+[reference here](https://stackoverflow.com/questions/75141364/how-to-convert-two-columns-of-dataframe-into-an-ordereddict-in-python).
+
+```python PYSPARK 1673934650
+import pandas as pd
+
+data = [
+    ("2022-12-15", "2022-12-18"),
+    ("2022-12-19", "2022-12-21"),
+    ("2022-12-22", "2022-12-24"),
+    ("2022-12-26", "2022-12-27"),
+    ("2022-12-29", "2022-12-30"),
+    ("2022-12-02", "2022-12-04"),
+    ("2022-12-06", "2022-12-07"),
+    ("2022-12-07", "2022-12-08"),
+    ("2022-12-13", "2022-12-14"),
+    ("2023-01-01", "2023-01-03"),
+]
+
+df = spark.createDataFrame(data).toDF(*('startDate', 'endDate')).toPandas()
+dictTest = df.set_index('startDate')['endDate'].to_dict()
+
+print(dictTest)
+
+for k,v in dictTest.items():
+    print(f'StartDate is {k} and corresponding endDate is {v}.')
+```
