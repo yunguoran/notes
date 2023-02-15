@@ -23,3 +23,4 @@
 | Remote Method Invocation | 远程方法调用| RMI |
 | Spring Expression Language | Spring 表达式语言 | SpEL |
 | two-headed beast | 两面性 |
+| Remote Procedure Call | 远程过程调用 | RPC |
