@@ -29,3 +29,4 @@
 | signal-to-noise ratio | 信噪比 | |
 | the world is awash in questions | 世界充满了问题 | |
 | off-topic | 跑题 | |
+| zip code | 邮政编码 | |
