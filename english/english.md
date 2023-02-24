@@ -17,6 +17,7 @@
 | omit | [əˈmɪt] | v. |
 | portfolio | [pɔːrtˈfoʊlioʊ] | n. |
 | quest | [kwest] | n. \| vi.|
+| acronym | [ˈækrənɪm] | n. |
 
 ## Phrase
 
