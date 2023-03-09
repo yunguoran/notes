@@ -31,3 +31,4 @@
 | the world is awash in questions | 世界充满了问题 | |
 | off-topic | 跑题 | |
 | zip code | 邮政编码 | |
+| is abbreviated as | 被缩写成 | [əˈbriːvieɪtɪd] |

@@ -27,6 +27,12 @@
 | two-headed beast | 两面性 |
 | Remote Procedure Call | 远程过程调用 | RPC |
 
+## technology
+
+| Full Name | Chinese |  Abbreviation | Comment |
+| ---- | ---- | ---- | ---- |
+| comma-separated values | 以逗号分割的值 | CSV |
+
 ## English
 
 | Abbreviation | Full Name | Chinese | Comment |
