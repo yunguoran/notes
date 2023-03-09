@@ -21,11 +21,13 @@
 | Moving Picture Experts Group Audio Layer III | | MP3| MPEG Audio Layer3 |
 | Model-View-Controller | | MVC |
 | Object–relational Mapping | 对象关系映射 | ORM |
+| Object-Oriented Programming | 面向对象编程 | OOP |
 | Plain Old Java Object | 简单老式 Java 对象 | POJO |
 | Remote Method Invocation | 远程方法调用| RMI |
-| Spring Expression Language | Spring 表达式语言 | SpEL |
-| two-headed beast | 两面性 |
 | Remote Procedure Call | 远程过程调用 | RPC |
+| Spring Expression Language | Spring 表达式语言 | SpEL |
+| two-headed beast | 两面性 | |
+| Unified Modeling Language | 统一建模语言 | UML |
 
 ## technology
 
