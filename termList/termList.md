@@ -23,9 +23,12 @@
 | Object–relational Mapping | 对象关系映射 | ORM |
 | Object-Oriented Programming | 面向对象编程 | OOP |
 | Plain Old Java Object | 简单老式 Java 对象 | POJO |
+| Random Access Memory | 随机访问存储器 | RAM |
 | Remote Method Invocation | 远程方法调用| RMI |
+| Read Only Memory | 只读存储器| ROM |
 | Remote Procedure Call | 远程过程调用 | RPC |
 | Spring Expression Language | Spring 表达式语言 | SpEL |
+| Standard Template Library | 标准模板库 | STL |
 | two-headed beast | 两面性 | |
 | Unified Modeling Language | 统一建模语言 | UML |
 
