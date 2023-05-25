@@ -9,6 +9,7 @@ Use `@NonNull` on a record component, or a parameter of a method or constructor.
 import lombok.NonNull;
 
 public class NonNullExample extends Something {
+
   private String name;
 
   public NonNullExample(@NonNull Person person) {
@@ -85,7 +86,7 @@ public class GetterSetterExample {
 - Lombok `@NoArgsConstructor` will generate a no arguments/default constructor, by default generated constructor will be public.
 
     ```java
-    //  With Lombok
+    // With Lombok
     @NoArgsConstructor
     public class NoArgsDemo1 {
 

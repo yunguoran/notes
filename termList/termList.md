@@ -38,7 +38,7 @@
 | ---- | ---- | ---- | ---- |
 | comma-separated values | 以逗号分割的值 | CSV |
 
-## English
+## Other
 
 | Abbreviation | Full Name | Chinese | Comment |
 | ---- | ---- | ---- | ---- |
@@ -47,3 +47,5 @@
 | POC | Proof of Concept | 概念验证 | [Link](https://zhuanlan.zhihu.com/p/39820024) |
 | PRD | Product Requirement Document | 产品需求文档 | [Link](https://www.zhihu.com/question/19655491/answer/335963630) |
 | MA | Marketing Automation | 营销自动化 | [Link](https://www.pinweima.com/MA/) |
+| TDD | Test Driven Development | 测试驱动开发 | |
+| | Scrum | 敏捷开发 | |
