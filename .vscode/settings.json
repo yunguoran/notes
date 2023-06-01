@@ -12,6 +12,7 @@
     "autowiring",
     "Backreference",
     "Baeldung",
+    "builtins",
     "classpath",
     "cntrl",
     "Configurer",
@@ -55,8 +56,11 @@
     "springframework",
     "sqls",
     "TLCL",
+    "unalias",
+    "whatis",
     "xclip",
-    "xdigit"
+    "xdigit",
+    "zless"
   ],
   "editor.rulers": [
     120
