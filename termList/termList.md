@@ -5,6 +5,7 @@
 | Abbreviation | Full Name | Chinese | Comment |
 | ---- | ---- | ---- | ---- |
 | AOP | Aspect-Oriented Programming | 面向切面编程 |
+| AMQP | Advance Message Queuing Protocol | 高级消息队列协议 |
 | / | boilerplate Code | 样板式代码 | [ˈbɔɪlərpleɪt] |
 | CD | compact disc | 光盘 |
 | DAO | Data Access Object | 数据存取对象 |
@@ -18,11 +19,13 @@
 | JMS | Java Message Service | Java 消息服务 |
 | JNDI | Java Naming and Directory Interface | Java 命名和目录接口 |
 | J2EE、JEE | Java 2 Enterprise Edition | Java 2 企业版 |
-| MP3| MPEG Audio Layer3 | / | Moving Picture Experts Group Audio Layer III |
+| LDAP | Lightweight Directory Access Protocol | 轻量级目录访问协议 |
+| MP3 | MPEG Audio Layer3 | / | Moving Picture Experts Group Audio Layer III |
 | MVC | Model-View-Controller | / |
 | ORM | Object–relational Mapping | 对象关系映射 |
 | OOP | Object-Oriented Programming | 面向对象编程 |
 | POJO | Plain Old Java Object | 简单老式 Java 对象 |
+| POM | Project Object Model | 项目对象模型 |
 | RAM | Random Access Memory | 随机访问存储器 |
 | RMI | Remote Method Invocation | 远程方法调用 |
 | ROM | Read Only Memory | 只读存储器 |
