@@ -1,14 +1,10 @@
 # Soft Skills
 
-## Hacker Laws
+## [Hacker Laws](https://github.com/nusr/hacker-laws-zh#%E5%AE%9A%E5%BE%8B)
 
-[hacker-laws](https://github.com/nusr/hacker-laws-zh#%E5%AE%9A%E5%BE%8B).
+## The 4 quadrant method
 
-## Time Management
-
-- The 4 quadrant method.
-
-    ![The 4 quadrant method](/images/fourQuadrantMethod.png)
+![The 4 quadrant method](/images/fourQuadrantMethod.png)
 
 ## Communications Guidelines
 

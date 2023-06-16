@@ -1,9 +1,7 @@
 # Git
 
-## Elementary Knowledge
-
-- [Pro Git](https://git-scm.com/book/zh/v2).
-- [Learn Git Branching](https://learngitbranching.js.org/?locale=zh_CN).
+- [Pro Git](https://git-scm.com/book/zh/v2)
+- [Learn Git Branching](https://learngitbranching.js.org/?locale=zh_CN)
 
 ## Common Operations
 

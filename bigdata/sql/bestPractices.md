@@ -68,9 +68,7 @@ sql = 'UNION ALL'.join(sqls)
 spark.sql(sql).show()
 ```
 
-## Divide the number field infinitely by fixed step
-
-[reference here](https://stackoverflow.com/questions/75066077/how-to-divide-the-number-field-infinitely-by-fixed-step-in-spark-sql).
+## [Divide the number field infinitely by fixed step](https://stackoverflow.com/questions/75066077/how-to-divide-the-number-field-infinitely-by-fixed-step-in-spark-sql)
 
 ```sql
 SELECT
@@ -85,11 +83,9 @@ GROUP BY intervalLeft
 ORDER BY intervalLeft;
 ```
 
-## Convert two columns of dataFrame into orderedDict
+## [Convert two columns of dataFrame into orderedDict](https://stackoverflow.com/questions/75141364/how-to-convert-two-columns-of-dataframe-into-an-ordereddict-in-python)
 
-[reference here](https://stackoverflow.com/questions/75141364/how-to-convert-two-columns-of-dataframe-into-an-ordereddict-in-python).
-
-```python PYSPARK 1673934650
+```python
 import pandas as pd
 
 data = [

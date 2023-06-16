@@ -7,7 +7,7 @@
 - Use the tabs
 - Use quotes
     - "Puppy Dog Sweaters"
-    - it will search for that phrase exactly as you typed it
+    - It will search for that phrase exactly as you typed it
 - Use a hyphen to exclude words
     - Mustang -car
     - This tells the search engine to search for mustangs but to remove any results that have the word "car" in it
@@ -23,7 +23,7 @@
     - Google search will search for that phrase knowing that the asterisks can be any word
 - Find sites that are similar to other sites
     - related:amazon.com
-    - you’ll find links to online stores like Amazon
+    - You’ll find links to online stores like Amazon
 - Search for multiple words at once
     - chocolate OR white chocolate
     - This will search for pages that have either chocolate or white chocolate

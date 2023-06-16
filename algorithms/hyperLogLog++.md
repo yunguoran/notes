@@ -4,7 +4,7 @@
 
 - How to estimate the number of unique values (aka cardinality) within a very large dataset?
 - This question is called [Count-distinct problem](https://en.wikipedia.org/wiki/Count-distinct_problem) in Computer Science or Cardinality Estimation Problem in Applied Mathematics.
-- [HyperLogLog](https://towardsdatascience.com/hyperloglog-a-simple-but-powerful-algorithm-for-data-scientists-aed50fe47869).
+- Read [this](https://towardsdatascience.com/hyperloglog-a-simple-but-powerful-algorithm-for-data-scientists-aed50fe47869) for more information.
 
 ## Flajolet-Martin Algorithm
 

@@ -1,3 +1,1 @@
-# Kubernetes
-
-[Documentation](https://kubernetes.io/docs/home/).
+# [Kubernetes](https://kubernetes.io/docs/home/)

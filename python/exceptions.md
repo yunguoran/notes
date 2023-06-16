@@ -15,4 +15,4 @@ pymongo.errors.InvalidOperation: cannot set options after executing query
 
 ### reference
 
-- [pymongo.errors.InvalidOperation: cannot set options after executing query](https://stackoverflow.com/questions/62550144/pymongo-errors-invalidoperation-cannot-set-options-after-executing-query)
+[pymongo.errors.InvalidOperation: cannot set options after executing query](https://stackoverflow.com/questions/62550144/pymongo-errors-invalidoperation-cannot-set-options-after-executing-query)

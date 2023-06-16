@@ -2,7 +2,7 @@
 
 ## @NonNull
 
-Use `@NonNull` on a record component, or a parameter of a method or constructor. This will cause to lombok generate a null-check statement for you.
+Use `@NonNull` on a record component, or a parameter of a method or constructor. This will cause to Lombok generate a null-check statement for you.
 
 ```java
 // With Lombok
@@ -35,7 +35,7 @@ public class NonNullExample extends Something {
 
 ## @Getter and @Setter
 
-- You can annotate any field with `@Getter` and/or `@Setter` to let lombok generate the default getter/setter automatically.
+- You can annotate any field with `@Getter` and/or `@Setter` to let Lombok generate the default getter/setter automatically.
 - You can also put a `@Getter` and/or `@Setter` annotation on a class. In that case, it's as if you annotate all the non-static fields in that class with the annotation.
 - You can always manually disable getter/setter generation for any field by using the special `AccessLevel.NONE` access level. This lets you override the behavior of a `@Getter`, `@Setter` or `@Data` annotation on a class.
 
@@ -47,12 +47,14 @@ import lombok.Setter;
 
 public class GetterSetterExample {
 
-    @Getter @Setter
+    @Setter
+    @Getter
     private int age = 10;
     @Setter(AccessLevel.PROTECTED)
     private String name;
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         return String.format("%s (age: %d)", name, age);
     }
 }
@@ -63,7 +65,8 @@ public class GetterSetterExample {
     private int age = 10;
     private String name;
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         return String.format("%s (age: %d)", name, age);
     }
 
@@ -965,9 +968,8 @@ public class SneakyThrowsExample implements Runnable {
 - This feature works on local variables and on foreach loops only, not on fields.
 - The initializer expression is required.
 
-Vanilla Java
-
 ```java
+// Vanilla Java
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -991,9 +993,8 @@ public class ValExample {
 }
 ```
 
-With Lombok
-
 ```java
+// With Lombok
 import java.util.ArrayList;
 import java.util.HashMap;
 import lombok.val;
@@ -1030,10 +1031,8 @@ Small print
 
 Use `@Cleanup` to ensure a given resource is automatically cleaned up before the code execution path exits your current scope.
 
-Vanilla Java
-
 ```java
-
+// Vanilla Java
 import java.io.*;
 
 public class CleanupExample {
@@ -1060,11 +1059,8 @@ public class CleanupExample {
     }
   }
 }
-```
 
-With Lombok
-
-```java
+// With Lombok
 import lombok.Cleanup;
 import java.io.*;
 
@@ -1084,11 +1080,10 @@ public class CleanupExample {
 
 ## @ToString
 
-Annotating a class with @ToString will cause lombok to generate an implementation of the toString() method.
-
-Vanilla Java
+Annotating a class with `@ToString` will cause Lombok to generate an implementation of the toString() method.
 
 ```java
+// Vanilla Java
 import java.util.Arrays;
 
 public class ToStringExample {
@@ -1119,12 +1114,8 @@ public class ToStringExample {
     return "ToStringExample(" + this.getName() + ", " + this.shape + ", " + Arrays.deepToString(this.tags) + ")";
   }
 }
-```
 
-With Lombok
-
-```java
-
+// With Lombok
 import lombok.ToString;
 
 @ToString

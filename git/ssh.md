@@ -1,5 +1,3 @@
 # SSH
 
-## Elementary Knowledge
-
-  TODO
+TODO

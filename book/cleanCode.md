@@ -47,7 +47,7 @@ public List<Cell> getFlaggedCells() {
 
 做有意义的区分
 
-- 假设你有一个 Product 类。如果还有一个 ProductInfo 或 ProductData 类，那它们的名称虽然不同，意思却无区别。Info 和 Data 就像 a、an 和 the 一样，是意义含混的废话。
+假设你有一个 Product 类。如果还有一个 ProductInfo 或 ProductData 类，那它们的名称虽然不同，意思却无区别。Info 和 Data 就像 a、an 和 the 一样，是意义含混的废话。
 
 ```java
 public static void copyChars(char a1[], char a2[]) {
@@ -77,7 +77,7 @@ class DtaRcrd102 {
 class Customer {
 
     private Date generationTimestamp;
-    private Date modificationTimestamp;;
+    private Date modificationTimestamp;
     private final String recordId = "102";
     /* … */
 };
