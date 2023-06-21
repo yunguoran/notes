@@ -77,16 +77,20 @@
     "springframework",
     "sqls",
     "STATSIG",
+    "subscriptionname",
     "Swimm",
     "Tabnine",
     "TLCL",
+    "topicname",
     "unalias",
+    "unbundle",
     "whatis",
     "xclip",
     "xdigit",
     "xvfz",
     "Zeet",
-    "zless"
+    "zless",
+    "ZSTD"
   ],
   "editor.rulers": [
     120

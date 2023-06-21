@@ -1,10 +1,8 @@
-# Apache Pulsar
+# Get Started
 
-## Get Started
+## Run Pulsar locally
 
-### Run Rulsar locally
-
-#### Download Pulsar distribution
+### Download Pulsar distribution
 
 ```shell
 wget https://archive.apache.org/dist/pulsar/pulsar-3.0.0/apache-pulsar-3.0.0-bin.tar.gz
@@ -13,7 +11,7 @@ cd apache-pulsar-3.0.0
 ls -1F
 ```
 
-#### Start a Pulsar standalone cluster
+### Start a Pulsar standalone cluster
 
 ```shell
 bin/pulsar standalone
@@ -22,7 +20,7 @@ bin/pulsar standalone
 - To run the service as a background process, you can use the `bin/pulsar-daemon start standalone` command.
 - The `public/default` namespace is created when you start a Pulsar cluster. This namespace is for development purposes. All Pulsar topics are managed within namespaces.
 
-#### Create a topic
+### Create a topic
 
 Pulsar stores messages in topics. To create a new topic, run this command:
 
@@ -30,7 +28,7 @@ Pulsar stores messages in topics. To create a new topic, run this command:
 bin/pulsar-admin topics create persistent://public/default/my-topic
 ```
 
-#### Write messages to the topic
+### Write messages to the topic
 
 You can use the pulsar command line tool to write messages to a topic. This is useful for experimentation, but in practice you'll use the Producer API in your application code, or Pulsar IO connectors for pulling data in from other systems to Pulsar.
 
@@ -40,7 +38,7 @@ Run this command to produce a message:
 bin/pulsar-client produce my-topic --messages 'Hello Pulsar!'
 ```
 
-#### Read messages from the topic
+### Read messages from the topic
 
 run this command to launch the consumer and read those messages back:
 
@@ -59,7 +57,7 @@ You'll see the messages you produce in the previous step:
 key:[null], properties:[], content:Hello Pulsar!
 ```
 
-#### Write some more messages
+### Write some more messages
 
 Now open a new terminal window and produce more messages. The default message separator is `,`:
 
@@ -67,9 +65,9 @@ Now open a new terminal window and produce more messages. The default message se
 bin/pulsar-client produce my-topic --messages "$(seq -s, -f 'Message NO.%g' 1 10)"
 ```
 
-### Run Pulsar in Docker
+## Run Pulsar in Docker
 
-#### Start Pulsar in Docker
+### Start Pulsar in Docker
 
 ```shell
 docker run -it -p 6650:6650 -p 8080:8080 --mount source=pulsardata,target=/pulsar/data --mount source=pulsarconf,target=/pulsar/conf apachepulsar/pulsar:3.0.0 bin/pulsar standalone
@@ -83,7 +81,7 @@ docker run -it -e PULSAR_PREFIX_xxx=yyy -p 6650:6650  -p 8080:8080 --mount sourc
 
 To perform a health check, you can use the `bin/pulsar-admin brokers healthcheck` command.
 
-#### Use Pulsar in Docker
+### Use Pulsar in Docker
 
 If you're running a local standalone cluster, you can use one of these root URLs to interact with your cluster:
 
@@ -128,7 +126,7 @@ for i in range(10):
 client.close()
 ```
 
-#### Get the topic statistics
+### Get the topic statistics
 
 In the simplest example, you can use curl to probe the stats for a particular topic:
 
@@ -136,12 +134,6 @@ In the simplest example, you can use curl to probe the stats for a particular to
 curl http://localhost:8080/admin/v2/persistent/public/default/my-topic/stats | python -m json.tool
 ```
 
-### [Run Pulsar in Kubernetes](https://pulsar.apache.org/docs/3.0.x/getting-started-helm/)
+## [Run Pulsar in Kubernetes](https://pulsar.apache.org/docs/3.0.x/getting-started-helm/)
 
-### [Run Pulsar locally with Docker Compos](https://pulsar.apache.org/docs/3.0.x/getting-started-docker-compose/)
-
-## Concepts and Architecture
-
-### Messaging
-
-Pulsar is built on the publish-subscribe pattern (often abbreviated to pub-sub).
+## [Run Pulsar locally with Docker Compos](https://pulsar.apache.org/docs/3.0.x/getting-started-docker-compose/)
