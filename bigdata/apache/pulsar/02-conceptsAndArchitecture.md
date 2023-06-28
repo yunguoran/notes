@@ -119,3 +119,150 @@ With message chunking enabled, when the size of a message exceeds the allowed ma
 > **Note**
 >
 > In this case, interwoven chunked messages may bring some memory pressure to the consumer because the consumer keeps a separate buffer for each large message to aggregate all its chunks in one message. You can limit the maximum number of chunked messages a consumer maintains concurrently by configuring the `maxPendingChunkedMessage` parameter. When the threshold is reached, the consumer drops pending messages by silently acknowledging them or asking the broker to redeliver them later, optimizing memory utilization.
+
+### Topics
+
+Topic names are URLs that have a well-defined structure:
+
+```text
+{persistent|non-persistent}://tenant/namespace/topic
+```
+
+| Topic name component | Description|
+| ------ | ------ |
+| persistent / non-persistent | This identifies the type of topic. Pulsar supports two kind of topics: persistent and | non-persistent. The default is persistent, so if you do not specify a type, the topic is persistent. With persistent topics, all messages are durably persisted on disks (if the broker is not standalone, messages are durably persisted on multiple disks), whereas data for non-persistent topics is not persisted to storage disks.
+| tenant | The topic tenant within the instance. Tenants are essential to multi-tenancy in Pulsar, and spread across | clusters.
+| namespace | The administrative unit of the topic, which acts as a grouping mechanism for related topics. Most topic | configuration is performed at the namespace level. Each tenant has one or more namespaces.
+| topic | The final part of the name. Topic names have no special meaning in a Pulsar instance.|
+
+### Namespaces
+
+A namespace is a logical nomenclature within a tenant.
+
+### Subscriptions
+
+A subscription is a named configuration rule that determines how messages are delivered to consumers.
+
+![pulsarSubscriptionTypes](./images/pulsarSubscriptionTypes.png)
+
+#### Subscription types
+
+Exclusive(default)
+
+In the Exclusive type, only a single consumer is allowed to attach to the subscription.
+
+![Alt text](https://pulsar.apache.org/assets/images/pulsar-exclusive-subscriptions-b3304e5b293d0a6da17637735fcb1650.svg)
+
+Failover
+
+- In the Failover type, multiple consumers can attach to the same subscription.
+- A master consumer is picked for a non-partitioned topic or each partition of a partitioned topic and receives messages.
+- When the master consumer disconnects, all (non-acknowledged and subsequent) messages are delivered to the next consumer in line.
+
+Failover | Partitioned topics
+
+If the number of partitions in a partitioned topic is less than the number of consumers:
+
+![Alt text](https://pulsar.apache.org/assets/images/pulsar-failover-subscriptions-4-74e4b825d13ce1197c1281819fe14554.svg)
+
+If the number of partitions in a partitioned topic is greater than the number of consumers:
+
+![Alt text](https://pulsar.apache.org/assets/images/pulsar-failover-subscriptions-1-bb15a6e2f6373dc1f20eecf1779ee0c7.svg)
+
+Failover | Non-partitioned topics
+
+If there is one non-partitioned topic:
+
+![Alt text](https://pulsar.apache.org/assets/images/pulsar-failover-subscriptions-2-1f72791597afa07fa987ae1f7bc5cd42.svg)
+
+If there are multiple non-partitioned topics:
+
+![Alt text](https://pulsar.apache.org/assets/images/pulsar-failover-subscriptions-3-2b2e00ef5ee525ca7c1fd21dcd67e328.svg)
+
+Shared
+
+In shared or round robin type, multiple consumers can attach to the same subscription. Messages are delivered in a round-robin distribution across consumers, and any given message is delivered to only one consumer. When a consumer disconnects, all the messages that were sent to it and not acknowledged will be rescheduled for sending to the remaining consumers.
+
+![Alt text](https://pulsar.apache.org/assets/images/pulsar-shared-subscriptions-c368030415b85eb3ef96448f79e87a58.svg)
+
+Key_Shared
+
+In the Key_Shared type, multiple consumers can attach to the same subscription. Messages are delivered in distribution across consumers and messages with the same key or same ordering key are delivered to only one consumer. No matter how many times the message is re-delivered, it is delivered to the same consumer.
+
+![Alt text](https://pulsar.apache.org/assets/images/pulsar-key-shared-subscriptions-17bf12baab858b4ac0e66b9207bf4503.svg)
+
+There are three types of mapping algorithms dictating how to select a consumer for a given message key (or ordering key):
+
+- [Sticky](https://pulsar.apache.org/docs/3.0.x/concepts-messaging/#sticky)
+- [Auto-split Hash Range](https://pulsar.apache.org/docs/3.0.x/concepts-messaging/#auto-split-hash-range)
+- [Auto-split Consistent Hashing](https://pulsar.apache.org/docs/3.0.x/concepts-messaging/#auto-split-consistent-hashing)
+
+##### Batching for Key Shared Subscriptions
+
+> **Note**
+>
+> When the consumers are using the Key_Shared subscription type, you need to disable batching or use key-based batching for the producers.
+
+There are two reasons why the key-based batching is necessary for the Key_Shared subscription type:
+
+- The broker dispatches messages according to the keys of the messages, but the default batching approach might fail to pack the messages with the same key to the same batch.
+- Since it is the consumers instead of the broker who dispatch the messages from the batches, the key of the first message in one batch is considered as the key to all messages in this batch, thereby leading to context errors.
+
+#### Subscription modes
+
+- Durable(default)
+- NonDurable
+
+### Multi-topic subscriptions
+
+> *Note*
+>
+> - When subscribing to multiple topics by regex, all topics must be in the same namespace.
+> - No ordering guarantees across multiple topics When a producer sends messages to a single topic,
+
+### Partitioned topics
+
+![Alt text](./images/partitionedTopics.png)
+
+#### Routing modes
+
+- RoundRobinPartition
+- SinglePartition
+- CustomPartition
+
+#### Ordering guarantee
+
+ | Ordering guarantee | Description | Routing Mode and Key |
+ | ------ | ------ | ------ |
+ | Per-key-partition | All the messages with the same key will be in order and be placed in same partition. | Use either SinglePartition or RoundRobinPartition mode, and Key is provided by each message. |
+ | Per-producer | All the messages from the same producer will be in order. | Use SinglePartition mode, and no Key is provided for each message. |
+
+#### Hashing scheme
+
+- JavaStringHash
+- Murmur3_32Hash
+
+Please pay attention that `JavaStringHash` is not useful when producers can be from different multiple language clients, under this use case, it is recommended to use `Murmur3_32Hash`.
+
+### Non-persistent topics
+
+Pulsar also, however, supports non-persistent topics, which are topics on which messages are never persisted to disk and live only in memory. When using non-persistent delivery, killing a Pulsar broker or disconnecting a subscriber to a topic means that all in-transit messages are lost on that (non-persistent) topic, meaning that clients may see message loss.
+
+Non-persistent topics have names of this form:
+
+```text
+non-persistent://tenant/namespace/topic
+```
+
+### System topic
+
+System topic is a predefined topic for internal use within Pulsar. It can be either a persistent or non-persistent topic.
+
+### Message retention and expiry
+
+- Message retention enables you to store messages that have been acknowledged by a consumer.
+- Message expiry enables you to set a time to live (TTL) for messages that have not yet been acknowledged.
+
+### Message deduplication
+
+![Alt text](https://pulsar.apache.org/assets/images/message-deduplication-854309d2abf6e9ba16d2a3f090e59ace.svg)
