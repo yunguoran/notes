@@ -7,9 +7,12 @@
 
 | Phrase | Chinese | comment |
 | ------ | ------ | ------ |
+| for the sake of performance | 出于性能考虑 |
+| given that | 鉴于 | 表示在某种条件或情况下，用于引出一个已知的事实或前提 |
 | is abbreviated as | 被缩写成 | [əˈbriːvieɪtɪd] |
 | off-topic | 跑题 |
 | open-ended | 开放式的 |
+| over time | 随着时间的推移 |
 | quite the contrary | 恰恰相反、适得其反 |
 | signal-to-noise ratio | 信噪比 | |
 | the world is awash in questions | 世界充满了问题 |

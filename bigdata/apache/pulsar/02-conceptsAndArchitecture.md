@@ -266,3 +266,33 @@ System topic is a predefined topic for internal use within Pulsar. It can be eit
 ### Message deduplication
 
 ![Alt text](https://pulsar.apache.org/assets/images/message-deduplication-854309d2abf6e9ba16d2a3f090e59ace.svg)
+
+## Architecture
+
+![Alt text](./images/pulsarSystemArchitecture.png)
+
+### Brokers
+
+The Pulsar message broker is a stateless component.
+
+### Clusters
+
+A Pulsar instance consists of one or more Pulsar clusters. Clusters, in turn, consist of:
+
+- One or more Pulsar brokers
+- A ZooKeeper quorum used for cluster-level configuration and coordination
+- An ensemble of bookies used for persistent storage of messages
+
+### Metadata store
+
+Pulsar uses Apache ZooKeeper for metadata storage, cluster configuration, and coordination.
+
+### Persistent storage
+
+#### Apache BookKeeper
+
+Bookies are designed to handle thousands of ledgers with concurrent reads and writes.
+
+#### Ledgers
+
+A ledger is an append-only data structure with a single writer that is assigned to multiple BookKeeper storage nodes, or bookies.
