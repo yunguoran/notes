@@ -49,6 +49,7 @@
 | URL | Uniform Resource Locator | 统一资源定位符 |
 | URI | Uniform Resource Identifier | 统一资源标识符 |
 | RFC | Request for Comments | 征求修正意见书 |
+| / | signal-to-noise ratio | 信噪比 |
 
 ## technology
 

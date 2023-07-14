@@ -296,3 +296,11 @@ Bookies are designed to handle thousands of ledgers with concurrent reads and wr
 #### Ledgers
 
 A ledger is an append-only data structure with a single writer that is assigned to multiple BookKeeper storage nodes, or bookies.
+
+## Cluster-level failover
+
+- Most of the time users won't even notice a thing. Users can keep using applications and services without interruptions or timeouts.
+- The cluster-level failover provides fault tolerance, continuous availability, and high availability together.
+- Automatic cluster-level failover is triggered when Pulsar clients cannot connect to the primary cluster for a prolonged period of time.
+
+## Topic Compaction
