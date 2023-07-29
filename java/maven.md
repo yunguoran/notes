@@ -99,3 +99,20 @@ Use `<filtering>true</filtering>`, Maven will filter the resources in directory 
     - `${java.version}`
     - `${command.line.prop}`
     - `mvn process-resources "-Dcommand.line.prop=hello again"`
+
+#### Build Lifecycle
+
+- A plugin may have one or more goals wherein each goal represents a capability of that plugin. For example, the *Compiler* plugin has two goals: `compile` and `testCompile`.
+- Plugins are artifacts that provide goals to Maven.
+
+[Lifecycle Reference](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#lifecycle-reference).
+
+### POM
+
+All POMs extend the Super POM unless explicitly set, [Super POM for Maven 3.6.3](https://maven.apache.org/ref/3.6.3/maven-model-builder/super-pom.html).
+
+### Profiles
+
+[Maven-settings](https://maven.apache.org/ref/3.9.4/maven-settings/settings.html).
+
+Profiles can be explicitly specified using the `-P` command line flag.
