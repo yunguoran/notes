@@ -1,3 +1,3 @@
 # Notes
 
-My notebook.
+[How To Become A Hacker](http://www.catb.org/~esr/faqs/hacker-howto.html).
