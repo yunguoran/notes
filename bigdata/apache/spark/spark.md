@@ -7,6 +7,10 @@
 
     ![joinStrategies](/images/joinStrategies.png)
 
+## Execute Plan
+
+![executePlan](/images/sparkExecutePlan.png)
+
 ## Hints
 
 - [Partitioning Hints](https://spark.apache.org/docs/latest/sql-ref-syntax-qry-select-hints.html#partitioning-hints)
