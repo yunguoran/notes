@@ -3,6 +3,13 @@
 - [Pro Git](https://git-scm.com/book/zh/v2)
 - [Learn Git Branching](https://learngitbranching.js.org/?locale=zh_CN)
 
+## 在 Git Bash 中设置 Git Alias
+
+- save *.git-plugin-bash.sh* in your home directory(cd ~).
+- to *~/.bashrc* file add line: `source ~/.git-plugin-bash.sh`.
+- open new terminal (your bash have to reload).
+- check if it working. Type `gst` in repository folder instead of `git status`.
+
 ## Common Operations
 
 - 远程分支覆盖本地分支。
