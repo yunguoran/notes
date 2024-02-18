@@ -14,6 +14,7 @@
 | go to great length | 不遗余力 | 指为达到某个目的而付出极大的努力和付出 |
 | in a nutshell | 简而言之 |
 | is abbreviated as | 被缩写成 | [əˈbriːvieɪtɪd] |
+| be named after | 以……命名 |
 | net result | 净结果、最终结果 | [net](https://www.youdao.com/result?word=net&lang=en) |
 | off-topic | 跑题 |
 | open-ended | 开放式的 |
