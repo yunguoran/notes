@@ -1,4 +1,4 @@
-# Python Crash Code
+# 基础知识
 
 ## 第 1 章 起步
 
@@ -26,7 +26,6 @@
     text = "hello world"
     capitalized_text = capitalize_first_letter_of_each_word(text)
     print(capitalized_text)
-
     ```
 
 - `str.strip() 会同时去除字符串首尾的空白`。
@@ -220,3 +219,137 @@ for language in set(favorite_languages.values()):
 print(f"You ordered a {pizza['crust']}-crust pizza "
     "with the following toppings:")
 ```
+
+## 第 7 章 用户输入和 while 循环
+
+### 用户输入
+
+- 函数 `input()` 让程序暂停运行，等待用户输入一些文本。
+- `input()` 接受一个字符串参数：要向用户显示的提示。
+- 运算符 `+=` 在字符串末尾附加一个字符串。
+- 函数 `int()` 将字符串转为数值类型。
+- 求模运算符（%）将两个数相除并返回余数。
+
+### while 循环
+
+- 在任何 Python 循环中都可使用 `break` 语句。
+- 要返回循环开头，并根据条件测试结果决定是否继续执行循环，可使用 `continue` 语句。
+
+## 第 8 章 函数
+
+- **文档字符串**（docstring）描述了函数是做什么的。文档字符串用三引号括起，Python 使用它们来生成有关程序中函数的文档。
+- 形参（parameter）、实参（argument）。
+
+```python
+def greet_user():
+    """显示简单的问候语。"""
+    print("Hello!")
+
+greet_user()
+```
+
+### 传递实参
+
+- 位置实参：实参的顺序与形参的顺序相同。
+- 关键字实参：每个实参都由变量名和值组成。此时无须考虑函数调用中的实参顺序。
+- 使用列表和字典
+- 编写函数时，可给每个形参指定默认值 。在调用函数中给形参提供了实参时，Python 将使用指定的实参值；否则，将使用形参的默认值。
+- 使用默认值时，必须先在形参列表中列出没有默认值的形参，再列出有默认值的实参。这让 Python 依然能够正确地解读位置实参。
+
+```python
+def describe_pet(animal_type, pet_name):
+    """显示宠物的信息。"""
+    print(f"\nI have a {animal_type}.")
+    print(f"My {animal_type}'s name is {pet_name.title()}.")
+
+describe_pet('hamster', 'harry')
+describe_pet(animal_type='hamster', pet_name='harry')
+describe_pet(pet_name='harry', animal_type='hamster')
+```
+
+### 返回值
+
+给形参一个空的默认值时，可以将此实参变为可选的。
+
+```python
+def get_formatted_name(first_name, last_name, middle_name=''):
+    """返回整洁的姓名。"""
+    if middle_name:
+        full_name = f"{first_name} {middle_name} {last_name}"
+    else:
+        full_name = f"{first_name} {last_name}"
+    return full_name.title()
+
+musician = get_formatted_name('jimi', 'hendrix')
+print(musician)
+musician = get_formatted_name('john', 'hooker', 'lee')
+print(musician)
+```
+
+### 传递列表
+
+- 每个函数都只应负责一项具体的工作。
+- 为了禁止函数修改列表，可以向函数传递列表的副本。这样函数所作的任何修改都只影响副本，而原件丝毫不受影响。
+
+```python
+function_name(list_name[:])
+```
+
+### 传递任意数量的实参
+
+有时候，预先不知道函数需要接受多少个实参。形参名 `*toppings` 中的星号让 Python 创建一个名为 toppings 的空元组，并将收到的所有值都封装到这个元组中。Python 将实参封装到一个元组中，即便函数只收到一个值。
+
+```python
+def make_pizza(*toppings):
+    """概述要制作的比萨。"""
+    print("\nMaking a pizza with the following toppings:")
+    for topping in toppings:
+    print(f"- {topping}")
+
+make_pizza('pepperoni')
+make_pizza('mushrooms', 'green peppers', 'extra cheese')
+```
+
+如果要让函数接受不同类型的实参，必须在函数定义中将接纳任意数量实参的形参放在最后。Python 先匹配位置实参和关键字实参，再将余下的实参都收集到最后一个形参中。
+
+- `*args` 收集任意数量的位置实参。
+- `**kwargs` 收集任意数量的关键字实参。kwargs 是字典类型。
+
+```python
+def build_profile(first, last, **user_info):
+    """创建一个字典，其中包含我们知道的有关用户的一切。"""
+    user_info['first_name'] = first
+    user_info['last_name'] = last
+    return user_info
+
+user_profile = build_profile('albert', 'einstein', location='princeton', field='physics')
+print(user_profile)
+
+# {'location': 'princeton', 'field': 'physics','first_name': 'albert', 'last_name': 'einstein'}
+```
+
+### 将函数存储在模块中
+
+**模块**是扩展名为 `.py` 的文件，包含要导入到程序中的代码。
+
+- 导入整个模块
+    - `import module_name`
+    - `module_name.function_name()`
+- 导入特定函数
+    - `from module_name import function_name`
+    - `from module_name import function_0, function_1, function_2`
+    - `function_name()`
+- 使用 `as` 给函数指定别名
+    - `from module_name import function_name as fn`
+- 使用 `as` 给模块指定别名
+    - `import module_name as mn`
+- 导入模块中的所有函数（**要么只导入需要使用的函数，要么导入整个模块并使用句点表示法，此方法不推荐。**）
+    - `from module_name import *`
+
+### 函数编写指南
+
+- 应给函数指定描述性名称，且只在其中使用小写字母和下划线。
+- 每个函数都应包含简要地阐述其功能的注释。
+- 给形参指定默认值时，等号两边不要有空格。
+- 如果程序或模块包含多个函数，可使用两个空行将相邻的函数分开。
+- 所有 `import` 语句都应放在文件开头。唯一例外的情形是，在文件开头使用了注释来描述整个程序。

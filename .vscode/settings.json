@@ -50,6 +50,7 @@
     "JDBC",
     "JNDI",
     "journalctl",
+    "kwargs",
     "kwest",
     "lstrip",
     "metacharacter",
