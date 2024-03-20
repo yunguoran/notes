@@ -353,3 +353,96 @@ print(user_profile)
 - 给形参指定默认值时，等号两边不要有空格。
 - 如果程序或模块包含多个函数，可使用两个空行将相邻的函数分开。
 - 所有 `import` 语句都应放在文件开头。唯一例外的情形是，在文件开头使用了注释来描述整个程序。
+
+## 第 9 章 类
+
+- 在 Python 中，首字母大写的名称指的是**类**。
+- `__init__()` 是 Python 中类的构造方法，其第一个参数必须是 `self`，这是一个指向实例本身的引用。
+- 创建实例：`my_dog = Dog('Willie', 6)`。此处没有 Java 中的 new 关键字。
+
+### 继承
+
+- 创建子类时，父类必须包含在当前文件中，且位于子类前面。
+- 定义子类时，必须在圆括号内指定父类的名称：`class ElectricCar(Car):`。
+- `super()` 是一个特殊函数，能够调用父类的方法：`super().__init__(make, model, year)`。
+
+### Python 标准库
+
+Python 标准库是一组模块，我们安装的 Python 都包含它。
+
+模块 `random`。
+
+- `randint()` 将两个整数作为参数，并随机返回一个位于这两个整数之间（含）的整数。
+- `choice()` 将一个列表或元组作为参数，并随机返回其中的一个元素。
+
+### 类编码风格
+
+- 类名应采用**驼峰命名法**，即将类名中的每个单词的首字母都大写，而不使用下划线。
+- 实例名和模块名都采用小写格式，并在单词之间加上下划线。
+- 对于每个类，都应紧跟在类定义后面包含一个文档字符串。
+- 每个模块也都应包含一个文档字符串。
+- 在**类**中，可使用**一个空行**来分隔方法；而在**模块**中，可使用**两个空行**来分隔类。
+- 先编写导入标准库模块的 `import` 语句，再添加一个空行，然后编写导入你自己编写的模块的 `import` 语句。
+
+## 第 10 章 文件和异常
+
+### 从文件中读取数据
+
+- 要以任何方式使用文件，那怕仅仅是打印其内容，都得先**打开**文件，才能访问它。函数 `open()` 接受一个参数：要打开的文件的路径。
+
+    ```python
+    with open('pi_digits.txt') as file_object:
+        contents = file_object.read()
+    print(contents)
+    ```
+
+- 关键字 `with` 在不再需要访问文件后将其关闭。
+- `read()` 到达文件末尾时返回一个空字符串，而将这个空字符串显示出来时就是一个空行。
+- 显示文件路径时，Windows 系统使用反斜杠（`\`）而不是斜杠（`/`），但在代码中依然可以使用斜杠。
+- 要逐行读取，可对文件对象使用 `for` 循环。
+
+    ```python
+    file_name = 'pz_digits.txt'
+
+    with open(file_name) as file_object:
+        for line in file_object:
+            print(line.rstrip())
+    ```
+
+- 创建一个包含文件各行内容的列表。
+
+    ```python
+    filename = 'pi_digits.txt'
+    with open(filename) as file_object:
+        lines = file_object.readlines()
+        for line in lines:
+            print(line.rstrip())
+    ```
+
+- 读取文本文件时，Python 将其中的所有文本都解读为字符串。如果读取的是数，并要将其作为数值使用，就必须使用函数 `int()` 将其转换为整数或使用函数 `float()` 将其转换为浮点数。
+
+### 写入文件
+
+```python
+filename = 'programming.txt'
+with open(filename, 'w') as file_object:
+    file_object.write("I love programming.")
+```
+
+- `open` 方法的第一个实参是要打开的文件的路径。第二个实参（`'w'`）告诉 Python，要以写入模式打开这个文件。打开文件时，可指定读取模式（`'r'`）、写入模式（`'w'`）、附加模式 （`'a'`）或读写模式（`'r+'`）。如果省略了模式实参，Python 将以默认的只读模式打开文件。
+- 以写入模式（`'w'`）打开文件时，如果指定的文件已经存在，Python 将在返回文件对象前清空该文件的内容。
+- Python 只能将字符串写入文本文件。要将数值数据存储到文本文件中，必须先使用函数 `str()` 将其转换为字符串格式。
+- 函数 `write()` 不会在写入的文本末尾添加换行符。
+
+### 异常
+
+try-except-else 代码块：
+
+- 依赖 `try` 代码块成功执行的代码都应放到 `else` 代码块中。
+- 在系统的默认编码与要读取文件使用的编码不一致时，需要给 `open` 方法指定参数 `encoding`：`with open(filename, encoding='utf-8') as f:`。
+- Python 有一个 `pass` 语句，可用于让 Python 在代码块中什么都不要做。
+
+### 存储数据
+
+- 函数 `json.dump()` 接受两个实参：要存储的数据，以及可用于存储数据的文件对象。
+- 使用 `json.load()` 将数据读取到内存中。
