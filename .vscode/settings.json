@@ -54,6 +54,7 @@
     "kwargs",
     "kwest",
     "lstrip",
+    "matplotlib",
     "metacharacter",
     "metastore",
     "Mintlify",
