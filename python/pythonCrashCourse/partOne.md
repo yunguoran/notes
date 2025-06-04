@@ -2,19 +2,30 @@
 
 ## 第 1 章 起步
 
+Windows 终端：
+
+- `cd` 可以在文件系统中导航。
+- `dir` 可以显示当前目录中的所有文件。
+- `python hello_world.py` 可以从终端运行 Python 代码。
+
 关闭 Python REPL 的两种方法：
 
 - 按 **Ctrl** + **z**、再按回车键。
 - 执行 `exit()`。
 
-注意在 Python REPL 中不必使用 print() 即可打印，因为 Python REPL 是交互式的。
+注意在 Python REPL（[Read–eval–print loop](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop)）中不必使用 `print()` 即可打印，因为 Python REPL 是交互式的。
 
 ## 第 2 章 变量和简单的数据类型
 
-变量是可以赋给值的标签。
+- Python 变量名应当小写。
+- 变量是可以赋给值的标签。
 
 ### 字符串
 
+编程中的**空白**泛指任何非打印字符。
+
+- `str.upper()` 全部大写。
+- `str.lower()` 全部小写。
 - `str.title()` 会将字符串中每个单词的首字母转换为大写，其余字母转换为小写。
 - `str.capitalize()` 只会将字符串的第一个字符大写，其余字符转换为小写。
 - 将字符串中的每个单词的首字母大写，同时保留其余字母的大小写：
@@ -28,41 +39,60 @@
     print(capitalized_text)
     ```
 
-- `str.strip() 会同时去除字符串首尾的空白`。
-- `str.rstrip() 会去除字符串末尾的空白`。
-- `str.lstrip() 会去除字符串开头的空白`。
+- `str.lstrip()` 会去除字符串开头的空白。
+- `str.rstrip()` 会去除字符串末尾的空白。
+- `str.strip()` 会同时去除字符串首尾的空白。
 
 #### 在字符串中使用变量
 
 - 要在字符串中插入变量的值，可在前引号前加上字母 `f`，再将要插入的变量放在花括号内。这样，当 Python 显示字符串时，将把每个变量都替换为其值（**f** 字符串）。
 - **f** 字符串是 Python 3.6 引入的。
 
+    ```python
+    name = 'Albert Einstein'
+    message = f'Hello {name}!'
+    print(message)
+    ```
+
 ### 数
 
 #### 整数
 
-Python 使用两个乘号（`*`）表示乘方运算。
+Python 使用两个乘号（`**`）表示乘方运算。
 
 #### 浮点数
 
 - 将任意两个数相除时，结果总是浮点数。即便这两个数都是整数且能整除。
 - 在其他任何运算中，如果一个操作数是整数，另一个操作数是浮点数，结果也总是浮点数。
 
+    ```python
+    # 除法生成数字 8。
+    print(int(16 / 2))
+    print(16 // 2)
+    print(format(16 / 2, '.0f'))
+    ```
+
 #### 数中的下划线（Python 3.6 及以后）
 
 - 书写很大的数时，可使用下划线将其中的数字分组，使其更清晰易读。
 - 打印此种数时，Python 不会打印其中的下划线。
 
-#### 同时给多个变量赋值
+    ```python
+    universe_age = 14_000_000_000
+    ```
 
-```python
-x, y, z = 0, 0, 0
-```
+#### 同时给多个变量赋值
 
 - 可在一行代码中给多个变量赋值，这有助于缩短程序并提高其可读性。
 - 这样做时，需要用逗号将变量名分开；对于要赋给变量的值，也需同样处理。
 
+    ```python
+    x, y, z = 0, 0, 0
+    ```
+
 #### Python 之禅
+
+不要企图编写完美无缺的代码，而是要先编写行之有效的代码，再决定是对其做进一步改进，还是转而去编写新代码。
 
 ```python
 import this
@@ -70,29 +100,35 @@ import this
 
 ## 第 3 章 列表简介
 
-- 列表是有序集合。
-- 要访问列表元素，可指出列表的名称，再指出元素的索引，并将后者放在方括号内。如：`bicycle[0]`。
-- 索引从 `0` 开始。
-- 通过将索引指定为 `-1` 以访问列表最后一个元素。这种约定也适用于其他负数索引。例如，索引 `-2` 返回倒数第二个元素。
+- 在 Python 中，用方括号（`[]`）表示列表，并用逗号分隔其中的元素。
+- 列表是有序集合，因此要访问列表元素，可指出列表的名称，再指出元素的索引，并将后者放在方括号内。如：`bicycle[0]`。
+- 索引从 **0** 开始。
+- 通过将索引指定为 **-1** 以访问列表最后一个元素。这种约定也适用于其他负数索引。例如，索引 **-2** 返回倒数第二个元素。
 
 ### 修改、添加和删除元素
 
-- 要修改列表元素，可指定列表名和要修改的元素的索引，再指定该元素的新值。
+- 要修改列表元素，可指定列表名和要修改的元素的索引，再指定该元素的新值。如：`motorcycles[0] = 'ducati'`。
 - 添加列表元素。
-    - 使用 `append()` 方法在列表末尾添加元素： `motorcycles.append('ducati')`。
-    - 使用 `insert()` 方法在列表的任何位置添加元素：`motorcycles.insert(0, 'ducati')`。这种操作将列表中既有的每个元素都右移一个位置。
+    - 使用 `append()` 方法在列表末尾添加元素。如：`motorcycles.append('ducati')`。
+    - 使用 `insert()` 方法在列表的任何位置添加元素。如：`motorcycles.insert(0, 'ducati')`。这种操作将列表中既有的每个元素都右移一个位置。
 - 删除列表元素。
-    - 如果知道要删除的元素在列表中的位置，可使用 `del` 语句删除元素：`del motorcycles[0]`。删除后无法访问该元素。
-    - 方法 `pop()` 删除列表末尾的元素，并让你能够接着使用它：`popped_motorcycle = motorcycles.pop()`。
-    - 可以使用 `pop()` 来删除列表中任意位置的元素，只需在圆括号中指定要删除元素的索引即可：`first_owned = motorcycles.pop(0)`。
+    - 如果知道要删除的元素在列表中的位置，可使用 `del` 语句删除元素。如：`del motorcycles[0]`。删除后无法访问该元素。
+    - 方法 `pop()` 删除列表末尾的元素，并让你能够接着使用它，如：`popped_motorcycle = motorcycles.pop()`。
+    - 可以使用 `pop()` 来删除列表中任意位置的元素，只需在圆括号中指定要删除元素的索引即可。如：`first_owned = motorcycles.pop(0)`。
     - 使用 `remove()` 可以根据值来删除元素，此时也可以接着使用它的值。
-    - 方法 `remove()` 只删除第一个指定的值。如果要删除的值可能在列表中出现多次，就需要使用循环来确保将每个值都删除。
+    - 方法 `remove()` 只删除第一个指定的值，如果要删除的值可能在列表中出现多次，就需要使用循环来确保将每个值都删除。
 
 ### 组织列表
 
-- 使用 `sort()` 对列表进行永久排序：`cars.sort(reverse=True)`。
-- 使用 `sorted()` 对列表进行临时排序： `sorted(cars, reverse=True)`。
-- 要反转列表元素的排列顺序，可使用方法 `reverse()`：`cars.reverse()`。
+- 使用 `sort()` 对列表进行永久排序。
+    - `cars.sort()` 按字母顺序排列。
+    - `cars.sort(reverse=True)` 按字母顺序相反的顺序排列。
+- 使用 `sorted()` 对列表进行临时排序，使用之后原列表的排列顺序并没有变。
+    - `sorted(cars)`
+    - `sorted(cars, reverse=True)`
+- 要反转列表元素的排列顺序，可使用方法 `reverse()`。如：`cars.reverse()`。
+    - `reverse()` 不是按与字母顺序相反的顺序排列列表元素，而只是反转列表元素的排列顺序。
+    - `reverse()` 永久修改列表元素的排列顺序，但可随时恢复到原来的排列顺序，只需对列表再次调用 `reverse()` 即可。
 - 使用 `len()` 获取列表的长度。
 
 ## 第 4 章 操作列表
@@ -106,41 +142,77 @@ import this
 
 - Python 根据缩进来判断代码行与前一个代码行的关系。
 - `for` 语句末尾的冒号告诉 Python，下一行是循环的第一行。
+- `for magician in magicians:` 这一行就已经将 `magician` 这个变量与 `magicians[0]` 关联起来了。因此下方代码不会报错，且 `magician` 的值在循环结束之后依然是 `magicians[-1]`，即 `magicians` 列表中最后的那个元素值。
+
+    ```python
+    magicians = ['alice', 'david', 'carolina']
+    for magician in magicians:
+        print(f"{magician.title()}, that was a great trick!")
+    print(f"I can't wait to see your next trick, {magician.title()}!")
+
+    # Alice, that was a great trick!
+    # David, that was a great trick!
+    # Carolina, that was a great trick!
+    # I can't wait to see your next trick, Carolina!
+    ```
 
 ### 创建数值列表
 
-- 可使用函数 `list()` 将 `range()` 的结果直接转换为列表。
 - `range(1, 5)` 的类型是 `<class 'range'>`，左闭右开。
 - `range(6)` 返回数 0 - 5。
+- 可使用函数 `list()` 将 `range()` 的结果直接转换为列表。
 
-### 列表解析
+    ```python
+    for value in range(1, 5):
+        print(value)
+
+    # 1
+    # 2
+    # 3
+    # 4
+
+    # 指定步长
+    for value in range(2, 11, 2):
+        print(value)
+
+    # 2
+    # 4
+    # 6
+    # 8
+    # 10
+    ```
+
+#### 列表解析
 
 ```python
 squares = [value**3 for value in range(1, 11)]
 print(squares)
 ```
 
-### 列表切片
+### 使用列表的一部分
 
-要创建切片，可指定要使用的第一个元素和最后一个元素的索引。与函数 `range()` 一样，Python 在到达第二个索引之前的元素后停止。
+#### 列表切片
+
+要创建切片，可指定要使用的第一个元素和最后一个元素的索引。与函数 `range()` 一样，Python 在到达第二个索引**之前**的元素后停止。
 
 ```python
 players = ['charles', 'martina', 'michael', 'florence', 'eli']
 print(players[0:3])
 
-# 如果没有指定第一个索引，Python 将自动从列表开头开始
+# 如果没有指定第一个索引，Python 将自动从列表开头开始。
 print(players[:3])
-# 要让切片终止于列表末尾，也可使用类似的语法
+# 要让切片终止于列表末尾，也可使用类似的语法。
 print(players[2:])
-# 输出名单上的最后三名队员
+# 输出名单上的最后三名队员。
 print(players[-3:])
 # 可在表示切片的方括号内指定第三个值。这个值告诉 Python 在指定范围内每隔多少元素提取一个。
 print(players[:3:2])
 ```
 
-### 复制列表
+#### 复制列表
 
-创建一个包含整个列表的切片，方法是同时省略起始索引和终止索引（`[:]`）。
+- 创建一个包含整个列表的切片（即副本），方法是同时省略起始索引和终止索引（`[:]`）。
+- 如果直接赋值，而不是将 `my_foods` 的副本（`my_foods[:]`）赋给 `friend_foods`，实际的行为将是 `friend_foods` 和 `my_foods` 指向同一个列表。
 
 ```python
 my_foods = ['pizza', 'falafel', 'carrot cake']
@@ -154,8 +226,6 @@ Python 将不能修改的值称为**不可变**的 ，而不可变的列表被�
 - 元组看起来很像列表，但使用**圆括号**而非中括号来标识。
 - 严格地说，元组是由**逗号**标识的，圆括号只是让元组看起来更整洁、更清晰。如果你要定义只包含一个元素的元组，必须在这个元素后面加上逗号。
 - 虽然不能修改元组的元素，但可以给存储元组的变量赋值。
-
-### 设置代码格式
 
 ## 第 5 章 if 语句
 

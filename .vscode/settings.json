@@ -79,6 +79,7 @@
     "pushd",
     "pushdown",
     "pyecharts",
+    "Pygame",
     "pymongo",
     "pynput",
     "pyplot",
