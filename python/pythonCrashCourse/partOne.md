@@ -237,7 +237,20 @@ Python 将不能修改的值称为**不可变**的 ，而不可变的列表被�
 - 要判断特定的值是否已包含在列表中，可使用关键字 `in`。
 - 要判断特定的值未包含在列表中可使用关键字 `not in`。
 - 我们经常需要检查超过两个的情形，为此可使用 Python 提供的 `if-elif-else` 结构。
+    - `elif` 代码块可以有多个。
+    - `else` 代码块可以省略。
 - 在 `if` 语句中将列表名用作条件表达式时，Python 将在列表至少包含一个元素时返回 True ，并在列表为空时返回 False。
+
+    ```python
+    requested_toppings = []
+
+    if requested_toppings:
+        for requested_topping in requested_toppings:
+            print(f"Adding {requested_topping}.")
+        print("\nFinished making your pizza!")
+    else:
+        print("Are you sure you want a plain pizza?")
+    ```
 
 ## 第 6 章 字典
 
@@ -245,41 +258,147 @@ Python 将不能修改的值称为**不可变**的 ，而不可变的列表被�
 
 - 在 Python 中，字典用放在花括号（`{}`）中的一系列键值对表示。
 - 要获取与键相关联的值，可依次指定字典名和放在方括号内的键。
+
+    ```python
+    alien_0 = {'color': 'green'}
+    print(alien_0['color'])
+    ```
+
     - 此时如果指定的键不存在就会报错。
+
+        ```python
+        alien_0 = {'color': 'green', 'speed': 'slow'}
+        print(alien_0['points'])
+
+        # Traceback (most recent call last):
+        # File "D:\workspace\pythonWork\main.py", line 2, in <module>
+        #     print(alien_0['points'])
+        #         ~~~~~~~^^^^^^^^^^
+        # KeyError: 'points'
+        ```
+
     - 可以使用方法 `get()` 在指定的键不存在时返回一个默认值。
+
+        ```python
+        alien_0 = {'color': 'green', 'speed': 'slow'}
+        point_value = alien_0.get('points', 'No point value assigned.')
+        print(point_value)
+
+        # No point value assigned.
+        ```
+
     - 使用方法 `get()` 时如果没有指定第二个参数且指定的键不存在，Python 将返回值 None 。
 - 字典是一种动态结构，可随时在其中添加键值对。要添加键值对，可依次指定字典名、用方括号括起的键和相关联的值。
+
+    ```python
+    alien_0 = {'color': 'green', 'points': '5'}
+    print(alien_0)
+
+    alien_0['x_position'] = 0
+    alien_0['y_position'] = 25
+    print(alien_0)
+
+    # {'color': 'green', 'points': '5'}
+    # {'color': 'green', 'points': '5', 'x_position': 0, 'y_position': 25}
+    ```
+
 - 字典中元素的排列顺序与定义时相同。如果将字典打印出来或遍历其元素，将发现元素的排列顺序与添加顺序相同。
 - 要修改字典中的值，可依次指定字典名、用方括号括起的键，以及与该键相关联的新值。
-- 对于字典中不再需要的信息，可使用 `del` 语句将相应的键值对彻底删除。使用 `del` 语句时，必须指定字典名和要删除的键。
+
+    ```python
+    alien_0 = {'color': 'green'}
+    print(f"The alien is {alien_0['color']}.")
+
+    alien_0['color'] = 'yellow'
+    print(f"The alien is now {alien_0['color']}.")
+
+    # The alien is green.
+    # The alien is now yellow.
+    ```
+
+- 对于字典中不再需要的信息，可使用 `del` 语句将相应的键值对彻底删除。使用 `del` 语句时，必须指定字典名和要删除的键。删除掉的键值对会永远消失。
+
+    ```python
+    alien_0 = {'color': 'green', 'points': 5}
+    print(alien_0)
+
+    del alien_0['points']
+    print(alien_0)
+
+    # {'color': 'green', 'points': 5}
+    # {'color': 'green'}
+    ```
 
 ### 遍历字典
 
 - 字典的 `items()` 方法返回一个键值对列表。
-- `keys()` 方法返回一个键列表。可以使用函数 `sorted()` 来获得按特定顺序排列的键列表的副本。
+- `keys()` 方法返回一个键列表。
+    - 可以使用函数 `sorted()` 来获得按特定顺序排列的键列表的副本。
+    - 遍历字典时，会默认遍历所有的键，因此 `for name in favorite_languages.keys()` 中的 `.keys()` 可以省略。
 - `values()` 方法返回一个值列表。
 - `set()` 可以剔除重复项，返回值是 `<class 'set'>`。
-- 可使用一对花括号直接创建集合，并在其中用逗号分割元素。集合不会以特定的顺序存储元素。
 
-```python
-favorite_languages = {'username': 'efermi', 'first': 'enrico', 'last': 'fermi',}
+    ```python
+    favorite_languages = {
+        'jen': 'python',
+        'sarah': 'c',
+        'edward': 'ruby',
+        'phil': 'python'
+    }
 
-for name, language in favorite_language.items():
-    print(f"name: {name}")
-    print(f"language: {language}\n")
+    for name, language in favorite_languages.items():
+        print(f"name: {name}")
+        print(f"language: {language}\n")
 
-for name in favorite_languages.keys():
-    print(name.title())
+    for name in favorite_languages.keys():
+        print(name.title())
 
-for name in sorted(favorite_languages.keys()):
-    print(f"{name.title()}, thank you for taking the poll.")
+    for name in sorted(favorite_languages.keys()):
+        print(f"{name.title()}, thank you for taking the poll.")
 
-for language in favorite_languages.values():
-    print(language.title())
+    for language in favorite_languages.values():
+        print(language.title())
 
-for language in set(favorite_languages.values()):
-    print(language.title())
-```
+    for language in set(favorite_languages.values()):
+        print(language.title())
+
+    # name: jen
+    # language: python
+
+    # name: sarah
+    # language: c
+
+    # name: edward
+    # language: ruby
+
+    # name: phil
+    # language: python
+
+    # Jen
+    # Sarah
+    # Edward
+    # Phil
+    # Edward, thank you for taking the poll.
+    # Jen, thank you for taking the poll.
+    # Phil, thank you for taking the poll.
+    # Sarah, thank you for taking the poll.
+    # Python
+    # C
+    # Ruby
+    # Python
+    # Ruby
+    # C
+    # Python
+    ```
+
+- 可使用一对花括号直接创建**集合**，并在其中用**逗号**分割元素。集合不会以特定的顺序存储元素。
+
+    ```python
+    languages = {'python', 'ruby', 'python', 'c'}
+    print(languages)
+
+    # {'python', 'c', 'ruby'} 注意此处每次输出的结果很可能是不一样的
+    ```
 
 ### 嵌套
 
@@ -298,12 +417,33 @@ print(f"You ordered a {pizza['crust']}-crust pizza "
 - `input()` 接受一个字符串参数：要向用户显示的提示。
 - 运算符 `+=` 在字符串末尾附加一个字符串。
 - 函数 `int()` 将字符串转为数值类型。
-- 求模运算符（%）将两个数相除并返回余数。
+- 求模运算符（`%`）将两个数相除并返回余数。
+
+```python
+name = input("Please enter your name: ")
+print(f"\Hello, {name}!")
+
+prompt = "If you tell us who you are, we can personalize the message you see."
+prompt += "\nWhat is your first name?"
+
+name = input(prompt)
+print(f"\Hello, {name}!")
+```
 
 ### while 循环
 
 - 在任何 Python 循环中都可使用 `break` 语句。
 - 要返回循环开头，并根据条件测试结果决定是否继续执行循环，可使用 `continue` 语句。
+
+```python
+pets = ['dog', 'cat', 'dog', 'goldfish', 'cat', 'rabbit', 'cat']
+print(pets)
+
+while 'cat' in pets:
+    pets.remove('cat')
+
+print(pets)
+```
 
 ## 第 8 章 函数
 
@@ -321,10 +461,11 @@ greet_user()
 ### 传递实参
 
 - 位置实参：实参的顺序与形参的顺序相同。
-- 关键字实参：每个实参都由变量名和值组成。此时无须考虑函数调用中的实参顺序。
-- 使用列表和字典
-- 编写函数时，可给每个形参指定默认值 。在调用函数中给形参提供了实参时，Python 将使用指定的实参值；否则，将使用形参的默认值。
-- 使用默认值时，必须先在形参列表中列出没有默认值的形参，再列出有默认值的实参。这让 Python 依然能够正确地解读位置实参。
+- 关键字实参：每个实参都由变量名和值组成，此时无须考虑函数调用中的实参顺序。
+- 使用列表和字典。
+- 编写函数时，可给每个形参指定默认值。
+    - 在调用函数中给形参提供了实参时，Python 将使用指定的实参值；否则，将使用形参的默认值。
+    - 使用默认值时，必须先在形参列表中列出没有默认值的形参，再列出有默认值的实参。这让 Python 依然能够正确地解读位置实参。
 
 ```python
 def describe_pet(animal_type, pet_name):
@@ -335,11 +476,21 @@ def describe_pet(animal_type, pet_name):
 describe_pet('hamster', 'harry')
 describe_pet(animal_type='hamster', pet_name='harry')
 describe_pet(pet_name='harry', animal_type='hamster')
+
+def describe_pet(pet_name, animal_type='dog'):
+    """显示宠物的信息。"""
+    print(f"\nI have a {animal_type}.")
+    print(f"My {animal_type}'s name is {pet_name.title()}.")
+
+describe_pet('willie')
+describe_pet(pet_name='willie')
 ```
 
 ### 返回值
 
-给形参一个空的默认值时，可以将此实参变为可选的。
+- Python 将非空字符串解读为 `True`。
+- 给形参一个空的默认值时，可以将此实参变为可选的。
+- `None`（表示变量没有值），条件测试中，`None` 相当于 `False`。
 
 ```python
 def get_formatted_name(first_name, last_name, middle_name=''):
@@ -354,12 +505,23 @@ musician = get_formatted_name('jimi', 'hendrix')
 print(musician)
 musician = get_formatted_name('john', 'hooker', 'lee')
 print(musician)
+
+def build_person(first_name, last_name, age=None):
+    person = {'first': first_name, 'last': last_name}
+    if age:
+        person['age'] = age
+    return person
+
+musician = build_person('jimi', 'hendrix', age=27)
+musician = build_person('jimi', 'hendrix')
+print(musician)
 ```
 
 ### 传递列表
 
 - 每个函数都只应负责一项具体的工作。
 - 为了禁止函数修改列表，可以向函数传递列表的副本。这样函数所作的任何修改都只影响副本，而原件丝毫不受影响。
+- 让函数使用现成的列表可避免花时间和内存创建副本，从而提高效率，在处理大型列表时尤其如此。
 
 ```python
 function_name(list_name[:])
@@ -374,7 +536,7 @@ def make_pizza(*toppings):
     """概述要制作的比萨。"""
     print("\nMaking a pizza with the following toppings:")
     for topping in toppings:
-    print(f"- {topping}")
+        print(f"- {topping}")
 
 make_pizza('pepperoni')
 make_pizza('mushrooms', 'green peppers', 'extra cheese')
@@ -383,7 +545,7 @@ make_pizza('mushrooms', 'green peppers', 'extra cheese')
 如果要让函数接受不同类型的实参，必须在函数定义中将接纳任意数量实参的形参放在最后。Python 先匹配位置实参和关键字实参，再将余下的实参都收集到最后一个形参中。
 
 - `*args` 收集任意数量的位置实参。
-- `**kwargs` 收集任意数量的关键字实参。kwargs 是字典类型。
+- `**kwargs` 收集任意数量的关键字实参。`kwargs` 是字典类型。
 
 ```python
 def build_profile(first, last, **user_info):
@@ -427,16 +589,109 @@ print(user_profile)
 ## 第 9 章 类
 
 - 在 Python 中，首字母大写的名称指的是**类**。
+    - 类中的函数称为**方法**。
+    - 可通过实例访问的变量称为**属性**。
 - `__init__()` 是 Python 中类的构造方法，其第一个参数必须是 `self`，这是一个指向实例本身的引用。
-- 创建实例：`my_dog = Dog('Willie', 6)`。此处没有 Java 中的 new 关键字。
+- 创建实例时没有 Java 中的 `new` 关键字。
 - `if __name__ == '__main__':` 的意思是：“如果这个文件被直接运行，而不是被导入，那么执行以下代码块”。
 - 当这个文件被其他 Python 文件导入时，`__name__` 变量的值是这个文件的模块名。
+
+```python
+class Dog:
+    """模拟小狗。"""
+
+    def __init__(self, name, age):
+        """初始化属性 name 和 age。"""
+        self.name = name
+        self.age = age
+
+    def sit(self):
+        """蹲下。"""
+        print(f"{self.name} is now sitting.")
+
+    def roll_over(self):
+        """打滚。"""
+        print(f"{self.name} rolled over.")
+
+my_dog = Dog('Willie', 6)
+
+print(f"My dog's name is {my_dog.name}.")
+print(f"My dog is {my_dog.age} years old.")
+
+my_dog.sit()
+my_dog.roll_over()
+```
 
 ### 继承
 
 - 创建子类时，父类必须包含在当前文件中，且位于子类前面。
 - 定义子类时，必须在圆括号内指定父类的名称：`class ElectricCar(Car):`。
 - `super()` 是一个特殊函数，能够调用父类的方法：`super().__init__(make, model, year)`。
+
+```python
+class Car:
+    """一次模拟汽车的简单尝试。"""
+
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+
+    def get_descriptive_name(self):
+        long_name = f"{self.year} {self.make} {self.model}"
+        return long_name.title()
+
+    def read_odometer(self):
+        print(f"This car has {self.odometer_reading} miles on it.")
+
+    def update_odometer(self, mileage):
+        if mileage >= self.odometer_reading:
+            self.odometer_reading = mileage
+        else:
+            print("You can't roll back an odometer!")
+
+    def increment_odometer(self, miles):
+        self.odometer_reading += miles
+
+class Battery:
+    """一次模拟电动汽车电瓶的简单尝试。"""
+
+    def __init__(self, battery_size=75):
+        self.battery_size = battery_size
+
+    def describe_battery(self):
+        """打印一条描述电瓶容量的消息。"""
+        print(f"This car has a {self.battery_size}-kWh battery.")
+
+    def get_range(self):
+        """打印一条消息，指出电瓶的续航里程。"""
+        if self.battery_size == 75:
+            range = 260
+        elif self.battery_size == 100:
+            range = 315
+        print(f"This car can go about {range} miles on a full charge.")
+
+class ElectricCar(Car):
+    """电动汽车的特殊之处。"""
+
+    def __init__(self, make, model, year):
+        """
+        初始化父类的属性。
+        再初始化电动汽车特有的属性。
+        """
+        super().__init__(make, model, year)
+        self.battery = Battery()
+
+    def fill_gas_tank(self):
+        """电动汽车没有邮箱。"""
+        print("This car doesn't need a gas tank!")
+
+my_tesla = ElectricCar('tesla', 'model s', 2019)
+print(my_tesla.get_descriptive_name())
+my_tesla.battery.describe_battery()
+my_tesla.battery.get_range()
+```
 
 ### Python 标准库
 
@@ -469,12 +724,13 @@ Python 标准库是一组模块，我们安装的 Python 都包含它。
     ```
 
 - 关键字 `with` 在不再需要访问文件后将其关闭。
+- `read()` 函数将读取这个文件的全部内容。
 - `read()` 到达文件末尾时返回一个空字符串，而将这个空字符串显示出来时就是一个空行。
 - 显示文件路径时，Windows 系统使用反斜杠（`\`）而不是斜杠（`/`），但在代码中依然可以使用斜杠。
 - 要逐行读取，可对文件对象使用 `for` 循环。
 
     ```python
-    file_name = 'pz_digits.txt'
+    file_name = 'pi_digits.txt'
 
     with open(file_name) as file_object:
         for line in file_object:
@@ -492,6 +748,13 @@ Python 标准库是一组模块，我们安装的 Python 都包含它。
     ```
 
 - 读取文本文件时，Python 将其中的所有文本都解读为字符串。如果读取的是数，并要将其作为数值使用，就必须使用函数 `int()` 将其转换为整数或使用函数 `float()` 将其转换为浮点数。
+- `replace()` 将字符串中的特定单词都替换为另一个单词，不止替换第一个，会替换所有的。
+
+```python
+message = 'I really like dogs and dogs.'
+message = message.replace('dog', 'cat')
+print(message)
+```
 
 ### 写入文件
 
@@ -514,7 +777,41 @@ try-except-else 代码块：
 - 在系统的默认编码与要读取文件使用的编码不一致时，需要给 `open` 方法指定参数 `encoding`：`with open(filename, encoding='utf-8') as f:`。
 - Python 有一个 `pass` 语句，可用于让 Python 在代码块中什么都不要做。
 
+```python
+def count_words(filename):
+    """计算一个文件大致包含多少个单词。"""
+    try:
+        with open(filename, encoding='utf-8') as f:
+            contents = f.read()
+    except FileNotFoundError:
+        pass
+    else:
+        words = contents.split()
+        num_words = len(words)
+        print(f"The file {filename} has about {num_words} words.")
+
+filenames = ['alice.txt', 'siddhartha.txt', 'moby_dick.txt', 'little_women.txt']
+for filename in filenames:
+    count_words(filename)
+```
+
 ### 存储数据
 
 - 函数 `json.dump()` 接受两个实参：要存储的数据，以及可用于存储数据的文件对象。
 - 使用 `json.load()` 将数据读取到内存中。
+
+```python
+import json
+
+filename = 'username.json'
+try:
+    with open(filename) as f:
+        username = json.load(f)
+except FileNotFoundError:
+    username = input('What is your name? ')
+    with open(filename, 'w') as f:
+        json.dump(username, f)
+        print(f"We'll remember you when you come back, {username}!")
+else:
+    print(f"Welcome back, {username}!")
+```
