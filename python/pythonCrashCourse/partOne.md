@@ -544,8 +544,8 @@ make_pizza('mushrooms', 'green peppers', 'extra cheese')
 
 如果要让函数接受不同类型的实参，必须在函数定义中将接纳任意数量实参的形参放在最后。Python 先匹配位置实参和关键字实参，再将余下的实参都收集到最后一个形参中。
 
-- `*args` 收集任意数量的位置实参。
-- `**kwargs` 收集任意数量的关键字实参。`kwargs` 是字典类型。
+- `*args` 收集任意数量的位置实参，即 `*args` 会把所有额外的位置参数打包成一个元组（tuple）。
+- `**kwargs` 收集任意数量的关键字实参。即 `**kwargs` 会把所有额外的关键字参数打包成一个字典（dict）。
 
 ```python
 def build_profile(first, last, **user_info):
