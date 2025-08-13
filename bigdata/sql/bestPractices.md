@@ -2,7 +2,7 @@
 
 ## Column to Row
 
-| week | utmSourceType | payerNum | orderNum
+| week | utmSourceType | payerNum | orderNum |
 | ------ | ------ | ------ | ------ |
 | 2022-09-19 | 公众号菜单 | 0 | 0 |
 | 2022-09-19 | 其他 | 5 | 6 |
