@@ -30,6 +30,26 @@
 - [自我检查列表](https://github.com/ZuodaoTech/everyone-can-use-english/blob/main/book/chapter2.md#6-%E8%87%AA%E6%88%91%E6%A3%80%E6%9F%A5%E5%88%97%E8%A1%A8)。
 - [Building Great Sentences](https://archive.org/details/ttc-building-great-sentences)。
 
+### [语音](https://github.com/ZuodaoTech/everyone-can-use-english/blob/main/book/chapter3.md)
+
+显然会有很多人不同意 “发音其实没那么重要” 的观点，但这并不妨碍这个观点的正确性及其重要意义。
+
+- 嘲弄他人是愚蠢的。
+    - 如果仅仅因为某个人在某方面比另外一个人更好或者做得更好就可以嘲弄对方的话，那么，此人终究也会被其他人嘲弄，有谁可能在任何方面 都比别人更好呢？嘲弄他人对他人来讲永远是破坏性的，对自己来讲也不可能是建设性的，因为嘲弄他人本身并不会提高自己的水准，顶多获得一些快乐的幻觉。
+    - 对于来自他人的嘲弄，如果你竟然在意了，那就真的让人家得逞了，因为你受伤了，他幸灾乐祸了。如果你全然不在意，他就没劲了，因为无法因此获得快感了 —— 脆弱的家伙就只能自己生气了，或者生自己的气了。
+- 大幅度提高听觉输入量，起码要持续如此六个月才行，每天的输入时间不要低于四个小时。
+    - 注意力集中是一切学习的根本前提。
+    - 应该从一开始就听正常语速的材料。
+- 一定要学会音标。
+    - 首先确定自己有足够的朗读经验。比如，每日晨读一小时（听录音读课本就好）坚持了至少三个月以上。在这样的过程中，大多数语言都已经把握得足够好（要很久以后才能做到接近 “标准” 呢），于是，学习音标就有了保障。
+    - 只完整学习一个体系。如果还在初中，那么可以选择 D.J.音标，或者是 K.K 音标 —— 即，你的课本所使用的那种。如果已经是学英语多年了的人，那么就要选用自己正在使用、最常使用的词典的音标体系。
+    - 最好使用计算机上的有声版词典，这样就可以把所有例词都查出来，并录制成 mp3。反复跟读。
+    - 对照着音标表，抄写每一个例词的音标，反复若干遍（最好 7 遍以上）。
+    - 抄下例词表，而后默写相应音标，而后检查（至少两遍）。
+    - 以后每查一个单词，都要把音标标记在原文边上。
+    - 有必要花时间学习英文的拼读规则。忽略拼读规则是绝大多数英语学习失败的人犯下的错误。他们宁可去学好像更有短效、或者感觉更加 “高级” 的 “词根词缀”，也不去学最基本的，并且一生都用得到的拼读规则。
+    - 《Phonetics: The Sound of American English》
+
 ## Phrase
 
 | Phrase | x | Comment | Example Sentence |
@@ -79,15 +99,15 @@
 
 ## Sentence
 
-- Sorry, it’s taken.
-- Don't say I didn't warn you.
-- Even if one is well suited, that doesn’t necessarily mean he is decent.
 - If my memory serves, …
 - It never occurred to me that…
 - Are we really having this conversation?
 - Always knew you had it in you!
 - Does it ring a bell to you?
 - That name escapes me….
+- Sorry, it’s taken.
+- Don't say I didn't warn you.
+- Even if one is well suited, that doesn’t necessarily mean he is decent.
 - Okay, back to the grind. Talk soon!
 - 午饭吃什么？
     - Got any lunch plans?
@@ -98,3 +118,5 @@
 - 做之前先思考一下。
     - Think before you act.
     - Look before you leap.
+- 年轻真好。
+    - Ah, the perks of being young.

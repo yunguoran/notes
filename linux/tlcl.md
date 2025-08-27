@@ -50,7 +50,7 @@ Important Facts About Filenames
     - The `ls` command has a way to reveal this information. It is invoked with the `-i` option: `ls -li`
 
     | Option | Long Option| Description
-    | ---- | ---- | ---- |
+    | ---- | ---- | ----
     | -a | --all | List all files, even those with names that begin with a period, which are normally not listed(ie.,hidden).
     | -d | --directory | Ordinarily, if a directory is specified, ls will list the contents of the directory, not the directory itself. Use this option in conjunction with the -l option to see details about the directory rather than its contents.
     | -F | --classify | This option will append an indicator character to the end of each listed name. For example, a '/' if the name is a directory.
@@ -64,11 +64,11 @@ Important Facts About Filenames
 - less – View file contents
 
 | Command | Action
-| ----- | ----- |
+| ----- | -----
 | Page UP or b | Scroll back one page
 | Page Down or space | Scroll forward one page
 | UP Arrow | Scroll Up one line
-| Down Arrow | Scrow Down one line
+| Down Arrow | Scroll Down one line
 | G | Move to the end of the text file
 | 1G or g | Move to the beginning of the text file
 | /characters | Search forward for the next occurrence of characters
@@ -81,7 +81,7 @@ Important Facts About Filenames
 Wildcard
 
 | Wildcard | Meaning
-| ---- | ---- |
+| ---- | ----
 | * | Matches any characters
 | ? | Matches any single character
 | [characters] | Matches any character that is a member of the set characters
@@ -89,7 +89,7 @@ Wildcard
 | [[:class:]] | Matches any character that is a member of the specified class
 
 | Character Class | Meaning
-| ---- | ---- |
+| ---- | ----
 | [:alnum:] | Matches any alphanumeric character
 | [:alpha:] | Matches any alphabetic character
 | [:digit:] | Matches any numeral
@@ -101,7 +101,7 @@ Wildcard
     - The cp command copies files or directories. It can be used two different ways: `cp item1 item2` and `cp item... directory` (copy multiple items (either files or directories) into a directory.)
 
     | Option | Meaning
-    | ---- | ---- |
+    | ---- | ----
     | -a, --archive | Copy the files and directories and all of their attributes, including ownerships and permissions. Normally, copies take on the default attributes of the user performing the copy
     | -i, --interactive | Before overwriting an existing file, prompt the user for confirmation. If this option is not specified, cp will silently overwrite files.
     | -r, --recursive | Recursively copy directories and their contents. This option (or the -a option) is required when copying directories.
@@ -109,7 +109,7 @@ Wildcard
     | -v, --verbose | Display informative messages as the copy is performed.
 
     | Command | Results
-    | ---- | ---- |
+    | ---- | ----
     | cp file1 file2 | Copy file1 to file2. If file2 exists, it is overwritten with the contents of file1. If file2 does not exist, it is created.
     | cp -i file1 file2 | Same as above, except that if file2 exists, the user is prompted before it is overwritten.
     | cp file1 file2 dir1 | Copy file1 and file2 into directory dir1. dir1 must already exist.
@@ -127,7 +127,7 @@ Wildcard
     - Whenever you use wildcards with rm (besides carefully checking your typing!), test the wildcard first with ls. This will let you see the files that will be deleted. Then press the up arrow key to recall the command and replace the `ls` with `rm`
 
     | Option | Meaning
-    | ---- | ---- |
+    | ---- | ----
     | -i, --interactive | Before deleting an existing file, prompt the user for confirmation. If this option is not specified, rm will silently delete files.
     | -r, --recursive | Recursively delete directories. This means that if a directory being deleted has subdirectories, delete them too. To delete a directory, this option must be specified.
     | -f, --force | Ignore nonexistent files and do not prompt. This overrides the --interactive option.
@@ -164,8 +164,9 @@ Symbolic links were created to overcome the two disadvantages of hard links: har
     - It is used like this: `man command`
     - On most Linux systems, `man` uses `less` to display the manual page, so all of the familiar `less` commands work while displaying the page.
     - The manual that `man` displays is broken into sections and not only covers user commands but also system administration commands, programming interfaces, file formats and more. The table below describes the layout of the manual:
+
         | Section | Contents
-        | ---- | ---- |
+        | ---- | ----
         | 1 | User commands
         | 2 | Programming interfaces kernel system calls
         | 3 | Programming interfaces to the C library
