@@ -6,9 +6,15 @@
 ## 初次使用配置
 
 ```shell
+# 此处使用双引号的原因
+#   - 名字中间有空格
+#   - 在 Windows CMD 命令行下单引号不会被识别为字符串界定符，而是把单引号当作字符串的一部分传过去。
+#   - 如果是 Linux 系统或在 Windows 下用的是 Git Bash，则可以使用单引号。
 git config --global user.name "Guoran Yun"
 git config --global user.email yunguoran@gmail.com
 git config --global core.editor vim
+# 使用 HTTPS 协议时长期存储账号密码（磁盘上明文存储）
+git config --global credential.helper store
 ```
 
 ## 常用命令
@@ -35,10 +41,45 @@ git commit -a
 git rm
 # 从 Git 中移除但保留在本地
 git rm --cached
+# 一行展示每个提交
+git log --oneline
 # 显示最近的两次提交所引入的差异
 git log -p -2
 # 显示每次提交的简略统计信息
 git log --stat
+# 切换远程地址
+git remote set-url origin https://github.com/yunguoran/notes.git
+```
+
+### git stash show
+
+```shell
+# 看概要（文件级别统计）
+git stash show
+# 查看指定 stash
+git stash show stash@{n}
+# 看详细改动（行级 diff）
+git stash show -p stash@{n}
+# 只显示文件名
+git stash show stash@{n} --name-only
+```
+
+### 撤销本地 commit
+
+```shell
+# 单纯撤销 commit，但保留代码修改
+git reset --soft HEAD^
+# 撤销 commit，代码回到 unstaged 状态
+git reset --mixed HEAD^
+# 撤销 commit 并 彻底丢掉代码修改。
+git reset --hard HEAD^
+```
+
+### 撤销已 push 的 commit
+
+```shell
+# 本地执行再 push
+git revert --no-edit <commitID>
 ```
 
 ## 组合操作
