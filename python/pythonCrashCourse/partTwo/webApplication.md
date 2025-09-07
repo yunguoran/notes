@@ -17,11 +17,14 @@ python -m venv ll_env
     source ll_env/bin/activate
     # Windows PowerShell:
     cd D:\workspace\learning_log
+    # 修改 PowerShell 的脚本执行策略，默认情况下 Windows 出于安全考虑，可能不允许运行 .ps1 脚本。
     Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
     .\ll_env\Scripts\activate
+# Windows Terminal 配置启动项自动激活虚拟环境
+xxx\powershell.exe -NoExit -Command ".\ll_env\Scripts\activate"
 # 终止虚拟环境
 deactivate
-# 安装 Django
+# 安装 Django（在虚拟环境中）
 pip install django
 # 创建项目：
     # 句点告诉 Django 不要再创建一个新的目录来包含项目，而是将项目文件直接创建在当前目录中。
@@ -31,6 +34,10 @@ pip install django
 python manage.py migrate
 # 查看项目状态：端口默认是 8000
 python manage.py runserver ${port}
+# 启动一个 Django shell
+python manage.py shell
+# 重建数据库的结构、且原来所有的数据都将丢失
+python manage.py flush
 ```
 
 ### 创建应用程序
