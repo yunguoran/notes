@@ -57,9 +57,11 @@
 | all along | 自始至终，一直 |  | I knew it all along. |
 | among other things | 除其他事项之外、此外 | 用于表示某事物或情况不仅仅包括所提到的内容，还包括其他方面 |  |
 | at the speed of | 以…的速度 |  | AI video generation is advancing at the speed of light. |
+| be endowed with | 具有某种特定的品质或特征 | 指某人或某物天生或被赋予了某种特定的品质或特征 | Sri Lanka's tea country is endowed with cascading waterfalls, rising mountain tops, natural beauty and diverse flora and fauna. |
 | be meant to | 注定要 | 表示某事是命中注定或计划好的，通常用于描述某人或某事的目的或预期结果 |  |
 | be named after | 以…命名 |  |  |
 | brag about | 吹嘘、夸耀 | 表示过分或虚假地表达自己的成就或优点 |  |
+| cascading waterfalls | 瀑布 |  |  |
 | co-direct | 共同执导 |  |  |
 | come with being | 随着……而来 | 指某种情况或状态伴随着某种经历或身份而自然发生 |  |
 | commit to | 承诺、致力于、投入、专注于 | 表示对某事物或某人的决心和承诺，通常表示愿意为之付出时间、精力或资源 |  |

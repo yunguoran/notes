@@ -82,6 +82,43 @@ git reset --hard HEAD^
 git revert --no-edit <commitID>
 ```
 
+### [合并 commit](https://www.baeldung.com/ops/git-squash-commits)
+
+Squashing commits helps keep our Git history clean and easy to understand.
+
+#### 使用 git reset
+
+该种方式适用开发者在个人分支上使用。
+
+```shell
+git reset --soft c497509
+git add .
+git commit -m "commit message"
+git push -f
+```
+
+#### 使用 git rebase -i
+
+该种方式适用开发者在个人分支上使用，且控制的颗粒度比 `git reset` 更加精细。
+
+```shell
+git rebase -i c497509
+# 在 interactive rebase 中将除第一个 commit 外的其他 commit 的前缀改为 squash。
+git push -f
+```
+
+#### 使用 git merge --squash
+
+该种方式会 squash 整个分支的提交历史，而不是只 squash 最近几个提交。
+
+```shell
+git checkout main
+git merge --squash feat-update-git
+git add .
+git commit -m "commit message"
+git push -f
+```
+
 ## 组合操作
 
 ```shell

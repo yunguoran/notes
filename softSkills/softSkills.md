@@ -17,3 +17,7 @@
 ### 沉没成本（Sunk Cost）
 
 沉没成本是指那些已经发生且无法收回的支出，如花费的时间、投入的钱、消耗的精力等。理性的决策应该忽略沉没成本，只考虑未来的收益和成本。 但人们往往无法做到这一点。
+
+## 提问的智慧
+
+参考[这里](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md)。

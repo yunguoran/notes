@@ -76,132 +76,147 @@ Important Facts About Filenames
 | h | Display help screen
 | q | Quit less
 
-## Manipulating Files and Directories
+## 操作文件和目录
 
-Wildcard
+### 通配符
 
-| Wildcard | Meaning
+| 通配符 | 意义
 | ---- | ----
-| * | Matches any characters
-| ? | Matches any single character
-| [characters] | Matches any character that is a member of the set characters
-| [!characters] | Matches any character that is not a member of the set characters
-| [[:class:]] | Matches any character that is a member of the specified class
+| * | 匹配任意多个字符（包括零个或一个）
+| ? | 匹配任意一个字符（不包括零个）
+| [characters] | 匹配任意一个属于字符集（characters）中的字符
+| [!characters] | 匹配任意一个不是字符集中的字符
+| [[:class:]] | 匹配任意一个属于指定字符类中的字符
 
-| Character Class | Meaning
+| 字符类 | 意义
 | ---- | ----
-| [:alnum:] | Matches any alphanumeric character
-| [:alpha:] | Matches any alphabetic character
-| [:digit:] | Matches any numeral
-| [:lower:] | Matches any lowercase letter
-| [:upper:] | Matches any uppercase letter
+| [:alnum:] | 匹配任意一个字母或数字
+| [:alpha:] | 匹配任意一个字母
+| [:digit:] | 匹配任意一个数字
+| [:lower:] | 匹配任意一个小写字母
+| [:upper:] | 匹配任意一个大写字母
 
-- cp – Copy files and directories
-    - Copy all the `HTML` files from one directory to another: `cp -u *.html destination`
-    - The cp command copies files or directories. It can be used two different ways: `cp item1 item2` and `cp item... directory` (copy multiple items (either files or directories) into a directory.)
+接受文件名作为参数的任何命令，都可以使用通配符。
+
+- cp – 复制文件和目录
+    - `cp item1 item2`：复制单个文件或目录 item1 到文件或目录 item2。
+    - `cp item... directory`：复制多个项目（文件或目录）到一个目录下。
+    - `cp -u *.html destination`：拷贝一个目录下的 HTML 文件到目标目录，同时保证只拷贝目标目录不存在或者版本比目标目录的文件更新的文件。
 
     | Option | Meaning
     | ---- | ----
-    | -a, --archive | Copy the files and directories and all of their attributes, including ownerships and permissions. Normally, copies take on the default attributes of the user performing the copy
-    | -i, --interactive | Before overwriting an existing file, prompt the user for confirmation. If this option is not specified, cp will silently overwrite files.
-    | -r, --recursive | Recursively copy directories and their contents. This option (or the -a option) is required when copying directories.
-    | -u, --update | When copying files from one directory to another, only copy files that either don't exist, or are newer than the existing corresponding files, in the destination directory.
-    | -v, --verbose | Display informative messages as the copy is performed.
+    | -a, --archive | 复制文件和目录，以及它们的属性，包括拥有者和所有权。 通常情况下，文件拷贝具有执行拷贝操作的用户的默认属性。
+    | -i, --interactive | 在覆盖已存在文件之前，提示用户确认。如果这个选项不指定， cp 命令会默认覆盖文件。
+    | -r, --recursive | 递归地复制目录及目录中的内容。当复制目录时， 需要这个选项（或者 -a 选项）。
+    | -u, --update | 当把文件从一个目录复制到另一个目录时，仅复制 目标目录中不存在的文件，或者是文件内容新于目标目录中已经存在文件的内容的文件。
+    | -v, --verbose | 显示翔实的命令操作信息。
 
     | Command | Results
     | ---- | ----
-    | cp file1 file2 | Copy file1 to file2. If file2 exists, it is overwritten with the contents of file1. If file2 does not exist, it is created.
-    | cp -i file1 file2 | Same as above, except that if file2 exists, the user is prompted before it is overwritten.
-    | cp file1 file2 dir1 | Copy file1 and file2 into directory dir1. dir1 must already exist.
-    | cp dir1/* dir2 | Using a wildcard, all the files in dir1 are copied into dir2. dir2 must already exist.
-    | cp -r dir1 dir2 | Copy the contents of directory dir1 to directory dir2. If directory dir2 does not exist, it is created and, after the copy, will contain the same contents as directory dir1. If directory dir2 does exist, then directory dir1 (and its contents) will be copied into dir2.
+    | cp file1 file2 | 复制文件 file1 内容到文件 file2。如果 file2 已经存在， file2 的内容会被 file1 的内容覆盖。如果 file2 不存在，则会创建 file2。
+    | cp -i file1 file2 | 这条命令和上面的命令一样，除了如果文件 file2 存在的话，在文件 file2 被覆盖之前， 会提示用户确认信息。
+    | cp file1 file2 dir1 | 复制文件 file1 和文件 file2 到目录 dir1。目录 dir1 必须存在。
+    | cp dir1/* dir2 | 使用一个通配符，在目录 dir1 中的所有文件都被复制到目录 dir2 中。 dir2 必须已经存在。
+    | cp -r dir1 dir2 | 复制目录 dir1 中的内容到目录 dir2。如果目录 dir2 不存在， 创建目录 dir2，操作完成后，目录 dir2 中的内容和 dir1 中的一样。 如果目录 dir2 存在，则目录 dir1 (和目录中的内容)将会被复制到 dir2 中。
 
-- mv – Move/rename files and directories
-    - mv shares many of the same options as cp
-- mkdir – Create directories
-    - Example: `mkdir directory...`
-    - When three periods follow an argument in the description of a command (as above), it means that the argument can be repeated
-    - `mkdir dir1 dir2 dir3` would create three directories named “dir1”, “dir2”, “dir3”
-- rm – Remove files and directories
-    - Example: `rm item...`
-    - Whenever you use wildcards with rm (besides carefully checking your typing!), test the wildcard first with ls. This will let you see the files that will be deleted. Then press the up arrow key to recall the command and replace the `ls` with `rm`
+- mv – 执行文件移动和文件命名任务
+    - `mv item1 item2`
+    - `mv item... directory`
+    - `mv` 与 `cp` 共享了很多一样的选项：`-i`、`-u`、`-v`。
+- mkdir – 创建目录。
+    - 例如: `mkdir directory...`
+    - 注意: 在描述一个命令时（如上所示），当有三个圆点跟在一个命令的参数后面，这意味着那个参数可以跟多个。
+    - `mkdir dir1 dir2 dir3` 会创建三个目录，名为 dir1, dir2, dir3。
+- rm – 删除文件和目录
+    - 例如: `rm item...`
+    - 当你使用带有通配符的 `rm` 命令时（除了仔细检查输入的内容外）， 先用 `ls` 命令来测试通配符。这会让你看到将要被删除的文件是什么。然后按下上箭头按键，重新调用刚刚执行的命令，用 `rm` 替换 `ls。`
 
     | Option | Meaning
     | ---- | ----
-    | -i, --interactive | Before deleting an existing file, prompt the user for confirmation. If this option is not specified, rm will silently delete files.
-    | -r, --recursive | Recursively delete directories. This means that if a directory being deleted has subdirectories, delete them too. To delete a directory, this option must be specified.
-    | -f, --force | Ignore nonexistent files and do not prompt. This overrides the --interactive option.
-    | -v, --verbose | Display informative messages as the deletion is performed.
+    | -i, --interactive | 在删除已存在的文件前，提示用户确认信息。 如果不指定这个选项，rm 会默默地删除文件
+    | -r, --recursive | 递归地删除文件，这意味着，如果要删除一个目录，而此目录 又包含子目录，那么子目录也会被删除。要删除一个目录，必须指定这个选项。
+    | -f, --force | 忽视不存在的文件，不显示提示信息。这选项覆盖了 `--interactive` 选项。
+    | -v, --verbose | 在执行 `rm` 命令时，显示翔实的操作信息。
 
-- ln – Create hard and symbolic links
-    - The ln command is used to create either hard or symbolic links. It is used in one of two ways: `ln file link` and `ln -s item link` (to create a symbolic link where “item” is either a file or a directory.)
-    - Hard link
-        - A hard link cannot reference a file outside its own file system. This means a link may not reference a file that is not on the same disk partition as the link itself
-        - A hard link may not reference a directory
-    - Symbolic link
-        - Symbolic links were created to overcome the limitations of hard links. Symbolic links work by creating a special type of file that contains a text pointer to the referenced file or directory. In this regard, they operate in much the same way as a Windows shortcut though of course, they predate the Windows feature by many years
-        - A file pointed to by a symbolic link, and the symbolic link itself are largely indistinguishable from one another. For example, if you write some something to the symbolic link, the referenced file is also written to. However when you delete a symbolic link, only the link is deleted, not the file itself. If the file is deleted before the symbolic link, the link will continue to exist, but will point to nothing. In this case, the link is said to be broken
+- ln – 创建硬链接或者符号链接（软链接）。
+    - `ln file link`：创建硬链接。
+    - `ln -s item link`：创建符号链接。
 
-Symbolic links were created to overcome the two disadvantages of hard links: hard links cannot span physical devices and hard links cannot reference directories, only files. Symbolic links are a special type of file that contains a text pointer to the target file or directory.
+- 硬链接
+    - 相当于给文件多起了个名字，通过两个名字都能找到这个文件（磁盘上只有一个文件）。
+    - 硬链接文件和源文件拥有相同的 inode 号，使用 `ls -i` 命令来确认。
+    - 硬链接与原始文件完全平等。系统无法区分哪个名字是先创建的，哪个是后创建的。删除任何一个名字，只要还有至少一个硬链接存在，该 inode 和数据块就不会被释放。
+    - 一个硬链接不能关联它所在文件系统之外的文件。这是说一个链接不能关联与链接本身不在同一个磁盘分区上的文件。因为 inode 号仅在同一个文件系统内是唯一的。
+    - 硬链接不能关联一个目录。
+    - 性能开销极低。
+- 符号链接
+    - 符号链接生效是通过创建一个特殊类型的文件，这个文件包含一个关联文件或目录的文本指针（类似于 Windows 的快捷方式）。
+    - 如果你往一个符号链接里面写入东西，那么相关联的文件也被写入。
+    - 当你删除一个符号链接时，只有这个链接被删除，而不是文件自身。
+    - 如果先于符号链接删除文件，这个链接仍然存在，但是不指向任何东西，即坏链。
+    - 对于符号链接，有一点值得记住，执行的大多数文件操作是针对链接的对象，而不是链接本身。 而 `rm` 命令是个特例。当你删除链接的时候，删除链接本身，而不是链接的对象。
 
-## Working with Commands
+## 使用命令
 
-- type – Indicate how a command name is interpreted
-    - The type command is a shell builtin that displays the kind of command the shell will execute, given a particular command name
-    - It works like this: `type command`
-- which – Display which executable program will be executed
-    - Sometimes there is more than one version of an executable program installed on a system. While this is not very common on desktop systems, it’s not unusual on large servers
-    - To determine the exact location of a given executable, the which command is used: `which command`
+命令可以是下面四种形式之一：
+
+- 一个可执行程序，就像我们所看到的位于目录/usr/bin 中的文件一样。 这一类程序可以是用诸如 C 和 C++ 语言写成的程序然后编译得到的二进制文件, 也可以是由诸如 Shell，Perl，Python，Ruby 等等脚本语言写成的程序。
+- 一个内建于 Shell 自身的命令。Bash 支持若干命令，内部叫做 Shell 内部命令 (builtins)。例如，`cd` 命令，就是一个 Shell 内部命令。
+- 一个 Shell 函数。这些是小规模的 Shell 脚本，它们混合到环境变量中。
+- 一个命令别名。我们可以定义自己的命令，建立在其它命令之上。
+
+识别命令以及得到命令文档。
+
+- type – 显示命令的类型。
+    - `type` 命令是 Shell 内部命令，它会显示命令的类型，给出一个特定的命令名（做为参数）。
+    - 例如：`type command`。
+- which – 显示一个可执行程序的位置。
+    - 有时候在一个操作系统中，不只安装了可执行程序的一个版本。虽然在桌面系统中这并不普遍，但在大型服务器中却很平常。为了确定所给定的执行程序的准确位置，使用 `which` 命令。
+    - 例如：`which command`。
+    - `which` 命令只对可执行程序有效，不包括内建命令和命令别名。
 - help
-    - `bash` has a built-in help facility available for each of the shell builtins. To use it, type `help` followed by the name of the shell builtin
-    - For example: `help cd`
-    - When square brackets appear in the description of a command’s syntax, they indicate optional items. A vertical bar character indicates mutually exclusive items
-    - `cd [-L|-P] [dir]` says that the command `cd` may be followed optionally by either a `-L` or a `-P` and further, optionally followed by the argument `dir`
-    - Many executable programs support a `--help` option that displays a description of the command’s supported syntax and options
-    - For example: `mkdir --help`
-- man – Display a command’s manual page
-    - Most executable programs intended for command line use provide a formal piece of documentation called a manual or man page
-    - It is used like this: `man command`
-    - On most Linux systems, `man` uses `less` to display the manual page, so all of the familiar `less` commands work while displaying the page.
-    - The manual that `man` displays is broken into sections and not only covers user commands but also system administration commands, programming interfaces, file formats and more. The table below describes the layout of the manual:
+    - 得到 Shell 内建命令的帮助文档。
+    - 例如：`help command`。
+    - 出现在命令语法说明中的方括号证的内容是可选的项目。一个竖杠字符 表示互斥选项。
+    - `cd [-L|-P] [dir]` 说明 `cd` 命令可以跟一个 `-L` 选项和 `-P` 选项其中之一或者什么都不跟，`dir` 也是可选参数。
+    - 许多可执行程序支持一个 `--help` 选项。例如: `mkdir --help`。
+- man – 显示用户手册。
+    - 许多希望被命令行使用的可执行程序，提供了一个正式的文档，叫做手册或手册页(man page)。
+    - 例如：`man command`
+    - 在大多数 Linux 系统中，`man` 使用 `less` 工具来显示参考手册。
+    - `man` 所显示的参考手册，被分成几个章节，它们不仅仅包括用户命令，也包括系统管理员 命令、程序接口、文件格式等等。下表描绘了手册的布局：
 
-        | Section | Contents
+        | 章节 | 内容
         | ---- | ----
-        | 1 | User commands
-        | 2 | Programming interfaces kernel system calls
-        | 3 | Programming interfaces to the C library
-        | 4 | Special files such as device nodes and drivers
-        | 5 | File formats
-        | 6 | Games and amusements such as screen savers
-        | 7 | Miscellaneous
-        | 8 | System administration commands
+        | 1 | 用户命令
+        | 2 | 程序接口内核系统调用
+        | 3 | C 库函数程序接口
+        | 4 | 特殊文件，比如说设备结点和驱动程序
+        | 5 | 文件格式
+        | 6 | 游戏娱乐，如屏幕保护程序
+        | 7 | 其他方面
+        | 8 | 系统管理员命令
 
-    - To specify a section number, we use man like this: `man 5 passwd`
-- apropos – Display a list of appropriate commands
-    - It is also possible to search the list of `man` pages for possible matches based on a search term. It is used like this: `apropos floppy`
-    - The first field in each line of output is the name of the `man` page, the second field shows the section. Note that the man command with the `-k` option performs the exact same function as `apropos`
-- info – Display a command’s info entry
-- whatis – Display a very brief description of a command
-- alias – Create an alias for a command
+    - 指定章节号：`man 5 passwd`。
+- apropos – 搜索全部参考手册来找到自己需要的命令。
+    - 例如：`apropos floppy`。
+    - `man -k floppy` 等同于 `apropos floppy`。
+- info – 显示命令 info 条目。
+- whatis – 显示一个命令的简洁描述。
+- alias – 创建命令别名。
 
-Many software packages installed on your system have documentation files residing in the `/usr/share/doc` directory. Most of these are stored in plain text format and can be viewed with `less`. We may encounter some files ending with a **.gz** extension. This indicates that they have been compressed with the `gzip` compression program. The `gzip` package includes a special version of `less` called `zless` that will display the contents of gzip-compressed text files.
+## 重定向
 
-We will create a command of our own using the `alias` command.
+与 Unix 主题“任何东西都是一个文件”保持一致，像 ls 这样的程序实际上把他们的运行结果输送到一个叫做标准输出的特殊文件（经常用 stdout 表示），而它们的状态信息则送到另一个叫做标准错误输出的文件（stderr）。默认情况下，标准输出和标准错误输出都连接到屏幕，而不是保存到磁盘文件。除此之外，许多程序从一个叫做标准输入（stdin）的设备得到输入，默认情况下，标准输入连接到键盘。
 
-- Notice the structure of this command: `alias name='string'`. Example: `alias foo='cd /usr; ls; cd -'`
-- To remove an alias, the `unalias` command is used, like so: `unalias foo`
-- To see all the aliases defined in the environment, use the `alias` command without arguments
-
-## Redirection
-
-- cat - Concatenate files
-- sort - Sort lines of text
-- uniq - Report or omit repeated lines
-- grep - Print lines matching a pattern
-- wc - Print newline, word, and byte counts for each file
-- head - Output the first part of a file
-- tail - Output the last part of a file
-- tee - Read from standard input and write to standard output and files
+- cat － 连接文件
+- sort － 排序文本行
+- uniq － 报道或省略重复行
+- grep － 打印匹配行
+- wc － 打印文件中换行符，字，和字节个数
+- head － 输出文件第一部分
+- tail - 输出文件最后一部分
+- tee - 从标准输入读取数据，并同时写到标准输出和文件
 
 ### Redirecting Standard Output
 

@@ -17,8 +17,10 @@
 - 双引号中的内容会进行变量替换，并会解释某些特殊字符（如：换行符、制表符等）。
 - `echo "${var:-default}"`：如果 var 未定义或者为空值，则使用默认值 default。
 - `$()` 可以执行一个命令并捕获其输出。
-- kinit
-- java -xvf test.jar
+- `kinit`
+- `java -xvf test.jar`
+- 清空文件：`> test.sh`。
+- 拼接变量名和变量值：`echo 'MONTH:' "${MONTH}"`。
 
 ## Summaries
 
@@ -162,4 +164,80 @@ dc -e '65 P 10 P'
 # A (有换行)
 dc -e '65 p'
 # 65 (有换行)
+```
+
+### date
+
+[Date format](https://www.man7.org/linux/man-pages/man1/date.1.html).
+
+- UTC（Coordinated Universal Time，协调世界时）：全球统一的时间标准，基于原子钟和天文观测调整。
+- CST 很特殊，它不是唯一指代一个时区，全球有多个地方的时区都叫 CST。
+    - China Standard Time（UTC+8）
+    - Central Standard Time（UTC-6 夏令时 UTC-5）
+    - Cuba Standard Time（UTC-5）
+    - Canada Central Standard Time（UTC-6）
+- GMT（Greenwich Mean Time，格林尼治平时）：UTC 出现之前的全球标准，基于地球自转，取英国格林尼治天文台的平均太阳时，但不再是严格的国际计时标准，因为地球自转并不完全稳定。
+
+```shell
+date
+# Tue Sep  2 09:54:37 CST 2025
+date -u
+# Tue Sep  2 01:54:37 UTC 2025
+
+# RFC 2822 时间格式，用于互联网邮件服务
+date -R
+# Tue, 02 Sep 2025 09:54:37 +0800
+date +'%A'
+# Tuesday
+date +'%B'
+# September
+date '+%F'
+# 2025-09-02
+date '+%Y-%m-%d'
+# 2025-09-02
+date +'%T'
+# 10:10:44
+date +'%H:%M:%S'
+# 10:10:44
+
+date -d '20250902 10:10:44'
+# Tue Sep  2 09:54:37 CST 2025
+date -d '2025-09-02 10:10:44'
+# Tue Sep  2 09:54:37 CST 2025
+date -d '2025/09/02 10:10:44'
+# Tue Sep  2 09:54:37 CST 2025
+date -d '2 Sep 2025 10:10:44'
+# Tue Sep  2 09:54:37 CST 2025
+date -d 'yesterday'
+# Mon Sep  1 09:54:37 CST 2025
+date -d 'tomorrow'
+# Wed Sep  3 09:54:37 CST 2025
+date -d '3 days ago'
+# Sat Aug 30 09:54:37 CST 2025
+date -d 'last week'
+# Tue Aug 26 09:54:37 CST 2025
+date -d 'next wed'
+# Wed Sep  3 00:00:00 CST 2025
+date -d 'last Sunday'
+# Sun Aug 31 00:00:00 CST 2025
+date -d '+7 day'
+# Tue Sep  9 09:54:37 CST 2025
+date -d '-3 year'
+# Fri Sep  2 09:54:37 CST 2022
+date -d '+10 week'
+# Tue Nov 11 09:54:37 CST 2025
+date -d '20250902 -3 days'
+# Sat Aug 30 00:00:00 CST 2025
+date -d '20250902 last year'
+# Mon Sep  2 00:00:00 CST 2025
+date -d '20250902 -3 tomorrow'
+# Wed Sep  3 00:00:00 CST 2025
+date -d '20250902 -3 month ago'
+# Wed Jul  2 00:00:00 CST 2025
+
+# 使用 root 用户设置本地时间
+date -s '2025-09-02 09:54:37'
+
+# -d 选项和 + 一起使用
+date -d '20250902' +'%F'
 ```
