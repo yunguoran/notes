@@ -50,25 +50,43 @@
     - 有必要花时间学习英文的拼读规则。忽略拼读规则是绝大多数英语学习失败的人犯下的错误。他们宁可去学好像更有短效、或者感觉更加 “高级” 的 “词根词缀”，也不去学最基本的，并且一生都用得到的拼读规则。
     - 《Phonetics: The Sound of American English》
 
+## Word
+
+| word | phonetic symbol |
+| :--- | :--- |
+| curiosity | /ˌkjʊriˈɑːsəti/ |
+| curious | /ˈkjʊriəs/ |
+| genre | /ˈʒɑːnrə/ |
+| modular | /ˈmɑːdʒələr/ |
+
 ## Phrase
 
 | Phrase | x | Comment | Example Sentence |
 | :--- | :--- | :--- | :--- |
+| a plethora of | 大量的、丰富的 | / ˈpleθərə / |  |
 | all along | 自始至终，一直 |  | I knew it all along. |
 | among other things | 除其他事项之外、此外 | 用于表示某事物或情况不仅仅包括所提到的内容，还包括其他方面 |  |
 | at the speed of | 以…的速度 |  | AI video generation is advancing at the speed of light. |
+| at the time | 在当时 |  |  |
 | be endowed with | 具有某种特定的品质或特征 | 指某人或某物天生或被赋予了某种特定的品质或特征 | Sri Lanka's tea country is endowed with cascading waterfalls, rising mountain tops, natural beauty and diverse flora and fauna. |
+| be indebted to | 感激、感恩 | [ɪnˈdetɪd] | I am also indebted to the community at the Game Development site on Stack Exchange |
 | be meant to | 注定要 | 表示某事是命中注定或计划好的，通常用于描述某人或某事的目的或预期结果 |  |
 | be named after | 以…命名 |  |  |
+| be saddled with | 受…所拖累、被迫负担、承担 |  | Most other game development tools that have a central visual editor are also saddled with limited and inflexible scripting support, but Unity doesn’t suffer from that disadvantage. |
 | brag about | 吹嘘、夸耀 | 表示过分或虚假地表达自己的成就或优点 |  |
 | cascading waterfalls | 瀑布 |  |  |
 | co-direct | 共同执导 |  |  |
+| come full circle | 兜了一圈回到原点、实现了闭环 | 指事情经过变化后回归本质，但有了提升或扩展 | And then we came full circle because Unity enabled us to deploy to the web in addition to mobile, all from one codebase. |
 | come with being | 随着……而来 | 指某种情况或状态伴随着某种经历或身份而自然发生 |  |
 | commit to | 承诺、致力于、投入、专注于 | 表示对某事物或某人的决心和承诺，通常表示愿意为之付出时间、精力或资源 |  |
 | critical window | 关键期 |  |  |
 | dive right into | 立即投入 | 指迅速开始做某事，不浪费时间 | You can start with the tutorial or dive right into more detailed documentation. |
+| dress code | 着装规范 |  |  |
+| every few | 每隔几个 |  | We’ll go through a selection of projects every few chapters, rather than one monolithic project developed over the entire book. |
+| fade away | 逐渐消失 |  |  |
 | for almost as long | 几乎同样长的时间里 | 可以用它来避免重复说完整数字，显得自然口语化 |  |
 | for eons | 千百万年来、极其漫长的时间以来 | [ˈiːən /] |  |
+| for quite some time | 相当长的一段时间 |  | I’ve been programming games for quite some time, but started using Unity only relatively recently. |
 | for the sake of performance | 出于性能考虑 |  |  |
 | from scratch | 从零开始、白手起家 |  | I learned German from scratch in six months. |
 | given that | 鉴于 | 表示在某种条件或情况下，用于引出一个已知的事实或前提 |  |
@@ -82,20 +100,27 @@
 | net result | 净结果、最终结果 | [net](https://www.youdao.com/result?word=net&lang=en) |  |
 | off-topic | 跑题 |  |  |
 | on the fly | 即时地、动态地 | 边运行边处理，而不是预先准备好的 | The API is created on the fly, no code generation necessary. |
+| onward to | 继续前往 | 注意 onward to 并不是传统意义上的固定搭配而是省略动词的感叹/号召式表达，属于惯用修辞 | Onward to chapter 1! (Let’s go onward to chapter 1!) |
 | open-ended | 开放式的、无限制的 | [bjʊˈrɑːkrəsi] | Open-ended demands are a mandate for ever-expanding government bureaucracies with ever-expanding budgets and powers. |
 | over time | 随着时间的推移 |  |  |
+| put up with | 忍受、容忍 |  | For me, learning how to develop games meant putting up with a lot of hassle. |
 | quite the contrary | 恰恰相反、适得其反 |  |  |
 | ramp up | 逐步增加 | [ræmp] |  |
 | real estate | 房地产 | [ɪˈsteɪt] |  |
 | resonance imaging | 共振成像 | [ˈrezənəns] |  |
 | ripe for | 发展到适合某事发生的条件 | ripe for innovation：创新的条件已经具备、ripe for breakthrough：时可能发生重大突破 |  |
+| set ... off | 突出、凸显 |  | All the source code in the book, whether in code listings or snippets, is in `a fixed-width font like this`, which sets it off from the surrounding text. |
+| show ... age | 显得过时、老旧 |  | As those tools started to show their age, I kept looking for better ways to develop games. |
 | stick sth out | 伸出某物、坚持下去 | 指将某物从表面或边缘伸出来或指继续做某事，尽管可能困难或不愉快 |  |
 | strive to | 尽力做某事 |  | Django's template system has several powerful features but strives to stay simple enough for non-programmers to use. |
 | sweep you off your feet | 迷倒某人、使某人神魂颠倒 |  | Valentine will sweep you off your feet. |
+| tell apart from | 区分、辨别 |  | It is now hard to tell the inhabitant of one continent apart from another. |
 | the world is awash in questions | 世界充满了问题 |  |  |
 | to put it another way | 换句话说 | namely |  |
 | to register my displeasure | 为了表达我的不满 |  |  |
+| trade for | 用…交换… |  | Perhaps, trying to view it optimistically, we have traded a cultural and visual diversity for a more varied personal life, or a more varied and interesting intellectual and technical life. |
 | turn ... upside down | 翻转、颠覆 |  | President Trump’s Justice Department is turning civil rights enforcement upside down. |
+| water down | 稀释 |  | As for other aspects of game development, extensive coverage of art disciplines would water down how much the book can cover and would be largely about software external to Unity (for example, the animation software used). |
 | with ... for scale | 用…当作比例参考 | 用于直观体现物体的大小、壮观、规模感 | Starship with humans for scale. |
 | zip code | 邮政编码 |  |  |
 

@@ -1,7 +1,7 @@
 import openpyxl
 import re
 
-def xlsx_to_compact_markdown_table(xlsx_path, sheet_name='phrase'):
+def xlsx_to_compact_markdown_table(xlsx_path, sheet_name):
     wb = openpyxl.load_workbook(xlsx_path)
     sheet = wb[sheet_name]
     rows = list(sheet.iter_rows(values_only=True))
@@ -46,7 +46,9 @@ def replace_section_in_md(md_path, section_title, new_table):
 # === 执行 ===
 xlsx_file = "english/phrases.xlsx"
 md_file = "english/english.md"
-section_name = "Phrase"
 
-markdown_table = xlsx_to_compact_markdown_table(xlsx_file)
-replace_section_in_md(md_file, section_name, markdown_table)
+word_table = xlsx_to_compact_markdown_table(xlsx_file, sheet_name="word")
+replace_section_in_md(md_file, "Word", word_table)
+
+phrase_table = xlsx_to_compact_markdown_table(xlsx_file, sheet_name="phrase")
+replace_section_in_md(md_file, "Phrase", phrase_table)
