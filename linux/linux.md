@@ -21,12 +21,34 @@
 - `java -xvf test.jar`
 - 清空文件：`> test.sh`。
 - 拼接变量名和变量值：`echo 'MONTH:' "${MONTH}"`。
+- `!!` 会执行上一条命令。
 
 ## Summaries
 
 [Locale Environment Variables](https://www.baeldung.com/linux/locale-environment-variables)
 
 ## Command
+
+### dirs & pushd & popd
+
+While the `pushd` command adds a directory on top of the stack, on the other hand, the `popd` command removes an item from the top.
+
+```shell
+# 显示目录栈
+dirs
+# 显示目录栈及其索引（方便和 pushd +N、popd +N 配合）
+dirs -v
+# 每个目录单独一行输出
+dirs -p
+# 清空目录栈
+dirs -c
+# 切换到 directory 目录，并将 directory 目录压入栈顶
+pushd <directory>
+# 不改变当前目录，并将 directory 目录压入栈底
+pushd -n <directory>
+# 回到上一次执行 pushd 命令时所在的目录，并移除栈顶元素。注意 cd - 回到的是上一次访问的目录，这与 pushd 行为不同
+popd
+```
 
 ### su
 
