@@ -39,10 +39,17 @@ System.out.println("b = " + b); // b = 1
 
 ## 算数操作符
 
-- Float 类型能保证前 6 位一定是准确的。
-- Double 类型能保证前 15 位一定是准确的。
+- `Float` 类型能保证前 6 位一定是准确的。
+- `Double` 类型能保证前 15 位一定是准确的。
 
 通过创建 `Random` 对象时提供种子，可以在每次执行程序时都生成相同的随机数。
+
+```java
+Random rand = new Random(47);
+int c = rand.nextInt(26) + 'a';
+```
+
+`Random.nextInt(26)` 会产生一个 0~25 范围内的值，所以只需要加上一个偏移量 `a`，就能生成小写字母。
 
 ### 一元加减操作符
 

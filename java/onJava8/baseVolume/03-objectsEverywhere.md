@@ -31,7 +31,7 @@ String s = new String("asdf");
 
 `new` 关键字是在堆上创建对象，这就意味着哪怕是创建一些简单的变量也不会很高效。因此**基本类型的值直接存在栈上。**
 
-Java 有 8 种基本类型（primitive types）：
+Java 有 8 种基本类型（此处注意 `char` 在语义上被归为字符类型，但实际存储的是无符号整数，范围 `0~65535`）：
 
 <!-- markdownlint-disable -->
 <table border="1" cellspacing="0" cellpadding="6">
@@ -140,13 +140,13 @@ Java 对部分包装类做了**对象缓存**，为了节省内存。
 - 方法名和参数列表统称为方法签名（Signature），签名是方法的唯一标识。
 - 当返回类型为 `void` 时， `return` 关键字仅用于退出方法，因此在方法结束处的 `return` 可被省略。我们可以随时从方法中返回。
 
-```java
-// 该方法计算并返回了保存指定字符串所需的字节数。
-// 字符串的每一个 char 的长度是 16bit 也就是 2 个字节。
-int storage(String s) {
-    return s.length() * 2
-}
-```
+    ```java
+    // 该方法计算并返回了保存指定字符串所需的字节数。
+    // 字符串的每一个 char 的长度是 16bit 也就是 2 个字节。
+    int storage(String s) {
+        return s.length() * 2
+    }
+    ```
 
 ## 编写 Java 程序
 
@@ -160,6 +160,8 @@ public static void main(String[] args) {
 - 关键字 `public` 表示方法可以被外界访问到。
 - `main()` 方法的参数是一个 字符串（String）数组。 参数 `args` 并没有在当前的程序中使用到，但是 Java 编译器强制要求必须要有，这是因为它们被用于接收从命令行输入的参数。
 - Java 的包名是全小写的。
+
+打印系统属性：
 
 ```java
 public class ShowProperties {
