@@ -33,8 +33,9 @@ Host company-git
 
 ## 测试 SSH 连通性
 
-- 测试使用 SSH 协议连接到 github.com，使用 git 这个用户名进行认证，且不需要一个交互式的 shell，只要测试认证是否成功。
-- `-v` 选项会显示详细连接过程，比如这里指出服务器 coding.xxx.com 的 443 端口上运行的是 Web 服务（nginx），根本不是 Git 的 SSH 服务，因此只能使用 HTTPS 协议来访问 Git 仓库。
+`ssh -T git@github.com` 命令的作用是测试使用 SSH 协议连接到 github.com，使用 `git` 这个用户名进行认证，且不需要一个交互式的 shell，只要测试认证是否成功。
+
+`-v` 选项会显示详细连接过程，比如这里指出服务器 coding.xxx.com 的 443 端口上运行的是 Web 服务（nginx），根本不是 Git 的 SSH 服务，因此只能使用 HTTPS 协议来访问 Git 仓库。
 
 ```shell
 ssh -T git@github.com

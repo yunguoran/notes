@@ -62,6 +62,10 @@ git stash show stash@{n}
 git stash show -p stash@{n}
 # 只显示文件名
 git stash show stash@{n} --name-only
+# 删除指定 stash
+git stash drop stash@{n}
+# 清空所有 stash
+git stash clear
 ```
 
 ### 撤销本地 commit
