@@ -1,10 +1,10 @@
-# HTML
+# HTML（HyperText Markup Language）
 
 本文档摘自[网道的 HTML 教程](https://wangdoc.com/html/)，省略了其中很多不言自明的简单知识，同时也对一些疑难的地方增加了详细说明，并修改了其中多处笔误。
 
 ## 简介
 
-- 浏览器访问网站，其实就是从服务器下载 HTML（Hypertext Markup Language）代码，然后渲染出网页。
+- 浏览器访问网站，其实就是从服务器下载 HTML 代码，然后渲染出网页。
 - 浏览器右键菜单的 View page source（Ctrl + U），可以展示当前网页的 HTML 源码。
 
 ### 网页的基本概念
@@ -18,15 +18,15 @@
         ```
 
     - HTML 语言忽略缩进和换行。
-- 所有元素可以分成两大类：块级元素（block）和行内元素（inline）。
+- 所有元素可以分成两大类：块级元素（Block）和行内元素（Inline）。
     - 块级元素默认占据一个独立的区域，在网页上会自动另起一行，占据 100% 的宽度（`<p>`）。
-        - `width: auto`，宽度默认撑满父容器。
-        - `height: auto`，高度由内容决定，如果没有内容，那么高度就是 0。
+        - `width: auto`：宽度默认撑满父容器。
+        - `height: auto`：高度由内容决定，如果没有内容，那么高度就是 `0`。
         - 可以自由设置 `width`、`height` 属性。
     - 行内元素默认与其他元素在同一行，不产生换行（`<span>`）。
         - 默认宽度为内容的宽度。
         - 默认高度为内容的行高，通常由 `font-size` 和 `line-height` 决定。
-- 属性（attribute）是标签的额外信息，使用空格与标签名和其他属性分隔。
+- 属性（Attribute）是标签的额外信息，使用空格与标签名和其他属性分隔。
     - 属性值一般放在双引号里面。
     - 属性名大小写不敏感。
 
@@ -90,12 +90,12 @@ HTML 没有专门的单行注释，只有使用 <!-- --> 包裹起来的通用�
 
 ![URL](/images/frontend/html/url.png)
 
-- Scheme（协议）：不包括后面的分隔符（://）。
-- Host（主机）：此处的主机以域名形式展示，也可以是 IP 地址，使用 IP 地址时不会经 DNS 解析。
-- Port（端口）：16 bit，因此范围为 0-65535，用以区分同一台主机上的不同服务。
-- Path to the file（文件路径）：此处文件的概念是广义的，对于 Unix 和 Linux 来讲，一切皆文件，因此 URL 的规范文档保留了这种术语。
-- Parameters（参数）。
-- Anchor（锚点）：可以直接定位文档至锚点处。
+- `Scheme`（协议）：不包括后面的分隔符（://）。
+- `Host`（主机）：此处的主机以域名形式展示，也可以是 IP 地址，使用 IP 地址时不会经 DNS 解析。
+- `Port`（端口）：16 bit，因此范围为 0-65535，用以区分同一台主机上的不同服务。
+- `Path to the file`（文件路径）：此处文件的概念是广义的，对于 Unix 和 Linux 来讲，一切皆文件，因此 URL 的规范文档保留了这种术语。
+- `Parameters`（参数）。
+- `Anchor`（锚点）：可以直接定位文档至锚点处。
 
 ### URL 字符
 
@@ -143,7 +143,7 @@ HTML 没有专门的单行注释，只有使用 <!-- --> 包裹起来的通用�
 
 - 属性名不区分大小写。
 - 布尔属性只要添加了属性名，就表示打开该属性，没有就是关闭。
-    - HTML 只会判断这个属性是否存在，`<input type="text" required="false">` 中 required 的值依然是 true，只有删除这个属性才表示 false。
+    - HTML 只会判断这个属性是否存在，`<input type="text" required="false">` 中 `required` 的值依然是 true，只有删除这个属性才表示 false。
 
 ### 全局属性
 
@@ -170,7 +170,7 @@ HTML 没有专门的单行注释，只有使用 <!-- --> 包裹起来的通用�
     - `<input>`、`<textarea>`、`<button>`、`<select>`、`<a href="...">`、`<iframe>` 这些元素默认拥有焦点。
 - `accesskey` 属性指定网页元素获得焦点的快捷键，该属性的值必须是单个的可打印字符。
     - Chrome 浏览器在 Windows 系统和 Linux 系统的快捷键是 `Alt + 字符键`。
-    - 如果跟操作系统或浏览器级别的快捷键有冲突，将不会生效
+    - 如果跟操作系统或浏览器级别的快捷键有冲突，将不会生效。
 - `style` 属性用来指定当前元素的 CSS 样式。
 - `hidden` 是一个布尔属性，表示当前的网页元素不再跟页面相关，因此浏览器不会渲染这个元素。
     - CSS 的可见性设置，高于 `hidden` 属性。如果 CSS 设为该元素可见，`hidden` 属性将无效。
@@ -301,8 +301,8 @@ HTML 标签的一个重要作用就是声明网页元素的性质，使得用户
     - `<strong>` 是一个行内元素，表示它包含的内容具有很强的重要性，需要引起注意。浏览器会以粗体显示内容。
     - `<b>` 也表示它包含的内容需要引起注意，浏览器会加粗显示，但没有语义，因此总是应该使用 `<strong>` 标签。
 - `<em>`
-    - `<em>` 是一个行内标签，表示强调（Emphasize），浏览器会以斜体显示它包含的内容，但总是因该使用 CSS 指定样式，而不是使用 `<em>` 标签。
-    - `<i>` 语义弱于 `<em>`，因此不会使用它。
+    - `<em>` 是一个行内标签，表示强调（Emphasize），浏览器会以斜体显示它包含的内容。但总是应该使用 CSS 指定样式，而不是使用 `<em>` 标签。
+    - `<i>` 语义弱于 `<em>`，因此更加不会使用它。
 - `<sub>`，`<sup>`，`<var>`
     - `<sub>` 标签将内容变为下标，`<sup>` 标签将内容变为上标。它们都是行内元素。
     - `<var>` 标签表示代码或数学公式的变量。
@@ -385,14 +385,14 @@ HTML 标签的一个重要作用就是声明网页元素的性质，使得用户
 - `<abbr>`
     - `<abbr>` 标签是一个行内元素，表示标签内容是一个缩写。它的 `title` 属性给出缩写的完整形式，或者缩写的描述。
 - `<ins>`，`<del>`
-    - `<ins>` 标签是一个行内元素，表示原始文档添加（insert）的内容。`<del>` 表示删除（delete）的内容。它们通常用于展示文档的删改。
+    - `<ins>` 标签是一个行内元素，表示原始文档添加（Insert）的内容。`<del>` 表示删除（delete）的内容。它们通常用于展示文档的删改。
     - 浏览器默认为 `<del>` 标签的内容加上删除线，为 `<ins>` 标签的内容加上下划线。
     - 这两个标签都有以下属性。
         - `cite`：该属性的值是一个 URL，表示该网址可以解释本次删改。
         - `datetime`：表示删改发生的时间。
 
 - `<dfn>`
-    - `<dfn>` 是一个行内元素，表示标签内容是一个术语（definition），本段或本句包含它的定义。
+    - `<dfn>` 是一个行内元素，表示标签内容是一个术语（Definition），本段或本句包含它的定义。
 
         ```html
         <p><dfn><abbr title="acquired immune deficiency syndrome">AIDS</abbr></dfn>的全称是获得性免疫缺陷综合征。</p>
@@ -495,7 +495,7 @@ HTML 标签的一个重要作用就是声明网页元素的性质，使得用户
     - `anonymous`：跨域请求不带有用户凭证（通常是 Cookie）。
     - `use-credentials`：跨域请求带有用户凭证。
 - `loading` 指定浏览器对图片的加载行为。
-    - `auto`：浏览器默认行为，等同于不使用loading属性。
+    - `auto`：浏览器默认行为，等同于不使用 `loading` 属性。
     - `lazy`：启用懒加载。
     - `eager`：立即加载资源，无论它在页面上的哪个位置。
     - 由于行内图片的懒加载，可能会导致页面布局重排，所以使用这个属性的时候，最好指定图片的高和宽。
@@ -549,7 +549,7 @@ HTML 标签的一个重要作用就是声明网页元素的性质，使得用户
         >
         ```
 
-    - 假定当前设备的屏幕宽度是 `480px` ，浏览器从 sizes 属性查询得到，图片的显示宽度是 33vw（即 33%），等于 160px。`srcset` 属性里面，正好有宽度等于 160px 的图片，于是加载 foo-160.jpg。
+    - 假定当前设备的屏幕宽度是 `480px` ，浏览器从 `sizes` 属性查询得到，图片的显示宽度是 33vw（即 33%），等于 160px。`srcset` 属性里面，正好有宽度等于 160px 的图片，于是加载 foo-160.jpg。
 
 ### `<picture>`
 
@@ -589,7 +589,7 @@ HTML 标签的一个重要作用就是声明网页元素的性质，使得用户
     </picture>
     ```
 
-- `<source>` 标签的 type 属性给出图像的 [MIME](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types) 类型。
+- `<source>` 标签的 `type` 属性给出图像的 [MIME](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types) 类型。
 
 ## `<a>`
 
@@ -614,7 +614,7 @@ HTML 标签的一个重要作用就是声明网页元素的性质，使得用户
     - `_top`：在最顶层窗口中打开链接，清除所有框架。
 - `rel` 属性说明链接与当前页面的关系。
     - `noreferrer`：告诉浏览器打开链接时，不要将当前网址作为 HTTP 头信息的 Referer 字段发送出去，这样可以隐藏点击的来源。
-    - `noopener`：告诉浏览器打开链接时，不让链接窗口通过 JavaScript 的 window.opener 属性引用原始窗口，这样就提高了安全性。
+    - `noopener`：告诉浏览器打开链接时，不让链接窗口通过 JavaScript 的 `window.opener` 属性引用原始窗口，这样就提高了安全性。
     - `alternate`：当前文档的另一种形式，比如翻译。
     - `author`：作者链接。
     - `bookmark`：用作书签的永久地址。
@@ -627,14 +627,14 @@ HTML 标签的一个重要作用就是声明网页元素的性质，使得用户
     - `search`：文档的搜索链接。
     - `tag`：文档的标签链接。
 - `referrerpolicy` 属性用于精确设定点击链接时，浏览器发送 HTTP 头信息的 Referer 字段的行为。
-    - no-referrer：不发送 Referer 字段。
-    - no-referrer-when-downgrade
-    - origin：只发送源信息（协议+域名+端口）。
-    - origin-when-cross-origin
-    - unsafe-url
-    - same-origin：示同源时才发送 Referer 字段。
-    - strict-origin
-    - strict-origin-when-cross-origin
+    - `no-referrer`：不发送 Referer 字段。
+    - `no-referrer-when-downgrade`
+    - `origin`：只发送源信息（协议+域名+端口）。
+    - `origin-when-cross-origin`
+    - `unsafe-url`
+    - `same-origin`：示同源时才发送 Referer 字段。
+    - `strict-origin`
+    - `strict-origin-when-cross-origin`
 - `ping` 属性指定一个网址，用户点击的时候，会向该网址发出一个 POST 请求，通常用于跟踪用户的行为。
     - `ping` 属性只对链接有效，对其他的交互行为无效。
     - 这个请求的 HTTP 标头，包含了 `ping-from` 属性（点击行为发生的页面）和 `ping-to` 属性（`href` 属性所指向的页面）。
@@ -721,7 +721,7 @@ HTML 标签的一个重要作用就是声明网页元素的性质，使得用户
     - `license`：许可证链接。
     - `next`：系列文档下一篇的链接。
     - `pingback`：接收当前文档 pingback 请求的网址。
-    - `preconnect`：要求浏览器提前与给定服务器，建立 HTTP 连接。
+    - `preconnect`：要求浏览器提前与给定服务器建立 HTTP 连接。
     - `prefetch`：要求浏览器提前下载并缓存指定资源，供下一个页面使用。它的优先级较低，浏览器可以不下载。
     - `preload`：要求浏览器提前下载并缓存指定资源，当前页面稍后就会用到。它的优先级较高，浏览器必须立即下载。
     - `prerender`：要求浏览器提前渲染指定链接。这样的话，用户稍后打开该链接，就会立刻显示，感觉非常快。
@@ -751,11 +751,11 @@ HTML 标签的一个重要作用就是声明网页元素的性质，使得用户
             ```
 
     - `as` 属性指定加载资源的类型（如果不指定 `as` 属性，或者它的值是浏览器不认识的，那么浏览器会以较低的优先级下载这个资源）。
-        - script
-        - style
-        - image
-        - media
-        - document
+        - `script`
+        - `style`
+        - `image`
+        - `media`
+        - `document`
     - `type` 属性用于进一步明确 MIME 类型。
         - `<link rel="preload" href="sintel-short.mp4" as="video" type="video/mp4">`
     - 下方的写法资源预下载后立刻执行，这是因为 `onload` 指定的回调函数会在脚本下载完成后执行，立即插入页面。
@@ -765,7 +765,7 @@ HTML 标签的一个重要作用就是声明网页元素的性质，使得用户
     - 这意味着，浏览器可以不下载该资源，比如连接速度很慢时。
     - `<link rel="prefetch" href="https://www.example.com/">`
 - `<link rel="preconnect">`
-    - `<link rel="preconnect">` 要求浏览器提前与某个域名建立 TCP 连接。当你知道，很快就会请求该域名时，这会很有帮助。
+    - `<link rel="preconnect">` 要求浏览器提前与某个域名建立 TCP 连接。当你知道很快就会请求该域名时，这会很有帮助。
     - `<link rel="preconnect" href="https://www.example.com/">`
 - `<link rel="dns-prefetch">`
     - `<link rel="dns-prefetch">` 要求浏览器提前执行某个域名的 DNS 解析。
@@ -805,7 +805,7 @@ HTML 标签的一个重要作用就是声明网页元素的性质，使得用户
 
 - `async`：该属性指定 JavaScript 代码为异步执行，不是造成阻塞效果，JavaScript 代码默认是同步执行。
 - `defer`：该属性指定 JavaScript 代码不是立即执行，而是页面解析完成后执行。
-- `crossorigin`：如果采用这个属性，就会采用跨域的方式加载外部脚本，即 HTTP 请求的头信息会加上 origin 字段。
+- `crossorigin`：如果采用这个属性，就会采用跨域的方式加载外部脚本，即 HTTP 请求的头信息会加上 `origin` 字段。
 - `integrity`：给出外部脚本的哈希值，防止脚本被篡改。只有哈希值相符的外部脚本，才会执行。
 - `nonce`：一个密码随机数，由服务器在 HTTP 头信息里面给出，每次加载脚本都不一样。它相当于给出了内嵌脚本的白名单，只有在白名单内的脚本才能执行。
 - `referrerpolicy`：HTTP 请求的 Referer 字段的处理方法。
@@ -1444,7 +1444,7 @@ loading属性可以触发 `<iframe>` 网页的懒加载。该属性可以取以�
 
 该类型有以下属性：
 
-- `accept`：允许选择的文件类型，使用逗号分隔，可以使用 MIME 类型（比如image/jpeg），也可以使用后缀名（比如.doc），还可以使用 audio/*（任何音频文件）、video/*（任何视频文件）、image/*（任何图像文件）等表示法。
+- `accept`：允许选择的文件类型，使用逗号分隔，可以使用 MIME 类型（比如 image/jpeg），也可以使用后缀名（比如 .doc），还可以使用 audio/*（任何音频文件）、video/*（任何视频文件）、image/*（任何图像文件）等表示法。
 - `capture`：用于捕获图像或视频数据的源，可能的值有 user（面向用户的摄像头或麦克风），environment（外接的摄像头或麦克风）。
 - `multiple`：布尔属性，是否允许用户选择多个文件。
 
