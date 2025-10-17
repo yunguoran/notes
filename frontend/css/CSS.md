@@ -18,6 +18,23 @@ p {
 - 第一个声明中的 `red` 被称为属性值（Property Value）。
 - 属性和属性值中间以 `:`（Colon）分隔。
 
+## 元素类型
+
+- Non-replaced elements：没有被外部资源替换的 HTML 自己的内容元素。
+    - `<span>`
+    - `<a>`
+    - `<strong>`
+    - `<em>`
+    - `<code>`
+    - `<div>`
+    - `<p>`
+- Replaced elements：内容是由外部资源替换进来的，比如图片或视频文件。
+    - `<img>`
+    - `<video>`
+    - `<iframe>`
+    - `<embed>`
+    - `<fencedframe>`
+
 ## 将 CSS 应用于 HTML
 
 - 外部样式表
@@ -31,6 +48,15 @@ p {
     - `style` 属性中的多个声明以分号（`;`）分隔。
 
 ### 选择器（Selector）
+
+选择器直接相连不加空格就代表的是 `and` 关系。即同时拥有 `.alert` 和 `.stop` 的元素才生效可以写成：
+
+```css
+.alert.stop {
+  color: red;
+  font-weight: bold;
+}
+```
 
 #### 简单选择器
 
@@ -52,7 +78,7 @@ p,
 
 注意：在选择器列表中，如果一个选择器的写法出现了错误（比如：类选择器写成了 `..my-class`），那么整个选择器列表中的所有选择器都会失效。
 
-#### 通用选择器
+##### 通用选择器
 
 通用选择器匹配文档中的所有元素。
 
@@ -70,38 +96,60 @@ p,
 - 通用选择器性能相对低下，在大项目里尽量不要频繁滥用。
 - 更常见的场景是配合其他选择器限定范围（如 `div *`，`ul > *`），而不是单独使用 `*`。
 
-#### 组合器选择器
+#### [属性选择器](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors)
 
-```css
-/* 后代选择器：选中 <li> 内部的所有的 <em> 标签，无论嵌套多少层。*/
-li em {
-  color: rebeccapurple;
-}
+##### 存在选择器和值选择器
 
-/* 子选择器：选中所有 <div> 元素的直接子元素的 <p> 标签。*/
-div > p {
-  color: blue;
-}
+- `[attr]`：`a[title]` 会选择所有拥有 `title` 属性的 `a` 元素。
+- `[attr=value]`：`a[href="https://example.com"]` 会选择所有拥有 `href` 属性且值为 `"https://example.com"` 的 `a` 元素。
+- `[attr~=value]`：`p[class~="special"]` 会选择所有拥有 `class` 属性且该属性值为 `special` 或包含 `special` 的 `p` 元素。注意此处的包含是指包含一个**独立的、完整**的单词，这个单词必须用**空格**与其他部分隔开。
+- `[attr|=value]`：`div[lang|="zh"]` 会选择所有拥有 `lang` 属性且值为 `zh` 或以 `zh-` 开头的 `div` 元素。此处注意 `zh` 后面的**连字符**。
 
-/* 相邻兄弟选择器：选中第一个和 <h1> 同级并且位于 <h1> 后面的 <p> 标签。*/
-h1 + p {
-  font-size: 200%;
-}
+##### 子串匹配选择器
 
-/* 通用兄弟选择器：选中所有和 <h1> 同级并且位于 <h1> 后面的 <p> 标签。*/
-h1 ~ p {
-  font-size: 200%;
-}
-```
+- `[attr^=value]`：`li[class^="box"]` 会选择所有拥有 `class` 属性且该属性值以 `box` 开头的 `li` 元素。与 `[attr|=value]` 不同的是，此处不要求 `box` 后面必须跟连字符，后面跟任意字符串都是可以的。
+- `[attr$=value]`：`li[class$="box"]` 会选择所有拥有 `class` 属性且该属性值以 `box` 结尾的 `li` 元素，匹配时区分大小写。
+- `[attr*=value]`：`li[class*="box"]` 会选择所有拥有 `class` 属性且该属性值在任意位置包含 `box` 字符串的 `li` 元素。
 
-- `' '`：后代选择器（Descendant Combinator）。
-- `'>'`：子选择器（Child Combinator）。
-- `'+'`：相邻兄弟选择器（Adjacent Sibling Combinator）。
-- `'~'`：通用兄弟选择器（General Sibling Combinator）。
+#### [伪类选择器](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
 
-#### 伪类选择器
+伪类（Pseudo-classes）选择器可以给元素的不同状态设置不同的样式。
 
-伪类选择器可以给元素的不同状态设置不同的样式。
+##### `:first-child`
+
+- `:first-child`：浏览器会遍历文档中的每一个元素，检查它是否是它父元素的第一个子元素。
+- `p:first-child`：选择**并且仅当**这个第一个子元素是一个 `<p>` 标签。
+    - 浏览器会遍历文档中的每一个 `<p>` 元素，然后判断该 `<p>` 元素是否是它父元素的第一个子元素。
+    - 该选择器常被误认为是选择父元素内的第一个 `p` 元素。
+- `article p:first-child`：选择在 `<article>` 元素内的、作为其直接父元素第一个子元素的 `<p>` 元素。即浏览器会找到文档中所有的 `<article>` 元素，在每个 `<article>` 内部，找到第一个 `<p>` 元素。
+
+##### `:nth-*`
+
+- `:nth-child()` 伪类选择器用于选择父元素内的第 n 个子元素。它是基于所有子节点的顺序来计数的。
+    - `:nth-child()` 接受一个参数，这个参数用于描述一个用于匹配同级元素列表中元素索引的模式。索引从 `1` 开始。该参数的常见取值如下：
+        - 关键字。
+            - `odd`。
+            - `even`。
+        - `<An+B>`。
+            - `A` 是一个整型的步长。
+            - `B` 是一个整形的偏移量。
+            - `n` 是一个非负整数，从 `0` 开始。
+        - `of <selector>` 语法。
+            - 当传递一个选择器参数时，将会匹配第 n 个匹配这个选择器的元素。
+            - `:nth-child(-n + 3 of li.important)`：在同级元素中，只考虑那些匹配 `li.important` 的兄弟节点，然后在这些节点中选取前 3 个。
+            - `li.important:nth-child(-n + 3)`：选中那些既是第 1~3 个子节点、又具有类名 `important` 且是 `<li>` 元素的节点。
+- `:nth-last-child()` 的所有特性和 `:nth-child()` 完全一致，唯一不同的就是 `:nth-last-child()` **从后往前计数元素**。
+- `:nth-of-type()` 伪类选择器用于选择父元素内特定类型的第 n 个子元素。它的核心特点是**只在同一类型的元素兄弟节点中计数**。
+- `:nth-last-of-type()` 是 `:nth-of-type()` 的反向版本。它的核心特点是**从最后一个相同类型的兄弟元素开始数。**。
+
+注意：
+
+- `tr :nth-child(1)`：表示选中 `tr` 内部的第一个元素。这里 `tr` 元素选择器和 `:nth-child(1)` 伪类选择器之间是空格，空格代表后代选择器。
+- `tr:nth-child(1)`：表示选中第一个 `tr` 本身。这里 `tr` 元素选择器和 `:nth-child(1)` 伪类选择器之间没有空格，因此是整个选择器是复合选择器。
+- 在 `element:nth-child()` 这种语法中，浏览器在计算“第几个孩子”时，会把所有类型的子元素都算进去。但是只有当那个位置的元素类型和选择器里的 `element` 匹配时，才真正算命中。
+- 如果没有在 `:nth-of-type()` 前面加具体元素选择器（比如：`:nth-of-type(2)`），那么它的匹配行为是**匹配任意类型（即所有标签）中，属于其类型序列的第 n 个子元素的元素。**
+
+##### 用户行为伪类
 
 ```css
 a:link {
@@ -132,6 +180,59 @@ a:focus {
 - **鼠标悬停**在链接上时去掉链接的下划线。
 - **点击按下的瞬间**颜色设置为橘色。
 - 链接**获得焦点**时去掉链接的下划线。
+
+#### [伪元素选择器](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)
+
+伪元素（Pseudo-elements）是一种特殊的选择器，用来选中元素中不存在的“虚拟部分”，然后对这些部分进行样式设置。它以双冒号（`::`）开头。
+
+- `::before`：在元素内容之前插入生成的内容。必须配合 `content` 属性一起使用，否则伪元素不会显示。
+
+    ```html
+    <p class="box">Content in the box in my HTML page.</p>
+    ```
+
+    ```css
+    .box::before {
+      content: "This should show before the other content. ";
+      background-color: yellow;
+    }
+    ```
+
+- `::after`：在元素内容之后插入生成的内容。
+- `::first-line`：选择文本的第一行。
+- `::first-letter`：选择文本的第一个字母。
+- `::selection`：选中（高亮）文本时应用样式。
+- `::marker`：选中列表项前的项目符号或编号。
+- `::placeholder`：选中 `<input>` 或 `<textarea>` 的占位文本。
+
+#### 组合器选择器
+
+```css
+/* 后代选择器：选中 <li> 内部的所有的 <em> 标签，无论嵌套多少层。*/
+li em {
+  color: rebeccapurple;
+}
+
+/* 子选择器：选中所有 <div> 元素的直接子元素的 <p> 标签。*/
+div > p {
+  color: blue;
+}
+
+/* 相邻兄弟选择器：选中第一个和 <h1> 同级并且位于 <h1> 后面的 <p> 标签。*/
+h1 + p {
+  font-size: 200%;
+}
+
+/* 通用兄弟选择器：选中所有和 <h1> 同级并且位于 <h1> 后面的 <p> 标签。*/
+h1 ~ p {
+  font-size: 200%;
+}
+```
+
+- `' '`：后代选择器（Descendant Combinator）。
+- `'>'`：子选择器（Child Combinator）。
+- `'+'`：相邻兄弟选择器（Adjacent Sibling Combinator）。
+- `'~'`：通用兄弟选择器（General Sibling Combinator）。
 
 ## 字体/文本
 
@@ -331,6 +432,8 @@ h1 {
 - `percentage`：相对于当前元素的 `font-size` 进行计算。`line-height: 150%` 效果上等同于 `line-height: 1.5`。
     - 和 `em` 一样，存在继承问题。子元素继承的是计算后的固定值。
 
+行内元素的 `width` 和 `height` 不会改变实际的盒子尺寸，因此 `span` 元素中文字的高度由 `line-height` 属性决定。
+
 #### `letter-spacing` 属性
 
 用于控制字符之间的水平间距。常见取值如下：
@@ -344,9 +447,16 @@ h1 {
 
 ## box 模型
 
-CSS 布局主要是基于 box 模型。网页上的每个元素都是一个 box 模型。
+元素是语义和结构上的存在。盒子是视觉和布局上的表现。CSS 操作的不是元素本身，而是它在渲染时生成的 box。网页上的每个元素都是一个 box 模型。
 
 ![alt text](./images/box-mode.png)
+
+### Inline Box（行内盒子）
+
+- 行内元素的 `width` 和 `height` 以及 `margin` 的上下部分不会改变实际的盒子尺寸。
+- `<span>` 的高度由 `line-height` 属性决定，而不是 `height` 属性。
+- 左右的 `padding` / `border` 会影响文本流（会占据横向空间，推动左右相邻内容）。
+- 上下 的 `padding` / `border` 不会改变行高，也不会把上下相邻行或文字“推出去”。它们只是绘制在行框之外，看起来像是覆盖/重叠在相邻文本上。
 
 ### `width` 属性
 
@@ -382,9 +492,19 @@ CSS 布局主要是基于 box 模型。网页上的每个元素都是一个 box 
 
 给元素内容和 padding 的外围绘制**边框**。组成部分如下：
 
-- border-width：边框宽度（如：1px、2px）。
-- border-style：边框样式（如：`solid`、`dashed`、`dotted`、`double`、`none`）。
-- border-color：边框颜色（如：`red`）。
+- `border-width`：边框宽度（如：1px、2px）。
+- `border-style`：边框样式。
+    - `solid`
+    - `dashed`
+    - `dotted`
+    - `double`
+    - `inset`
+    - `outset`
+    - `groove`
+    - `ridge`
+    - `hidden`
+    - `none`
+- `border-color`：边框颜色（如：`red`）。
 
 可以单独设置边框的每条边：
 
@@ -392,6 +512,8 @@ CSS 布局主要是基于 box 模型。网页上的每个元素都是一个 box 
 - `border-right`
 - `border-bottom`
 - `border-left`
+
+box 模型的边界是 `border` 的外边距。
 
 #### `border-radius` 属性
 
@@ -425,18 +547,139 @@ CSS 布局主要是基于 box 模型。网页上的每个元素都是一个 box 
 - `margin: 0px 0px 5px;`：上 0px，左右 0px，下 5px。
 - `margin: 5px 10px 15px 20px;`：上 5px，右 10px，下 15px，左 20px（顺时针）。
 
-为了给无样式的页面提供基本的可读性，`<p>` 标签有默认的 `margin`，常见的默认值是：`margin：1em 0`。相似的情况也存在于 `<body>`、`<h1>` 等元素上。
+注意：
+
+- 为了给无样式的页面提供基本的可读性，`<p>` 标签有默认的 `margin`，常见的默认值是：`margin：1em 0`。相似的情况也存在于 `<body>`、`<h1>` 等元素上。
+- **non-replaced inline elements** 的上下边距不会撑开或压缩行距，它们只是存在于视觉模型里但不起效果。
+
+#### Margin Collapsing（外边距折叠）
+
+浮动元素（`float` 属性值非 `none` 的元素）和绝对定位元素（`position` 的值为 `absolute` 或者 `fixed`）的外边距永远不会折叠。
+
+三种情况下会发生外边距折叠：
+
+- 相邻兄弟元素
+    - 两个相邻的块级元素上下相接时，它们的 `margin-bottom` 和 `margin-top` 会折叠。
+    - 例外：如果第二个元素使用了 `clear` 来避开浮动，则不会折叠。
+- 父子之间没有内容：当父元素与子元素之间没有边框、内边距、文字内容、或 clearance 时，它们的上下 `margin` 会折叠。
+    - 父元素顶部与第一个子元素的顶部折叠。
+        - 父元素的 `margin-top` 会和第一个普通流内的子元素的 `margin-top` 折叠。
+        - 除非父元素有：
+            - `border-top`。
+            - `padding-top`。
+            - 含有行内内容（如文字）。
+            - 或者应用了 clearance（指 `clear` 的值为非 `none`）。
+    - 父元素底部与最后一个子元素的底部折叠。
+        - 除非父元素有明确定义的以下属性其中之一：
+            - `height`。
+            - `min-height`。
+            - `border-bottom`。
+            - `padding-bottom`。
+    - 如果父元素形成了一个新的块级格式化上下文（BFC），将不会发生折叠。
+        - 创建 BFC 的常见方法：
+            - `overflow: hidden`。
+            - `display: flow-root`。
+            - `float: left/right`。
+            - `position: absolute`。
+- 空块元素：当一个块元素本身没有内容、内边距、边框、或高度，那它自己的 `margin-top` 和 `margin-bottom` 会合并成一个。
+
+注意：
+
+- 当多个父子、兄弟、嵌套情况叠加时，折叠可能涉及 三层或更多 `margin` 一起折叠。
+- 即使 `margin` 是 `0`，折叠机制仍然有效。
+- 折叠仅发生在垂直方向。
+- `Flex` 容器 和 `Grid` 容器内部永远不会发生 `margin` 折叠。
+
+当相邻的**垂直**外边距（例如一个 `div` 的 `margin-bottom` 与下一个 `div` 的 `margin-top`）相遇并折叠时，两个 box 之间距离的计算方式是：
+
+- 两个正值：取较大的数值。
+- 两个负值：取较小的数值，也就是绝对值更大、更远离零的那个数值。
+- 一正一负：把它们代数相加。
+
+注意：
+
+- 此时他们的 `margin` 值并不会做任何隐性计算，即：在浏览器开发者工具那里显示的 `margin` 值和代码里的保持一致。受折叠影响的只是两个 box 之间的距离。
+- 当两个相邻 `div` 的垂直 `margin` 都是负值时，第一个元素的位置不变，第二个元素会上移（向上挤），上移的距离等于两个负 `margin` 中绝对值较大的那个。
+
+### `box-*` 属性
+
+#### `box-sizing` 属性
+
+`box-sizing` 用来控制元素的 `width` 和 `height` 是指内容区（content）还是整个盒子（content + padding + border）。常见取值如下：
+
+- `content-box`：默认值。`width`/`height` 只作用于 内容区，`padding` 和 `border` 会额外加在 `width`/`height` 上。
+- `border-box`：`width`/`height` 包括 `content` + `padding` + `border`。
+    - 此种情况下设置 `width: 0` 和 `height: 0` 但 `padding` 和 `border` 还有值时，`padding` 和 `border` 将会撑开元素使该元素可见。
+- `inherit`
+- `initial`
+- `revert`
+- `revert-layer`
+- `unset`
+
+注意：
+
+- `<table>`、`<select>` 和 `<button>` 元素以及 `type` 属性为 `radio`、`checkbox`、`reset`、`button`、`submit`、`color` 和  `search` 的 `<input>` 元素的 `box-sizing` 属性默认值是 `border-box`。
+- 当使用 `position: relative` 或者 `position: absolute` 布局时，`box-sizing: content-box` 允许定位值相对于 `content`，并且独立于 `border` 和 `padding` 大小的更改。
+
+设置网页中所有的元素设置 `box-sizing` 属性：
+
+```css
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+```
 
 ## Layout（布局）
 
 ### `display` 属性
 
-常见基础值：
+```text
+display: <outer-display-type> <inner-display-type>
+```
 
-- `block`：块级元素（独占一行）。
-- `inline`：行内元素（和文字一样排在一行）。
-- `inline-block`：行内块（不独占一行，但可以设置宽高）。
+每个元素的 `display` 属性在概念上（这只是规范层面的抽象模型，并不是实际的语法扩展）可以看作是由两个层面组成的：
+
+- 外部显示类型（Outer Display Type）：决定该元素在外部上下文中如何参与布局，即该元素在父容器中如何表现。常见取值如下：
+    - `block`。
+    - `inline`。
+- 内部显示类型（Inner Display Type）：决定该元素如何布局它的子元素。常见取值如下：
+    - `flow`。
+    - `flow-root`。
+    - `flex`。
+    - `grid`。
+    - `table`。
+    - `ruby`。
+
+`display` 属性的常见取值如下（推荐总是使用简写形式，双关键字只有部分浏览器支持）：
+
 - `none`：元素完全不显示（不占空间）。
+- `block`：是 `block flow` 的简写。
+    - block 元素盒子将独占一行，即使宽度不是 `100%`。
+    - `width` 和 `height` 属性是生效的。
+    - 如果没有指定 `width` 属性，box 模型的宽度将会撑满整个父元素。
+    - block 元素会在文档流（Normal Flow）中占据自己的空间，也就是说，它的 `margin`、`padding`、`border` 都是真实挤开其他元素的。
+    - 会在文档流中触发新的块级上下文（BFC），对浮动、溢出、清除等有影响。
+- `inline`：是 `inline flow` 的简写。
+    - 多个 `inline` 元素盒子可在同一行内排列。
+    - `width` 和 `height` 属性将不会生效。
+    - 属于 **non-replaced** 的行内元素的上下边距（`margin-top` / `margin-bottom`）虽然可以设置，但不会真的推开别的行内元素或改变行高。它们存在，但不会影响周围布局。
+    - 行内元素在水平方向上（即 `inline direction`）的 `margin` / `padding` / `border` 是有实际排布效果的。它们会让行内元素之间分开。
+- `flex`：是 `block flex` 的简写。
+- `grid`：是 `block grid` 的简写。
+- `inline-block`：行内块。
+    - 不独占一行，与文字、其它 `inline/inline-block` 元素在同一行内排列。
+    - 能设置 `width` 和 `height` 属性。默认宽度由内容决定，可用 `width` 明确指定。
+    - 可使用 `vertical-align` 调整在行内的垂直位置（默认基线对齐）。
+    - 不创建新的 BFC，仍参与行内格式化。
+- `inline-flex`。
+- `inline-grid`。
+- `flow-root`：是 `block flow-root` 的简写。
 
 ### 尺寸约束
 
@@ -450,79 +693,6 @@ CSS 布局主要是基于 box 模型。网页上的每个元素都是一个 box 
     - `max-content`：根据内容决定最大宽度。
     - `min-content`：根据最小内容决定宽度。
     - `fit-content`：尽量适应内容，受限于父容器。
-
-### 背景
-
-#### `background-color` 属性
-
-设置元素背景的颜色，默认情况下作用范围是 CSS box 模型中的 `content` + `padding` + `border`。常见取值如下：
-
-- 颜色名称：`red`、`blue`。
-- 十六进制：`#ff0000`。
-- RGB / RGBA：`rgb(255,0,0)`/ `rgba(255,0,0,0.5)`。
-- HSL / HSLA：`hsl(0, 100%, 50%)`。
-- `transparent`：透明。
-
-#### `background-image` 属性
-
-`background-image` 属性用来给元素的背景设置**一张或多张**图片（多个值可以用逗号分隔，前面的图会覆盖在后面的图上）。常见取值如下：
-
-- `none`：不显示背景图片（默认值）。
-- `<image>`
-    - 本地图片的相对路径或绝对路径或者网络图片。
-    - 渐变函数：`linear-gradient()`、`radial-gradient()`、`conic-gradient()`、`repeating-*` 等。
-    - SVG 图片。
-
-注意：
-
-- 背景图片默认是叠在 `background-color` 上方。
-- 如果只想要一个纯色背景，用 `background-color` 就行，不需要 `background-image`。
-
-#### `background-position` 属性
-
-`background-position` 用来指定背景图像在元素背景区域中的起始位置。常见取值如下：
-
-- 关键字
-    - 水平方向：`left` | `center` | `right`
-    - 垂直方向：`top` | `center` | `bottom`
-    - 如果只写一个方向的关键字：那么会浏览器自动填充另一个方向的值为 `center`。
-- 长度
-    - 第一个值：水平偏移（相对元素背景区域左边缘）。
-    - 第二个值：垂直偏移（相对元素背景区域上边缘）。
-- 百分比（相对背景定位区域）
-    - `0% 0%`：左上角。
-    - `50% 50%`：居中。
-    - `100% 100%`：右下角。
-- `calc()` 表达式。
-
-注意：
-
-- 百分比并不是单纯的偏移量，而是元素背景区域的百分比位置对应背景图像的百分比位置。`background-position: 50% 50%` 指的是：背景图的中心点对齐到元素背景区域的中心点。
-- 如果定义了多个背景图，可以为每个图分别设置位置：
-
-    ```css
-    background-image: url(a.png), url(b.png);
-    background-position: left top, right bottom;
-    ```
-
-#### `background-repeat` 属性
-
-控制背景图像在元素背景区域中的**平铺方式**，即：当图像的尺寸小于它容器的背景区域时，如何通过重复这个图像来填满整个区域。
-
-- `repeat`：背景图在水平和垂直方向都重复填充（默认）。
-- `repeat-x`：只在水平方向平铺。
-- `repeat-y`：只在垂直方向平铺。
-- `no-repeat`：不平铺，只显示一张背景图。
-- `space`：背景图像在区域内重复，但会 均匀分布，使图像之间的间隙相等，可能会留下空白。
-- `round`：背景图像会被缩放，以保证整数次平铺且刚好填满容器。
-
-#### `background-attachment` 属性
-
-控制背景图像是跟随页面内容滚动，还是固定在视口（Viewport）上。
-
-- `scroll`：背景图像会随着页面内容一起滚动。
-- `fixed`：背景图像固定在视口，不随内容滚动。常用于“视差滚动”效果。
-- `local`：背景图像相对于元素的内容（Content）滚动区域固定。如果元素有滚动条，背景图会随着元素的内容滚动。
 
 ### 几何变换
 
@@ -557,6 +727,103 @@ CSS 中 `transform` 的操作是基于元素的局部坐标系（Local Coordinat
 
 - 因此元素一旦旋转，它的 X/Y 坐标轴也会跟着旋转。
 - `transform: rotate(45deg) translateX(180px);`：因为先旋转了 45° 所以平移方向也旋转了 45°。
+
+## 背景
+
+### `background-color` 属性
+
+设置元素背景的颜色，默认情况下作用范围是 CSS box 模型中的 `content` + `padding` + `border`。常见取值如下：
+
+- 颜色名称：`red`、`blue`。
+- 十六进制：`#ff0000`。
+- RGB / RGBA：`rgb(255,0,0)`/ `rgba(255,0,0,0.5)`。
+- HSL / HSLA：`hsl(0, 100%, 50%)`。
+- `transparent`：透明。
+
+### `background-image` 属性
+
+`background-image` 属性用来给元素的背景设置**一张或多张**图片（多个值可以用逗号分隔，前面的图会覆盖在后面的图上）。常见取值如下：
+
+- `none`：不显示背景图片（默认值）。
+- `<image>`
+    - 本地图片的相对路径或绝对路径或者网络图片。
+    - 渐变函数：`linear-gradient()`、`radial-gradient()`、`conic-gradient()`、`repeating-*` 等。
+    - SVG 图片。
+
+注意：
+
+- 背景图片默认是叠在 `background-color` 上方。
+- 如果只想要一个纯色背景，用 `background-color` 就行，不需要 `background-image`。
+
+### `background-position` 属性
+
+`background-position` 用来指定背景图像在元素背景区域中的起始位置。常见取值如下：
+
+- 关键字
+    - 水平方向：`left` | `center` | `right`
+    - 垂直方向：`top` | `center` | `bottom`
+    - 如果只写一个方向的关键字：那么会浏览器自动填充另一个方向的值为 `center`。
+- 长度
+    - 第一个值：水平偏移（相对元素背景区域左边缘）。
+    - 第二个值：垂直偏移（相对元素背景区域上边缘）。
+- 百分比（相对背景定位区域）
+    - `0% 0%`：左上角。
+    - `50% 50%`：居中。
+    - `100% 100%`：右下角。
+- `calc()` 表达式。
+
+注意：
+
+- 百分比并不是单纯的偏移量，而是元素背景区域的百分比位置对应背景图像的百分比位置。`background-position: 50% 50%` 指的是：背景图的中心点对齐到元素背景区域的中心点。
+- 如果定义了多个背景图，可以为每个图分别设置位置：
+
+    ```css
+    background-image: url(a.png), url(b.png);
+    background-position: left top, right bottom;
+    ```
+
+### `background-repeat` 属性
+
+控制背景图像在元素背景区域中的**平铺方式**，即：当图像的尺寸小于它容器的背景区域时，如何通过重复这个图像来填满整个区域。
+
+- `repeat`：背景图在水平和垂直方向都重复填充（默认）。
+- `repeat-x`：只在水平方向平铺。
+- `repeat-y`：只在垂直方向平铺。
+- `no-repeat`：不平铺，只显示一张背景图。
+- `space`：背景图像在区域内重复，但会 均匀分布，使图像之间的间隙相等，可能会留下空白。
+- `round`：背景图像会被缩放，以保证整数次平铺且刚好填满容器。
+
+### `background-attachment` 属性
+
+控制背景图像是跟随页面内容滚动，还是固定在视口（Viewport）上。
+
+- `scroll`：背景图像会随着页面内容一起滚动。
+- `fixed`：背景图像固定在视口，不随内容滚动。常用于“视差滚动”效果。
+- `local`：背景图像相对于元素的内容（Content）滚动区域固定。如果元素有滚动条，背景图会随着元素的内容滚动。
+
+## 列表
+
+### `list-style` 属性
+
+`list-style` 是一个 简写属性，用于一次性设置与列表标记（例如 `<ul>`、`<ol>`、`<li>`）相关的三种属性。三个子属性可以任意顺序组合，也可以单独省略部分。
+
+- `list-style-type`：列表项前面标志的样式（比如实心圆、数字、字母等）。
+    - `disc`：实心圆（默认）。
+    - `circle`：空心圆。
+    - `square`：实心方块。
+    - `decimal`：数字 1, 2, 3...
+    - `decimal-leading-zero`：数字前补零 01, 02...
+    - `lower-alpha`：小写字母 a, b, c...
+    - `upper-alpha`：大写字母 A, B, C...
+    - `lower-roman`：小写罗马数字 i, ii, iii...
+    - `upper-roman`：大写罗马数字 I, II, III...
+    - `none`：无标志。
+- `list-style-position`：标志相对于列表内容的位置（在内容外侧或内侧）。
+    - `outside`：标志在内容块外（默认）。
+    - `inside`：标志算作文本内容一部分，可能换行对齐。
+- `list-style-image`：使用自定义图像作为标志。
+    - 如果图片加载失败，会回退到 `list-style-type`。
+    - 通常配合 `list-style-type: none` 去除默认样式。
 
 ## `@rules`
 

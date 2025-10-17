@@ -54,10 +54,13 @@
 
 | word | phonetic symbol |
 | :--- | :--- |
+| bind | /baɪnd/ |
+| bound | /baʊnd/ |
 | curiosity | /ˌkjʊriˈɑːsəti/ |
 | curious | /ˈkjʊriəs/ |
 | descendant |  |
 | genre | /ˈʒɑːnrə/ |
+| indices | /ˈɪndɪsiːz/ |
 | least |  |
 | less |  |
 | little |  |
@@ -70,6 +73,7 @@
 | a plethora of | 大量的、丰富的 | / ˈpleθərə / |  |
 | all along | 自始至终，一直 |  | I knew it all along. |
 | among other things | 除其他事项之外、此外 | 用于表示某事物或情况不仅仅包括所提到的内容，还包括其他方面 |  |
+| around here | 在我们这儿 | 可以指物理区域：“Is there a good coffee shop around here?”，也可以指指工作或社交环境：“That’s how we do things around here.”。 |  |
 | at the speed of | 以…的速度 |  | AI video generation is advancing at the speed of light. |
 | at the time | 在当时 |  |  |
 | be endowed with | 具有某种特定的品质或特征 | 指某人或某物天生或被赋予了某种特定的品质或特征 | Sri Lanka's tea country is endowed with cascading waterfalls, rising mountain tops, natural beauty and diverse flora and fauna. |
@@ -77,12 +81,14 @@
 | be meant to | 注定要 | 表示某事是命中注定或计划好的，通常用于描述某人或某事的目的或预期结果 |  |
 | be named after | 以…命名 |  |  |
 | be saddled with | 受…所拖累、被迫负担、承担 |  | Most other game development tools that have a central visual editor are also saddled with limited and inflexible scripting support, but Unity doesn’t suffer from that disadvantage. |
+| bounded by | 由/被…所界定 |  | The margin area, bounded by the margin edge, extends the border area to include an empty area used to separate the element from its neighbors. |
 | brag about | 吹嘘、夸耀 | 表示过分或虚假地表达自己的成就或优点 |  |
 | cascading waterfalls | 瀑布 |  |  |
 | co-direct | 共同执导 |  |  |
 | come full circle | 兜了一圈回到原点、实现了闭环 | 指事情经过变化后回归本质，但有了提升或扩展 | And then we came full circle because Unity enabled us to deploy to the web in addition to mobile, all from one codebase. |
 | come with being | 随着……而来 | 指某种情况或状态伴随着某种经历或身份而自然发生 |  |
 | commit to | 承诺、致力于、投入、专注于 | 表示对某事物或某人的决心和承诺，通常表示愿意为之付出时间、精力或资源 |  |
+| credit on ... to sb | 将关于（某事物）的功劳归于某人 |  | Credit on the inheritance idea to Jon Neal. |
 | critical window | 关键期 |  |  |
 | dive right into | 立即投入 | 指迅速开始做某事，不浪费时间 | You can start with the tutorial or dive right into more detailed documentation. |
 | dress code | 着装规范 |  |  |
@@ -116,6 +122,7 @@
 | ripe for | 发展到适合某事发生的条件 | ripe for innovation：创新的条件已经具备、ripe for breakthrough：时可能发生重大突破 |  |
 | set ... off | 突出、凸显 |  | All the source code in the book, whether in code listings or snippets, is in `a fixed-width font like this`, which sets it off from the surrounding text. |
 | show ... age | 显得过时、老旧 |  | As those tools started to show their age, I kept looking for better ways to develop games. |
+| so much that | 以至于 | 是一个常用的程度状语从句结构，用于强调前面所述动作或状态的极高程度，并表示这种程度所导致的直接结果 | I'm a big fan of resetting box-sizing to border-box, so much that we have a special day of the year around here. |
 | stick sth out | 伸出某物、坚持下去 | 指将某物从表面或边缘伸出来或指继续做某事，尽管可能困难或不愉快 |  |
 | strive to | 尽力做某事 |  | Django's template system has several powerful features but strives to stay simple enough for non-programmers to use. |
 | sweep you off your feet | 迷倒某人、使某人神魂颠倒 |  | Valentine will sweep you off your feet. |
