@@ -65,6 +65,8 @@
 | less |  |
 | little |  |
 | modular | /ˈmɑːdʒələr/ |
+| scratch | /skrætʃ/ |
+| stretch | /stretʃ/ |
 
 ## Phrase
 
@@ -98,7 +100,7 @@
 | for eons | 千百万年来、极其漫长的时间以来 | [ˈiːən /] |  |
 | for quite some time | 相当长的一段时间 |  | I’ve been programming games for quite some time, but started using Unity only relatively recently. |
 | for the sake of performance | 出于性能考虑 |  |  |
-| from scratch | 从零开始、白手起家 |  | I learned German from scratch in six months. |
+| from scratch | 从零开始、白手起家 | 旧时的体育竞赛中人们会在地面上划一条线作为起点，这条线就是 scratch（用指甲或棍子“划”出来的） | I learned German from scratch in six months. |
 | given that | 鉴于 | 表示在某种条件或情况下，用于引出一个已知的事实或前提 |  |
 | go to great length | 不遗余力 | 指为达到某个目的而付出极大的努力和付出 |  |
 | got both | 两者都有 | 表示拥有两个或两种事物 |  |

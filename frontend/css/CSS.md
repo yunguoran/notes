@@ -451,6 +451,8 @@ h1 {
 
 ![alt text](./images/box-mode.png)
 
+### Block Box（块状盒子）
+
 ### Inline Box（行内盒子）
 
 - 行内元素的 `width` 和 `height` 以及 `margin` 的上下部分不会改变实际的盒子尺寸。
@@ -549,8 +551,8 @@ box 模型的边界是 `border` 的外边距。
 
 注意：
 
-- 为了给无样式的页面提供基本的可读性，`<p>` 标签有默认的 `margin`，常见的默认值是：`margin：1em 0`。相似的情况也存在于 `<body>`、`<h1>` 等元素上。
-- **non-replaced inline elements** 的上下边距不会撑开或压缩行距，它们只是存在于视觉模型里但不起效果。
+- 为了给无样式的页面提供基本的可读性，`<p>` 标签有默认的 `margin`，常见的默认值是：`margin：1em 0`。相似的情况也存在于 `<body>`、`<h1>`~`<h6>`、`<blockquote>`、`<ul>`、`<menu>`、`<ol>`、`<pre>` 等元素上。
+- **non-replaced inline elements** 的上下边距存在（视觉上不可见，仅在浏览器开发者工具中能看到），但对实际布局效果没有任何影响。
 
 #### Margin Collapsing（外边距折叠）
 
@@ -637,7 +639,15 @@ html {
 
 ## Layout（布局）
 
-### `display` 属性
+### [CSS Flow Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_display/Flow_layout)
+
+Normal Flow, or Flow Layout, is the way that block and inline elements are displayed on a page before any changes are made to their layout.
+
+### [CSS Flexible Box Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout)
+
+### [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout)
+
+### [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/display) 属性
 
 ```text
 display: <outer-display-type> <inner-display-type>
@@ -659,17 +669,17 @@ display: <outer-display-type> <inner-display-type>
 `display` 属性的常见取值如下（推荐总是使用简写形式，双关键字只有部分浏览器支持）：
 
 - `none`：元素完全不显示（不占空间）。
-- `block`：是 `block flow` 的简写。
-    - block 元素盒子将独占一行，即使宽度不是 `100%`。
-    - `width` 和 `height` 属性是生效的。
-    - 如果没有指定 `width` 属性，box 模型的宽度将会撑满整个父元素。
-    - block 元素会在文档流（Normal Flow）中占据自己的空间，也就是说，它的 `margin`、`padding`、`border` 都是真实挤开其他元素的。
+- `block`：是 `block flow` 的简写。`<h1>` 和 `<p>` 默认的外部显示类型是 `block`。
+    - Block 元素盒子将独占一行，即使人为给定的 `width` 属性值不是 `100%`。
+    - Block 元素的 `width` 和 `height` 属性是生效的。如果没有指定 `width` 属性，box 模型的宽度将会撑满整个父元素。
+    - Block 元素会在文档流（Normal Flow）中占据自己的空间，也就是说，它的 `margin`、`padding`、`border` 都是真实挤开其他元素的。
     - 会在文档流中触发新的块级上下文（BFC），对浮动、溢出、清除等有影响。
-- `inline`：是 `inline flow` 的简写。
-    - 多个 `inline` 元素盒子可在同一行内排列。
-    - `width` 和 `height` 属性将不会生效。
-    - 属于 **non-replaced** 的行内元素的上下边距（`margin-top` / `margin-bottom`）虽然可以设置，但不会真的推开别的行内元素或改变行高。它们存在，但不会影响周围布局。
-    - 行内元素在水平方向上（即 `inline direction`）的 `margin` / `padding` / `border` 是有实际排布效果的。它们会让行内元素之间分开。
+- `inline`：是 `inline flow` 的简写。`<a>`、`<span>`、`<em>` 和 `<strong>` 默认的外部显示类型是 `inline`。
+    - 多个 Inline 元素盒子可在同一行内排列。
+    - Inline 元素 `width` 和 `height` 属性将不会生效。
+    - 属于 **non-replaced** 的 Inline 元素的上下边距（`margin-top` / `margin-bottom`）虽然可以设置，但不会真的推开别的行内元素或改变行高。它们存在（视觉上不可见，仅在浏览器开发者工具中能看到），但对实际布局效果没有任何影响。
+    - Inline 元素顶部和底部的 `padding` 和 `border` 会改变 box 的尺寸，因此在视觉上是可见的，但不会影响周围布局。
+    - Inline 元素在水平方向上（即 `inline direction`）的 `margin` / `padding` / `border` 是有实际排布效果的。它们会让行内元素之间分开。
 - `flex`：是 `block flex` 的简写。
 - `grid`：是 `block grid` 的简写。
 - `inline-block`：行内块。
