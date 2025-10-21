@@ -54,6 +54,10 @@
 
 | word | phonetic symbol |
 | :--- | :--- |
+| academic | /ˌækəˈdemɪk/ |
+| access | /ˈækses/ |
+| algorithm | /ˈælɡərɪðəm/ |
+| assess | /əˈses/ |
 | bind | /baɪnd/ |
 | bound | /baʊnd/ |
 | curiosity | /ˌkjʊriˈɑːsəti/ |
@@ -61,6 +65,8 @@
 | descendant |  |
 | genre | /ˈʒɑːnrə/ |
 | indices | /ˈɪndɪsiːz/ |
+| isolate | /ˈaɪsəleɪt/ |
+| isolated | /ˈaɪsəleɪtɪd/ |
 | least |  |
 | less |  |
 | little |  |
@@ -70,16 +76,18 @@
 
 ## Phrase
 
-| Phrase | x | Comment | Example Sentence |
+| Phrase | Chinese | Comment | Example Sentence |
 | :--- | :--- | :--- | :--- |
 | a plethora of | 大量的、丰富的 | / ˈpleθərə / |  |
 | all along | 自始至终，一直 |  | I knew it all along. |
 | among other things | 除其他事项之外、此外 | 用于表示某事物或情况不仅仅包括所提到的内容，还包括其他方面 |  |
-| around here | 在我们这儿 | 可以指物理区域：“Is there a good coffee shop around here?”，也可以指指工作或社交环境：“That’s how we do things around here.”。 |  |
+| apply to | 适用于 |  |  |
+| around here | 在我们这儿 | 可以指物理区域：“Is there a good coffee shop around here?”，也可以指工作或社交环境：“That’s how we do things around here.”。 |  |
+| as a whole | 作为一个整体 |  | The CSS box model as a whole applies to block boxes and defines how the different parts of a box — margin, border, padding, and content — work together to create a box that you can see on a page. |
 | at the speed of | 以…的速度 |  | AI video generation is advancing at the speed of light. |
 | at the time | 在当时 |  |  |
 | be endowed with | 具有某种特定的品质或特征 | 指某人或某物天生或被赋予了某种特定的品质或特征 | Sri Lanka's tea country is endowed with cascading waterfalls, rising mountain tops, natural beauty and diverse flora and fauna. |
-| be indebted to | 感激、感恩 | [ɪnˈdetɪd] | I am also indebted to the community at the Game Development site on Stack Exchange |
+| be indebted to | 感激、感恩 | [ɪnˈdetɪd] | I am also indebted to the community at the Game Development site on Stack Exchange. |
 | be meant to | 注定要 | 表示某事是命中注定或计划好的，通常用于描述某人或某事的目的或预期结果 |  |
 | be named after | 以…命名 |  |  |
 | be saddled with | 受…所拖累、被迫负担、承担 |  | Most other game development tools that have a central visual editor are also saddled with limited and inflexible scripting support, but Unity doesn’t suffer from that disadvantage. |
@@ -115,20 +123,21 @@
 | onward to | 继续前往 | 注意 onward to 并不是传统意义上的固定搭配而是省略动词的感叹/号召式表达，属于惯用修辞 | Onward to chapter 1! (Let’s go onward to chapter 1!) |
 | open-ended | 开放式的、无限制的 | [bjʊˈrɑːkrəsi] | Open-ended demands are a mandate for ever-expanding government bureaucracies with ever-expanding budgets and powers. |
 | over time | 随着时间的推移 |  |  |
+| postal code | 邮政编码 | 美国用 zip code 表示邮政编码，其中 zip 是 Zone Improvement Plan 的首字母缩写 |  |
 | put up with | 忍受、容忍 |  | For me, learning how to develop games meant putting up with a lot of hassle. |
 | quite the contrary | 恰恰相反、适得其反 |  |  |
 | ramp up | 逐步增加 | [ræmp] |  |
 | real estate | 房地产 | [ɪˈsteɪt] |  |
 | resonance imaging | 共振成像 | [ˈrezənəns] |  |
 | resort to | 诉诸，求助于 |  | You might have to resort to using inline styles if your working environment is very restrictive. |
-| ripe for | 发展到适合某事发生的条件 | ripe for innovation：创新的条件已经具备、ripe for breakthrough：时可能发生重大突破 |  |
+| ripe for | 发展到适合某事发生的条件 | ripe for innovation：创新的条件已经具备、ripe for breakthrough：随时可能发生重大突破 |  |
 | set ... off | 突出、凸显 |  | All the source code in the book, whether in code listings or snippets, is in `a fixed-width font like this`, which sets it off from the surrounding text. |
 | show ... age | 显得过时、老旧 |  | As those tools started to show their age, I kept looking for better ways to develop games. |
 | so much that | 以至于 | 是一个常用的程度状语从句结构，用于强调前面所述动作或状态的极高程度，并表示这种程度所导致的直接结果 | I'm a big fan of resetting box-sizing to border-box, so much that we have a special day of the year around here. |
 | stick sth out | 伸出某物、坚持下去 | 指将某物从表面或边缘伸出来或指继续做某事，尽管可能困难或不愉快 |  |
 | strive to | 尽力做某事 |  | Django's template system has several powerful features but strives to stay simple enough for non-programmers to use. |
 | sweep you off your feet | 迷倒某人、使某人神魂颠倒 |  | Valentine will sweep you off your feet. |
-| tell apart from | 区分、辨别 |  | It is now hard to tell the inhabitant of one continent apart from another. |
+| tell ... apart from | 区分、辨别 |  | It is now hard to tell the inhabitant of one continent apart from another. |
 | the world is awash in questions | 世界充满了问题 |  |  |
 | to put it another way | 换句话说 | namely |  |
 | to register my displeasure | 为了表达我的不满 |  |  |
@@ -137,7 +146,6 @@
 | under the hood | 在表面之下 | 指在某物的内部工作过程中 | How does it work under the hood? |
 | water down | 稀释 |  | As for other aspects of game development, extensive coverage of art disciplines would water down how much the book can cover and would be largely about software external to Unity (for example, the animation software used). |
 | with ... for scale | 用…当作比例参考 | 用于直观体现物体的大小、壮观、规模感 | Starship with humans for scale. |
-| zip code | 邮政编码 |  |  |
 
 ## Sentence
 
@@ -162,3 +170,14 @@
     - Look before you leap.
 - 年轻真好。
     - Ah, the perks of being young.
+- 到家了吗？
+    - Are you home now?
+    - Did you get home yet?
+    - Have you got home?
+    - Have you arrived home?
+- 累炸了。
+    - I'm wiped out.
+    - I'm beat.
+    - I'm dead on my feet.
+    - I'm running on fumes.
+    - I'm exhausted.

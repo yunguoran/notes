@@ -18,9 +18,13 @@ p {
 - 第一个声明中的 `red` 被称为属性值（Property Value）。
 - 属性和属性值中间以 `:`（Colon）分隔。
 
+## 注释
+
+在 `/*` 和 `*/` 之间的内容都是注释。
+
 ## 元素类型
 
-- Non-replaced elements：没有被外部资源替换的 HTML 自己的内容元素。
+- Non-replaced elements：没有被外部资源替换的、HTML 自己的内容元素。
     - `<span>`
     - `<a>`
     - `<strong>`
@@ -28,7 +32,7 @@ p {
     - `<code>`
     - `<div>`
     - `<p>`
-- Replaced elements：内容是由外部资源替换进来的，比如图片或视频文件。
+- Replaced elements：内容是由外部资源替换进来的，比如：图片或视频文件。
     - `<img>`
     - `<video>`
     - `<iframe>`
@@ -234,9 +238,9 @@ h1 ~ p {
 - `'+'`：相邻兄弟选择器（Adjacent Sibling Combinator）。
 - `'~'`：通用兄弟选择器（General Sibling Combinator）。
 
-## 字体/文本
+## 字体/文本（Text/Font）
 
-### 字体
+### 字体（Font）
 
 **Web safe fonts**（网页安全字体）指的是在大多数操作系统和设备上都自带安装、无需额外下载的字体。因为它们几乎可以保证在不同平台上正常显示，所以叫 “web safe”。
 
@@ -340,7 +344,7 @@ CSS 中的 px（像素）是一个绝对长度单位，它定义为 1/96 英寸�
 
 中国大陆地区建议先下载字体文件，再导入到项目中自行维护。
 
-### 文本
+### 文本（Text）
 
 #### `color` 属性
 
@@ -451,9 +455,9 @@ h1 {
 
 ![alt text](./images/box-mode.png)
 
-### Block Box（块状盒子）
+### 块状盒子（Block Box）
 
-### Inline Box（行内盒子）
+### 行内盒子（Inline Box）
 
 - 行内元素的 `width` 和 `height` 以及 `margin` 的上下部分不会改变实际的盒子尺寸。
 - `<span>` 的高度由 `line-height` 属性决定，而不是 `height` 属性。
@@ -554,7 +558,7 @@ box 模型的边界是 `border` 的外边距。
 - 为了给无样式的页面提供基本的可读性，`<p>` 标签有默认的 `margin`，常见的默认值是：`margin：1em 0`。相似的情况也存在于 `<body>`、`<h1>`~`<h6>`、`<blockquote>`、`<ul>`、`<menu>`、`<ol>`、`<pre>` 等元素上。
 - **non-replaced inline elements** 的上下边距存在（视觉上不可见，仅在浏览器开发者工具中能看到），但对实际布局效果没有任何影响。
 
-#### Margin Collapsing（外边距折叠）
+#### 外边距折叠（Margin Collapsing）
 
 浮动元素（`float` 属性值非 `none` 的元素）和绝对定位元素（`position` 的值为 `absolute` 或者 `fixed`）的外边距永远不会折叠。
 
@@ -637,7 +641,7 @@ html {
 }
 ```
 
-## Layout（布局）
+## 布局（Layout）
 
 ### [CSS Flow Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_display/Flow_layout)
 
@@ -685,6 +689,7 @@ display: <outer-display-type> <inner-display-type>
 - `inline-block`：行内块。
     - 不独占一行，与文字、其它 `inline/inline-block` 元素在同一行内排列。
     - 能设置 `width` 和 `height` 属性。默认宽度由内容决定，可用 `width` 明确指定。
+    - `padding`、`margin` 和 `border` 都会推开其他元素。
     - 可使用 `vertical-align` 调整在行内的垂直位置（默认基线对齐）。
     - 不创建新的 BFC，仍参与行内格式化。
 - `inline-flex`。
@@ -738,7 +743,7 @@ CSS 中 `transform` 的操作是基于元素的局部坐标系（Local Coordinat
 - 因此元素一旦旋转，它的 X/Y 坐标轴也会跟着旋转。
 - `transform: rotate(45deg) translateX(180px);`：因为先旋转了 45° 所以平移方向也旋转了 45°。
 
-## 背景
+## 背景（Background）
 
 ### `background-color` 属性
 
@@ -811,7 +816,7 @@ CSS 中 `transform` 的操作是基于元素的局部坐标系（Local Coordinat
 - `fixed`：背景图像固定在视口，不随内容滚动。常用于“视差滚动”效果。
 - `local`：背景图像相对于元素的内容（Content）滚动区域固定。如果元素有滚动条，背景图会随着元素的内容滚动。
 
-## 列表
+## 列表（Lists）
 
 ### `list-style` 属性
 
@@ -901,7 +906,7 @@ body {
 }
 ```
 
-## 函数
+## 函数（Functions）
 
 ### `calc()`
 
@@ -950,10 +955,16 @@ div {
 }
 ```
 
-## 继承
+## 处理冲突（Handling Conflicts）
+
+### 层叠（Cascade）
+
+当两个规则具有相同特异性的时候，后定义的规则将会被应用。
+
+### 特异性（Specificity）
+
+特异性是一种算法，浏览器用它来决定哪个属性值适用于某个元素。
+
+### 继承（Inheritance）
 
 `font-family`、`font-size`、`color` 属性都会继承自直接的父元素，继承的起点是 `<html>` 元素。
-
-## 注释
-
-在 `/*` 和 `*/` 之间的内容都是注释。
