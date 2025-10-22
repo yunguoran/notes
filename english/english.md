@@ -40,15 +40,39 @@
 - 大幅度提高听觉输入量，起码要持续如此六个月才行，每天的输入时间不要低于四个小时。
     - 注意力集中是一切学习的根本前提。
     - 应该从一开始就听正常语速的材料。
+- 放慢你的语速。
+- 比连读更重要的是停顿。
+    - 英文的音节就有重音和非重音之分。为了把一个落在重音上的音节读成重音，其实有个特别重要的细节需要注意，就是在重音音节之前要有一个停顿 —— 可能是很短促的，也可以是很夸张的。而这个停顿的存在，将使其后重音清楚地读出成为可能。
+    - un|fortunately、im|portant、under|stand、edu|cation，par|ticular，fi|nancial。
 - 一定要学会音标。
-    - 首先确定自己有足够的朗读经验。比如，每日晨读一小时（听录音读课本就好）坚持了至少三个月以上。在这样的过程中，大多数语言都已经把握得足够好（要很久以后才能做到接近 “标准” 呢），于是，学习音标就有了保障。
-    - 只完整学习一个体系。如果还在初中，那么可以选择 D.J.音标，或者是 K.K 音标 —— 即，你的课本所使用的那种。如果已经是学英语多年了的人，那么就要选用自己正在使用、最常使用的词典的音标体系。
-    - 最好使用计算机上的有声版词典，这样就可以把所有例词都查出来，并录制成 mp3。反复跟读。
-    - 对照着音标表，抄写每一个例词的音标，反复若干遍（最好 7 遍以上）。
-    - 抄下例词表，而后默写相应音标，而后检查（至少两遍）。
-    - 以后每查一个单词，都要把音标标记在原文边上。
-    - 有必要花时间学习英文的拼读规则。忽略拼读规则是绝大多数英语学习失败的人犯下的错误。他们宁可去学好像更有短效、或者感觉更加 “高级” 的 “词根词缀”，也不去学最基本的，并且一生都用得到的拼读规则。
+    - 查单词一定要读音标，并且在自己的文本上做出相应的记号。
+    - 不要想当然地读单词。
+    - 我个人认为，只有当一个人的语音达到正常水准（或者接近正常）之后，才算是具备轻松掌握音标的基础能力。而一旦习得音标的基础之后，就要时时应用，直到像了解汉语拼音一样了解英语音标。
+    - 音标学习策略。
+        - 首先确定自己有足够的朗读经验。比如，每日晨读一小时坚持了至少三个月以上。在这样的过程中，大多数语言都已经把握得足够好（要很久以后才能做到接近 “标准” ），于是，学习音标就有了保障。
+        - 只完整学习一个体系。如果已经是学英语多年的人，那么就选用自己正在使用、最常使用的词典的音标体系。
+        - 最好使用计算机上的有声版词典，这样就可以把所有例词都查出来。
+        - 对照着音标表，抄写每一个例词的音标，反复若干遍（最好 7 遍以上）。
+        - 抄下例词表，而后默写相应音标，而后检查（至少两遍）。
+        - 以后每查一个单词，都要把音标标记在原文边上。
+        - 有必要花时间学习英文的拼读规则。忽略拼读规则是绝大多数英语学习失败的人犯下的错误。他们宁可去学好像更有短效、或者感觉更加 “高级” 的 “词根词缀”，也不去学最基本的，并且一生都用得到的拼读规则。
     - 《Phonetics: The Sound of American English》
+- 音节的划分。
+    - 基于音标拼写的音节划分很简单，只有一个最重要的原则：一个音节必须有且只有一个元音。
+    - 常见的单音节结构有以下几种：
+        - 元音：a /eɪ/, eye /aɪ/
+        - 辅音+元音：tea /tiː/, bay /beɪ/
+        - 辅音+辅音+元音：fly /flaɪ/, sky /skaɪ/
+        - 元音+辅音：ebb /eb/, odd /ɔd/
+        - 辅音+元音+辅音：beep /biːp/, big /bɪg/
+        - 元音+辅音+辅音：east /iːst/，axe /æks/
+        - 辅音+辅音+元音+辅音：stop /stɔp/, bleed /bliːd/
+        - 辅音+元音+辅音+辅音：last /læst/, lapse /læps/
+        - 辅音+辅音+元音+辅音+辅音：blast /blæst/, frost /frɔːst/
+    - 多音节的单词，除了最后一个音节之外，基本上是以上 9 种之中的前 5 种居多。
+- 自然语流中的强读与弱读现象
+    - 单词内音节的强弱轻重用 “非重音”、“次重音”、“重音”，或者 “重读” 来表示。
+    - 而句子内单词的强弱轻重用 “强读” 和 “弱读” 来表示。
 
 ## Word
 
@@ -56,23 +80,57 @@
 | :--- | :--- |
 | academic | /ˌækəˈdemɪk/ |
 | access | /ˈækses/ |
+| affair | /əˈfer/ |
 | algorithm | /ˈælɡərɪðəm/ |
 | assess | /əˈses/ |
 | bind | /baɪnd/ |
 | bound | /baʊnd/ |
+| cease | /siːs/ |
+| ceasefire | /ˈsiːsfaɪər/ |
+| cellist | /ˈtʃelɪst/ |
+| conservation | /ˌkɑːnsərˈveɪʃ(ə)n/ |
+| conservative | /kənˈsɜːrvətɪv/ |
+| conserve | /kənˈsɜːrv/ |
+| create | /kriˈeɪt/ |
 | curiosity | /ˌkjʊriˈɑːsəti/ |
 | curious | /ˈkjʊriəs/ |
+| debt | /det/ |
 | descendant |  |
+| despite | /dɪˈspaɪt/ |
+| economics | /ˌiːkəˈnɑːmɪks/ |
+| economist | /ɪˈkɑːnəmɪst/ |
+| economy | /ɪˈkɑːnəmi/ |
+| expert | /ˈekspɜːrt/ |
+| facade | /fəˈsɑːd/ |
 | genre | /ˈʒɑːnrə/ |
+| heir | /er/ |
+| ichthyosaur | /ˈɪkθiəˌsɔːr/ |
+| idiosyncratic | /ˌɪdiəsɪŋˈkrætɪk/ |
 | indices | /ˈɪndɪsiːz/ |
 | isolate | /ˈaɪsəleɪt/ |
 | isolated | /ˈaɪsəleɪtɪd/ |
+| Israel | /ˈɪzrɪəl/ |
 | least |  |
 | less |  |
 | little |  |
 | modular | /ˈmɑːdʒələr/ |
+| niche | /niːʃ/ |
+| overturn | /ˌoʊvərˈtɜːrn/ |
+| parliament | /ˈpɑːrləmənt/ |
+| penalize | /ˈpiːnəlaɪz/ |
+| penalty | /ˈpenəlti/ |
+| reservation | /ˌrezərˈveɪʃ(ə)n/ |
+| reserve | /rɪˈzɜːrv/ |
+| resume | /rɪˈzuːm/ |
+| resumé | /ˈrezəmeɪ/ |
 | scratch | /skrætʃ/ |
+| simulation | /ˌsɪmjuˈleɪʃ(ə)n/ |
+| specific | /spəˈsɪfɪk/ |
+| stimulation | /ˌstɪmjuˈleɪʃ(ə)n/ |
 | stretch | /stretʃ/ |
+| timely |  |
+| weekday | /ˈwiːkdeɪ/ |
+| weekend | /ˈwiːkend/ |
 
 ## Phrase
 
@@ -124,6 +182,7 @@
 | open-ended | 开放式的、无限制的 | [bjʊˈrɑːkrəsi] | Open-ended demands are a mandate for ever-expanding government bureaucracies with ever-expanding budgets and powers. |
 | over time | 随着时间的推移 |  |  |
 | postal code | 邮政编码 | 美国用 zip code 表示邮政编码，其中 zip 是 Zone Improvement Plan 的首字母缩写 |  |
+| put on hold | 搁置、延期、暂停 |  | President Trump has said he doesn't want a "wasted meeting" after plans for a summit on Ukraine with Vladimir Putin in Bucharest were put on hold. |
 | put up with | 忍受、容忍 |  | For me, learning how to develop games meant putting up with a lot of hassle. |
 | quite the contrary | 恰恰相反、适得其反 |  |  |
 | ramp up | 逐步增加 | [ræmp] |  |
