@@ -70,7 +70,7 @@
         - 辅音+元音+辅音+辅音：last /læst/, lapse /læps/
         - 辅音+辅音+元音+辅音+辅音：blast /blæst/, frost /frɔːst/
     - 多音节的单词，除了最后一个音节之外，基本上是以上 9 种之中的前 5 种居多。
-- 自然语流中的强读与弱读现象
+- 自然语流中的强读与弱读现象。
     - 单词内音节的强弱轻重用 “非重音”、“次重音”、“重音”，或者 “重读” 来表示。
     - 而句子内单词的强弱轻重用 “强读” 和 “弱读” 来表示。
 
@@ -95,13 +95,14 @@
 | curiosity | /ˌkjʊriˈɑːsəti/ |
 | curious | /ˈkjʊriəs/ |
 | debt | /det/ |
-| descendant |  |
+| descendant | /dɪˈsendənt/ |
 | despite | /dɪˈspaɪt/ |
 | economics | /ˌiːkəˈnɑːmɪks/ |
 | economist | /ɪˈkɑːnəmɪst/ |
 | economy | /ɪˈkɑːnəmi/ |
 | expert | /ˈekspɜːrt/ |
 | facade | /fəˈsɑːd/ |
+| frustrating | /ˈfrʌstreɪtɪŋ/ |
 | genre | /ˈʒɑːnrə/ |
 | heir | /er/ |
 | ichthyosaur | /ˈɪkθiəˌsɔːr/ |
@@ -110,9 +111,9 @@
 | isolate | /ˈaɪsəleɪt/ |
 | isolated | /ˈaɪsəleɪtɪd/ |
 | Israel | /ˈɪzrɪəl/ |
-| least |  |
-| less |  |
-| little |  |
+| least | /liːst/ |
+| less | /les/ |
+| little | /ˈlɪt(ə)l/ |
 | modular | /ˈmɑːdʒələr/ |
 | niche | /niːʃ/ |
 | overturn | /ˌoʊvərˈtɜːrn/ |
@@ -126,9 +127,11 @@
 | scratch | /skrætʃ/ |
 | simulation | /ˌsɪmjuˈleɪʃ(ə)n/ |
 | specific | /spəˈsɪfɪk/ |
+| specification | /ˌspesɪfɪˈkeɪʃ(ə)n/ |
+| specificity | /ˌspesɪˈfɪsəti/ |
 | stimulation | /ˌstɪmjuˈleɪʃ(ə)n/ |
 | stretch | /stretʃ/ |
-| timely |  |
+| timely | /ˈtaɪmli/ |
 | weekday | /ˈwiːkdeɪ/ |
 | weekend | /ˈwiːkend/ |
 
@@ -190,6 +193,7 @@
 | resonance imaging | 共振成像 | [ˈrezənəns] |  |
 | resort to | 诉诸，求助于 |  | You might have to resort to using inline styles if your working environment is very restrictive. |
 | ripe for | 发展到适合某事发生的条件 | ripe for innovation：创新的条件已经具备、ripe for breakthrough：随时可能发生重大突破 |  |
+| run into | 撞上，碰上、遇到困难，遭遇 |  | You will often run into a situation where you know that a rule comes later in the stylesheet, but an earlier, conflicting rule is applied. |
 | set ... off | 突出、凸显 |  | All the source code in the book, whether in code listings or snippets, is in `a fixed-width font like this`, which sets it off from the surrounding text. |
 | show ... age | 显得过时、老旧 |  | As those tools started to show their age, I kept looking for better ways to develop games. |
 | so much that | 以至于 | 是一个常用的程度状语从句结构，用于强调前面所述动作或状态的极高程度，并表示这种程度所导致的直接结果 | I'm a big fan of resetting box-sizing to border-box, so much that we have a special day of the year around here. |

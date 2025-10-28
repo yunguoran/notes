@@ -51,7 +51,7 @@ p {
     - 是 HTML 元素上的 `style` 属性。
     - `style` 属性中的多个声明以分号（`;`）分隔。
 
-### 选择器（Selector）
+## 选择器（Selector）
 
 选择器直接相连不加空格就代表的是 `and` 关系。即同时拥有 `.alert` 和 `.stop` 的元素才生效可以写成：
 
@@ -62,7 +62,7 @@ p {
 }
 ```
 
-#### 简单选择器
+### 简单选择器
 
 多个选择器共用同一个声明时，这些选择器被称为选择器列表（Selector Lists）。
 
@@ -76,13 +76,13 @@ p,
 
 多个 **selector** 之间以 comma（`,`）分隔。
 
-- 上述例子中的 `p` 是元素选择器（Type Selector）。
+- 上述例子中的 `p` 是类型（元素）选择器（Type Selector/Element Selector）。
 - `.my-class` 是类选择器（Class Selector）。
 - `#my-id` 是 ID 选择器（ID Selector）。ID 选择器是大小写敏感的。
 
 注意：在选择器列表中，如果一个选择器的写法出现了错误（比如：类选择器写成了 `..my-class`），那么整个选择器列表中的所有选择器都会失效。
 
-##### 通用选择器
+#### 通用选择器
 
 通用选择器匹配文档中的所有元素。
 
@@ -100,26 +100,26 @@ p,
 - 通用选择器性能相对低下，在大项目里尽量不要频繁滥用。
 - 更常见的场景是配合其他选择器限定范围（如 `div *`，`ul > *`），而不是单独使用 `*`。
 
-#### [属性选择器](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors)
+### [属性选择器](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors)
 
-##### 存在选择器和值选择器
+#### 存在选择器和值选择器
 
 - `[attr]`：`a[title]` 会选择所有拥有 `title` 属性的 `a` 元素。
 - `[attr=value]`：`a[href="https://example.com"]` 会选择所有拥有 `href` 属性且值为 `"https://example.com"` 的 `a` 元素。
 - `[attr~=value]`：`p[class~="special"]` 会选择所有拥有 `class` 属性且该属性值为 `special` 或包含 `special` 的 `p` 元素。注意此处的包含是指包含一个**独立的、完整**的单词，这个单词必须用**空格**与其他部分隔开。
 - `[attr|=value]`：`div[lang|="zh"]` 会选择所有拥有 `lang` 属性且值为 `zh` 或以 `zh-` 开头的 `div` 元素。此处注意 `zh` 后面的**连字符**。
 
-##### 子串匹配选择器
+#### 子串匹配选择器
 
 - `[attr^=value]`：`li[class^="box"]` 会选择所有拥有 `class` 属性且该属性值以 `box` 开头的 `li` 元素。与 `[attr|=value]` 不同的是，此处不要求 `box` 后面必须跟连字符，后面跟任意字符串都是可以的。
 - `[attr$=value]`：`li[class$="box"]` 会选择所有拥有 `class` 属性且该属性值以 `box` 结尾的 `li` 元素，匹配时区分大小写。
 - `[attr*=value]`：`li[class*="box"]` 会选择所有拥有 `class` 属性且该属性值在任意位置包含 `box` 字符串的 `li` 元素。
 
-#### [伪类选择器](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
+### [伪类选择器](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
 
 伪类（Pseudo-classes）选择器可以给元素的不同状态设置不同的样式。
 
-##### `:first-child`
+#### `:first-child`
 
 - `:first-child`：浏览器会遍历文档中的每一个元素，检查它是否是它父元素的第一个子元素。
 - `p:first-child`：选择**并且仅当**这个第一个子元素是一个 `<p>` 标签。
@@ -127,7 +127,7 @@ p,
     - 该选择器常被误认为是选择父元素内的第一个 `p` 元素。
 - `article p:first-child`：选择在 `<article>` 元素内的、作为其直接父元素第一个子元素的 `<p>` 元素。即浏览器会找到文档中所有的 `<article>` 元素，在每个 `<article>` 内部，找到第一个 `<p>` 元素。
 
-##### `:nth-*`
+#### `:nth-*`
 
 - `:nth-child()` 伪类选择器用于选择父元素内的第 n 个子元素。它是基于所有子节点的顺序来计数的。
     - `:nth-child()` 接受一个参数，这个参数用于描述一个用于匹配同级元素列表中元素索引的模式。索引从 `1` 开始。该参数的常见取值如下：
@@ -153,7 +153,7 @@ p,
 - 在 `element:nth-child()` 这种语法中，浏览器在计算“第几个孩子”时，会把所有类型的子元素都算进去。但是只有当那个位置的元素类型和选择器里的 `element` 匹配时，才真正算命中。
 - 如果没有在 `:nth-of-type()` 前面加具体元素选择器（比如：`:nth-of-type(2)`），那么它的匹配行为是**匹配任意类型（即所有标签）中，属于其类型序列的第 n 个子元素的元素。**
 
-##### 用户行为伪类
+#### 用户行为伪类
 
 ```css
 a:link {
@@ -185,7 +185,13 @@ a:focus {
 - **点击按下的瞬间**颜色设置为橘色。
 - 链接**获得焦点**时去掉链接的下划线。
 
-#### [伪元素选择器](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)
+##### `:focus-*`
+
+- `:focus`：用于选择当前获得输入焦点的元素。当用户点击、触摸或使用键盘 Tab 键获得焦点或使用 JavaScript 的 `focus()` 方法时，都会触发。
+- `:focus-visible`：是 `:focus` 的增强版，使用键盘 Tab 导航获得焦点时匹配。用于改善无障碍体验。
+- `:focus-within`：匹配自身或其任何子元素获得焦点的元素，常用于为整个容器提供聚焦状态样式。
+
+### [伪元素选择器](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)
 
 伪元素（Pseudo-elements）是一种特殊的选择器，用来选中元素中不存在的“虚拟部分”，然后对这些部分进行样式设置。它以双冒号（`::`）开头。
 
@@ -209,7 +215,7 @@ a:focus {
 - `::marker`：选中列表项前的项目符号或编号。
 - `::placeholder`：选中 `<input>` 或 `<textarea>` 的占位文本。
 
-#### 组合器选择器
+### 组合器选择器
 
 ```css
 /* 后代选择器：选中 <li> 内部的所有的 <em> 标签，无论嵌套多少层。*/
@@ -350,7 +356,18 @@ CSS 中的 px（像素）是一个绝对长度单位，它定义为 1/96 英寸�
 
 - `color` 属性专门用来设置文本的前景色（即字体颜色）。
 - 应用到 `<p>` 元素时，会影响该段落里所有的文字内容。
-- 注意：`color` 是 可继承属性，如果父元素设置了 `color`，子元素默认会继承。
+- `color` 是可继承属性，如果父元素设置了 `color`，子元素默认会继承。
+    - 浏览器默认样式表（User-agent Stylesheets）会给 `<a>` 标签定义一个默认样式，所以即使父元素有颜色，链接通常默认不会继承它，而是显示浏览器定义的蓝色或紫色。
+
+        ```css
+        a:link { color: blue; }
+        a:visited { color: purple; }
+        ```
+
+- `color` 属性的默认值是 `canvastext`。
+    - `canvas` 指的是**正在渲染的表面**。在绝大多数情况下，指的是网页的**背景区域**。
+    - `canvastext` 是指在 `canvas` 之上显示文本的默认颜色。
+    - 标准的亮色模式下，`canvas` 是白色，`canvastext` 就是黑色。深色模式下，`canvas` 是深色，`canvastext` 就会自动变为浅色。
 
 #### `text-align` 属性
 
@@ -470,10 +487,10 @@ h1 {
 
 - `auto`（默认值：由浏览器根据内容和父元素决定）。
 - 具体数值：`px`、`em`、`rem`、`%` 等，如 `width: 200px;`。
-- 现代 CSS 值
-    - max-content
-    - min-content
-    - fit-content
+- 现代 CSS 值。
+    - `max-content`。
+    - `min-content`。
+    - `fit-content`。
 
 注意：
 
@@ -616,11 +633,6 @@ box 模型的边界是 `border` 的外边距。
 - `content-box`：默认值。`width`/`height` 只作用于 内容区，`padding` 和 `border` 会额外加在 `width`/`height` 上。
 - `border-box`：`width`/`height` 包括 `content` + `padding` + `border`。
     - 此种情况下设置 `width: 0` 和 `height: 0` 但 `padding` 和 `border` 还有值时，`padding` 和 `border` 将会撑开元素使该元素可见。
-- `inherit`
-- `initial`
-- `revert`
-- `revert-layer`
-- `unset`
 
 注意：
 
@@ -906,6 +918,64 @@ body {
 }
 ```
 
+### `@layer`
+
+`@layer` 是 CSS Cascade Layers（层叠层）的一部分，是在 CSS Cascade Level 5 中引入的新特性，用来显式控制不同样式来源的层叠顺序，从而让样式的优先级管理更可控、更清晰。
+
+```css
+/* 声明顺序 */
+@layer yellow, purple, green;
+
+@layer yellow {
+  #outer div ul .nav a {
+    padding: 5px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+}
+
+@layer purple {
+  div div li a {
+    color: rebeccapurple;
+  }
+}
+
+@layer green {
+  a {
+    color: lightgreen;
+  }
+}
+
+/* 嵌套层 */
+@layer framework {
+  @layer reset, components;
+
+  @layer reset {
+    * { margin: 0; }
+  }
+
+  @layer components {
+    button { border-radius: 4px; }
+  }
+}
+```
+
+- **按声明顺序**，后定义的 layer 会覆盖前面的 layer，无论选择器优先级。
+- 如果某个 `@layer` 没有在层列表中声明过，那么它的优先级大于所有在层列表中声明过的的 `@layer`。
+- 可以嵌套定义多个层，便于结构化管理。上述嵌套层的优先级顺序是 `framework.reset < framework.components`。
+- 未在 `@layer` 内定义的样式，优先级高于所有在 `@layer` 内定义的样式。
+- 可以在 `@import` 时指定该文件属于某个 layer。
+
+    ```css
+    @layer reset, theme, components;
+
+    @import url('reset.css') layer(reset);
+    @import url('theme.css') layer(theme);
+    @import url('components.css') layer(components);
+    ```
+
+- `!important` 优先级高于 `@layer` 层顺序。
+
 ## 函数（Functions）
 
 ### `calc()`
@@ -959,12 +1029,70 @@ div {
 
 ### 层叠（Cascade）
 
-当两个规则具有相同特异性的时候，后定义的规则将会被应用。
+多个 CSS 规则同时作用于同一个元素时，有三个因素共同决定样式的优先级（按重要性递增的顺序列出）：
 
-### 特异性（Specificity）
+- 源码顺序（Source Order）
+    - 特异性相同时，排在后面的规则将会覆盖前面的规则。
+- 特异性（Specificity）
+    - 当 CSS 规则发生冲突时，并不是整个规则都被覆盖，而仅仅是那些被重复声明的属性会被更具体的规则所覆盖。
+- 重要性（Importance）
+
+#### 特异性（Specificity）
 
 特异性是一种算法，浏览器用它来决定哪个属性值适用于某个元素。
 
+不同的选择器类型有不同的特异性：
+
+- 类型（元素）选择器和伪元素选择器具有相同的特异性，优先级较低。
+- 类选择器、属性选择器和伪类选择器具有相同的特异性，优先级中等。
+- ID 选择器优先级较高。
+
+注意：
+
+- 通用选择器、组合器选择器和特异性调整选择器（`:where()`）对特异性计算没有影响。
+- 每种选择器有自己的特异性级别，高特异性的选择器不能被低特异性的选择器所覆盖。即：一百万个类选择器加起来也无法覆盖一个 ID 选择器。
+- 内联样式没有任何的选择器，但具有比 ID 选择器更高的特异性，因此优先级比所有的选择器都要高。
+
+#### `!important`
+
+`!important` 标志拥有最高的优先级（比内联样式还要高），它作用在单个声明上（即一个属性和属性值对上）。
+
+- **除非万不得已，否则请不要使用它**。因为 `!important` 改变了层叠的正常工作方式，这会导致在大型的样式表中调试起来非常困难。
+- 覆盖 `!important` 的唯一方法是在源代码顺序的较后位置包含另一个具有相同特殊性的 `!important`，或具有更高特殊性的 `!important`。
+
+### CSS 声明的位置顺序
+
+冲突的声明将按以下顺序应用，较晚的声明将覆盖较早的声明：
+
+- 用户代理样式表（User-agent Stylesheets）中的声明（例如，浏览器的默认样式表，在未设置其他样式时使用）。
+- 用户样式表中的普通声明（用户设置的自定义样式）。
+- 作者样式表中的正常声明（这些是我们 Web 开发人员设置的样式）。
+- 作者样式表中的 `!important` 声明。
+- 用户样式表中的 `!important` 声明。
+- 用户代理样式表中的 `!important` 声明。
+
 ### 继承（Inheritance）
 
-`font-family`、`font-size`、`color` 属性都会继承自直接的父元素，继承的起点是 `<html>` 元素。
+父元素上设置的某些 CSS 属性值会被其子元素继承，而有些则不会。例如：一个元素具有 `color`、`font-family` 和 `font-size` 属性，那么这个元素内的所有子元素都会都会继承这些属性，除非手动指定不同的颜色和字体样式。继承的起点是 `<html>` 元素。
+
+#### 控制继承（Controlling Inheritance）
+
+CSS 提供了五个特殊的通用属性值来控制继承，每个 CSS 属性都可以应用这些值：
+
+- `inherit`：让当前元素的属性值强制继承父元素的值。
+- `initial`：将属性值设置为该属性的初始值（Initial Value）。
+    - 对于可继承的属性，初始值只会用于根元素（`<html>`）。
+    - 对于不可继承的属性，初始值会用于所有元素，只要该属性没有被任何样式定义。
+    - 初始值在每个属性的规范文档里都有明确说明，例如：`font-size` 的[正式定义](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size#formal_definition)中指定了该属性的初始值为 `medium`。
+- `revert`：将元素的属性值重置为浏览器默认样式表中的值，而不是 CSS 规范里的初始值。
+    - CSS 规范里的初始值是 CSS 规范为每一个属性定义的“出厂默认值”。这个值不依赖于任何 HTML 元素，是一个纯粹的理论基准。
+    - 浏览器默认样式表（User-agent Stylesheets）是一段由浏览器厂商编写的、内置在浏览器中的CSS代码。它的主要目的是为各种 HTML 元素提供一套基本可用、符合常识的视觉样式。类似于实用预设。
+    - 一个 `<div>` 标签之所以是块级元素，不是因为它的 CSS 初始值是 `block`，而是因为浏览器默认样式表强制把它设成了 `block`。
+- `revert-layer`：将属性值恢复到前一个层叠层（Cascade Layer）中定义的值。
+- `unset`：将属性重置为其自然值。`unset` 会判断属性是否默认可继承。
+    - 对于可继承属性（如：`color`），`unset` = `inherit`。
+    - 对于不可继承属性（如：`margin`），`unset` = `initial`。
+
+#### [`all`](https://developer.mozilla.org/en-US/docs/Web/CSS/all) 属性
+
+`all` 属性可用于将上述继承值之一一次性应用于（几乎）所有属性。
