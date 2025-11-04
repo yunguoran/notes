@@ -49,7 +49,7 @@ Random rand = new Random(47);
 int c = rand.nextInt(26) + 'a';
 ```
 
-`Random.nextInt(26)` 会产生一个 0~25 范围内的值，所以只需要加上一个偏移量 `a`，就能生成小写字母。
+`Random.nextInt(26)` 会产生一个 0~25 范围内的值（左闭右开），所以只需要加上一个偏移量 `a`，就能生成小写字母。
 
 ### 一元加减操作符
 

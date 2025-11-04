@@ -57,6 +57,7 @@
 | ---- | ---- | ---- | ---- |
 | CSV | comma-separated values | 以逗号分割的值 | |
 | on-prem | on-premises | 本地部署 | |
+| | high cohesion | 高内聚性 | |
 
 ## Other
 
