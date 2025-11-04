@@ -286,10 +286,9 @@ font-family: 'Times New Roman', Helvetica, sans-serif;
 
 #### `font-size` 属性
 
-CSS 中的 px（像素）是一个绝对长度单位，它定义为 1/96 英寸，因此 16px 在不同屏幕上显示的视觉大小是一致的。
-
-- **PPI**（Pixels Per Inch）：每英寸像素数（物理像素密度）是每英寸所包含的像素数量，每英寸像素值越高，屏幕能显示的图像越精细。
-- **DPR**（Device Pixel Ratio）设备像素比是 1 个 CSS 像素对应多少个物理像素。**浏览器缩放**会动态改变 CSS 像素与物理像素的映射关系，从而改变 DPR。
+- **DPI**（Dots Per Inch）：每英寸（现实世界中的一英寸）点数，表示打印机在一英寸的物理纸张上，可以喷射多少个微小的墨水点。它是衡量打印机物理打印精度的指标。
+- **PPI**（Pixels Per Inch）：每英寸（现实世界中的一英寸）像素数（物理像素密度）是每英寸所包含的像素数量。每英寸像素值越高，屏幕能显示的图像越精细。
+- **DPR**（Device Pixel Ratio）：设备像素比是 1 个 CSS 像素对应多少个物理像素。**浏览器缩放**会动态改变 CSS 像素与物理像素的映射关系，从而改变 DPR。
 
     ```js
     value = window.devicePixelRatio
@@ -302,8 +301,8 @@ CSS 中的 px（像素）是一个绝对长度单位，它定义为 1/96 英寸�
 
 - `font-size` 属性真正控制的是字体的标准高度（全方高度），当 `font-size` 改变时，整个字体字形被等比例放大或缩小。字体的宽度并不是独立变化的，它遵循一个核心原则：**保持字体的原始比例**。
 - `font-size` 的值如果是以 `em` 为单位，那么此时参照对象是父元素的 `font-size`。其他属性，如：`width/height`、`padding/margin`、`line-height`、`text-indent` 等使用相对长度时的参照对象是当前元素的 `font-size`。
-- 多数浏览器的 `<html>` 元素默认的 `font-size` 是 16px。
-- Chrome 开发者工具中的的盒模型图示中显示属性值的是底层渲染引擎实际使用的、可能经过调整的精确值。这与在 CSS 中声明的属性值可能不一致。可能是你的系统或浏览器显示缩放不是 100%。
+- 多数浏览器的 `<html>` 元素默认的 `font-size` 是 `16px`。
+- Chrome 开发者工具中的的盒模型图示中显示属性值的是底层渲染引擎实际使用的、可能经过调整的精确值，这与在 CSS 中声明的属性值可能不一致。
 
 #### `font-weight` 属性
 
@@ -466,6 +465,19 @@ h1 {
 
 用于控制单词之间的水平间距。常见取值同 `letter-spacing`。注意：在中文文本中，单词不是通过空格分隔的，所以 `word-spacing` 不起作用。
 
+## 颜色（Color）
+
+### `opacity` 属性
+
+设置整个元素的不透明度。接受 0~1 之间的 `<number>` 类型的数据。`0` 是完全透明，`1` 是完全不透明。
+
+- `opacity` 会影响整个元素，包括所有后代元素。但它不会被继承，只是视觉上看起来像继承。
+- 常用于动画、淡入淡出效果。
+- 当一个元素的 `opacity` 值小于 `1` 时，它会自动创建新的层叠上下文。
+    - 会影响 `z-index` 的层叠顺序。
+    - 子元素的 `z-index` 不能再超出这个父元素的层叠层级。
+- 注意与颜色的 Alpha 通道值相区分，Alpha 通道值仅代表这个颜色的不透明度，而非整个元素。
+
 ## box 模型
 
 元素是语义和结构上的存在。盒子是视觉和布局上的表现。CSS 操作的不是元素本身，而是它在渲染时生成的 box。网页上的每个元素都是一个 box 模型。
@@ -515,26 +527,26 @@ h1 {
 
 给元素内容和 padding 的外围绘制**边框**。组成部分如下：
 
-- `border-width`：边框宽度（如：1px、2px）。
+- `border-width`：边框宽度（如：1px、2px）。该属性的值只能使用 `<length>` 类型，不能使用 `<percentage>` 类型。
 - `border-style`：边框样式。
-    - `solid`
-    - `dashed`
-    - `dotted`
-    - `double`
-    - `inset`
-    - `outset`
-    - `groove`
-    - `ridge`
-    - `hidden`
-    - `none`
+    - `solid`。
+    - `dashed`。
+    - `dotted`。
+    - `double`。
+    - `inset`。
+    - `outset`。
+    - `groove`。
+    - `ridge`。
+    - `hidden`。
+    - `none`。
 - `border-color`：边框颜色（如：`red`）。
 
 可以单独设置边框的每条边：
 
-- `border-top`
-- `border-right`
-- `border-bottom`
-- `border-left`
+- `border-top`。
+- `border-right`。
+- `border-bottom`。
+- `border-left`。
 
 box 模型的边界是 `border` 的外边距。
 
@@ -708,19 +720,6 @@ display: <outer-display-type> <inner-display-type>
 - `inline-grid`。
 - `flow-root`：是 `block flow-root` 的简写。
 
-### 尺寸约束
-
-#### `max-width` 属性
-
-用来限制元素的最大宽度，它接受长度值或关键字：
-
-- 长度值：`px`、`em`、`%`、`vw`、`vh` 等。
-- 关键字
-    - `none`：默认值，表示不限制最大宽度。
-    - `max-content`：根据内容决定最大宽度。
-    - `min-content`：根据最小内容决定宽度。
-    - `fit-content`：尽量适应内容，受限于父容器。
-
 ### 几何变换
 
 #### `transform` 属性
@@ -786,14 +785,14 @@ CSS 中 `transform` 的操作是基于元素的局部坐标系（Local Coordinat
 
 `background-position` 用来指定背景图像在元素背景区域中的起始位置。常见取值如下：
 
-- 关键字
-    - 水平方向：`left` | `center` | `right`
-    - 垂直方向：`top` | `center` | `bottom`
+- 关键字。
+    - 水平方向：`left` | `center` | `right`。
+    - 垂直方向：`top` | `center` | `bottom`。
     - 如果只写一个方向的关键字：那么会浏览器自动填充另一个方向的值为 `center`。
-- 长度
+- 长度。
     - 第一个值：水平偏移（相对元素背景区域左边缘）。
     - 第二个值：垂直偏移（相对元素背景区域上边缘）。
-- 百分比（相对背景定位区域）
+- 百分比（相对背景定位区域）。
     - `0% 0%`：左上角。
     - `50% 50%`：居中。
     - `100% 100%`：右下角。
@@ -976,55 +975,6 @@ body {
 
 - `!important` 优先级高于 `@layer` 层顺序。
 
-## 函数（Functions）
-
-### `calc()`
-
-`calc()` 函数可以混合不同的单位进行计算，计算的数值两边要留空格：`width: calc(90% - 30px)`。
-
-### `rotate()`
-
-`rotate()` 是 CSS `transform` 属性的一个函数。它用于对元素进行**旋转**变换，而**不会影响文档的布局流**。它接收一个 `<angle>` 类型：
-
-- `deg`：度数。例如：`360deg` 表示一整圈。
-- `rad`：弧度。例如：`3.1416rad` 约等于 `180deg`。
-- `grad`：百分度。一个完整的圆是 `400grad`。
-- `turn`：圈数。例如，`0.5turn` 等于 `180deg`。
-
-```html
-<div>Normal</div>
-<div class="rotate">Rotated</div>
-<div class="rotate-translate">Rotated + Translated</div>
-<div class="translate-rotate">Translated + Rotated</div>
-```
-
-```css
-div {
-  position: absolute;
-  left: 40px;
-  top: 40px;
-  width: 100px;
-  height: 100px;
-  background-color: lightgray;
-}
-
-.rotate {
-  background-color: transparent;
-  outline: 2px dashed;
-  transform: rotate(45deg);
-}
-
-.rotate-translate {
-  background-color: pink;
-  transform: rotate(45deg) translateX(180px);
-}
-
-.translate-rotate {
-  background-color: gold;
-  transform: translateX(180px) rotate(45deg);
-}
-```
-
 ## 处理冲突（Handling Conflicts）
 
 ### 层叠（Cascade）
@@ -1096,3 +1046,198 @@ CSS 提供了五个特殊的通用属性值来控制继承，每个 CSS 属性�
 #### [`all`](https://developer.mozilla.org/en-US/docs/Web/CSS/all) 属性
 
 `all` 属性可用于将上述继承值之一一次性应用于（几乎）所有属性。
+
+## [属性值和单位](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_values_and_units)
+
+CSS 数值类型（Numeric）包含：
+
+- `<integer>`：数学意义上的严格整数，包含负整数、零和正整数。
+- `<number>`：十进制数字，可以带也可以不带小数点。
+- `<dimension>`：尺寸，是 `<number>` 后面跟着单位。包含：
+    - `<length>`：CSS 中所有 `<length>` 都是基于视觉感知（Perceptual Units）定义的，而不是物理长度，因此并不严格对应现实中的物理长度。
+        - 绝对长度单位（Absolute Length Units）
+            - `cm`：Centimeters。1cm = 37.8px = 25.2/64in。
+            - `mm`：Millimeters。1mm = 1/10th of 1cm。
+            - `Q`：Quarter—millimeters。1Q = 1/40th of 1cm。
+            - `in`：Inches。1in = 2.54cm = 96px。
+            - `pc`：Picas。1pc = 1/6th of 1in = 16px。
+            - `pt`：Points。1pt = 1/72nd of 1in = 4/3px。
+            - `px`：Pixels。1px = 1/96th of 1in。
+        - 相对长度单位（Relative Length Units）
+            - `em`：相对于当前元素的 `font-size` 属性值。如果是对 `font-size` 属性本身应用 `em` 单位，那么相对的是父元素的 `font-size` 属性值。
+            - `rem`：相对于根元素（大多数情况下是 `<html>` 元素）的 `font-size` 属性值。
+            - `vh`：相对于视口（Viewport）的高度。
+                - 视口是指浏览器中用来呈现网页内容的可视区域。
+                - `10vh` 指的是视口高度的 10%。
+            - `vw`：相对于视口的宽度。
+    - `<angle>`
+    - `<time>`
+    - `<resolution>`
+- `<percentage>`：百分比。百分比值的参照对象并不统一，而是取决于具体属性和上下文。
+    - 相对于父元素的同名属性。
+        - `width`。
+        - `height`。
+        - `font-size`。
+    - 相对于父元素的 `width`。
+        - `padding`。
+        - `margin`。
+    - 相对于自身的某些属性。
+        - `line-height`：相对于自身的 `font-size`。
+        - `transform: translateX(n%)`：相对于自身 `width` 属性的 n%。
+        - `border-radius`：相对于自身的 `width` 和 `height` 来计算椭圆半径。
+
+### 颜色的取值
+
+在现代计算机中，使用 24 个 bit 来表示颜色，红色、绿色和蓝色三种通道各使用 8 个 bit。因此能表示的颜色个数为 2^8 x 2^8 x 2^8 = 16,777,216 个。
+
+颜色值的类型可以是：
+
+- 关键字（也称为 `<named-color>` 类型）：见 [`<named-color>`](https://developer.mozilla.org/en-US/docs/Web/CSS/named-color)。
+- 十六进制 RGB 值：以 `#` 号开头，后面跟 6 位 16 进制字符（`0-9` 和 `a-f`）。
+    - 每两位 16 进制字符表示一个颜色通道（16*16=256 种颜色），总共可表示 256 x 256 x 256=16,777,216 种颜色。
+    - `#f0f` = `#ff00ff`：如果每一对的字符是一样的，那么可以缩写。
+    - `#ff00ff66`：如果 `#` 号后面跟着 8 个（缩写时是 4 个）字符，那么最后两位（缩写时是 1 位）是 Alpha 通道值（不透明度）。
+- `rgb()` 函数：接受三个参数和一个可选的第四个参数。
+    - 前三个参数分别代表红绿蓝三种通道的颜色值，取值范围为 `0-255` 的 `<integer>` 类型的值。前三个参数以空格（或逗号）分隔。
+    - 第四个参数代表颜色的 Alpha 通道值，取值范围为 `0-1` 的 `<number>` 类型的值。与前三个参数以 `/` 分隔。
+- `<hue>`：色相。Hue 是一种角度值，表示颜色在色轮（Color Wheel）上的位置。取值范围为 `0deg–360deg`。
+    - `hwb()`：Hue + Whiteness + Blackness（色相 + 白度 + 黑度）。
+        - 白度的取值范围是 `0%-100%`，越大越偏白。
+        - 黑度的取值范围是 `0%-100%`，越大越偏黑。
+    - `hsl()`：Hue + Saturation + Lightness（色相 + 饱和度 + 亮度）。
+        - 饱和度的取值范围是 `0%-100%`，0% 表示灰色，100% 表示纯色。
+            - RGB 三个通道值差距越大，饱和度越高，RGB 三个通道越相似，饱和度越低，越接近灰色。
+        - 亮度的取值范围是 `0%-100%`，0% 表示黑色，100% 表示白色，中间是原色。
+            - RGB 三个通道值完全相等时（除了都等于 0 为纯黑色和都等于 255 为纯白色外），得到的颜色一定是某种灰色。
+            - `rgb(100, 100, 100)` 和 `rgb(200, 200, 200)` 都是灰色，但是数值越大，亮度越高，越接近白色。
+    - `lch()`：Lightness + Chroma + Hue（亮度 + 彩度 + 色相）。
+    - `lab()`：不基于 hue，而基于人眼视觉模型（Lab 色空间）。
+
+### 图像的取值
+
+图像的值（`<image>` 类型）可以是 `url()` 函数，也可以是渐变（Gradient）。
+
+```css
+.image {
+  background-image: url("https://mdn.github.io/shared-assets/images/examples/big-star.png");
+}
+
+.gradient {
+  background-image: linear-gradient(
+    90deg,
+    rgb(119 0 255 / 39%),
+    rgb(0 212 255 / 25%)
+  );
+}
+```
+
+### 位置的取值
+
+`<position>` 表示在二维平面中某个点的位置，通常由水平和垂直两个分量组成。
+
+- 关键字：`center` 既可用于水分量也可用于垂直分量，如果只指定了一个轴的分量，那么另一个轴的值默认为 `center`。
+    - `top`
+    - `bottom`
+    - `left`
+    - `right`
+    - `center`
+- 百分比：百分比是相对于包含块的大小计算的。
+    - 水平方向：相对于容器的宽度。
+    - 垂直方向：相对于容器的高度。
+    - `background-position: 50% 0%;` 代表背景图的**中心点**在容器的顶部中间。
+- 长度值：表示从容器的对应边缘偏移的距离。
+    - `background-position: 20px 10px;` 表示图片左上角距离容器左边 20px、上边 10px。
+
+### 字符串和标识符（Identifier）
+
+CSS 中使用关键字当作属性值时，这里的关键字可以被更精确的描述为标识符（），标识符是两侧是没有引号的。
+
+### 函数类型作为属性值
+
+#### `rotate()`
+
+`rotate()` 是 CSS `transform` 属性的一个函数。它用于对元素进行**旋转**变换，而**不会影响文档的布局流**。它接收一个 `<angle>` 类型：
+
+- `deg`：度数。例如：`360deg` 表示一整圈。
+- `rad`：弧度。例如：`3.1416rad` 约等于 `180deg`。
+- `grad`：百分度。一个完整的圆是 `400grad`。
+- `turn`：圈数。例如，`0.5turn` 等于 `180deg`。
+
+```html
+<div>Normal</div>
+<div class="rotate">Rotated</div>
+<div class="rotate-translate">Rotated + Translated</div>
+<div class="translate-rotate">Translated + Rotated</div>
+```
+
+```css
+div {
+  position: absolute;
+  left: 40px;
+  top: 40px;
+  width: 100px;
+  height: 100px;
+  background-color: lightgray;
+}
+
+.rotate {
+  background-color: transparent;
+  outline: 2px dashed;
+  transform: rotate(45deg);
+}
+
+.rotate-translate {
+  background-color: pink;
+  transform: rotate(45deg) translateX(180px);
+}
+
+.translate-rotate {
+  background-color: gold;
+  transform: translateX(180px) rotate(45deg);
+}
+```
+
+#### [数学函数](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_values_and_units/CSS_value_functions#math_functions)
+
+`calc()` 函数可以混合不同的单位进行计算，计算的数值两边要留空格：`width: calc(90% - 30px)`。
+
+## 尺寸设置
+
+一个 HTML 元素有其固有尺寸（Intrinsic Size），这个固有尺寸在被 CSS 影响之前就已经被设置了。例如：图片。一个图片是包含自身的尺寸信息的，这是它的内在属性。如果没有对图片应用任何 CSS，那么网页上展示的就是它的固有尺寸。
+
+当我们给一个元素指定一个具体的尺寸时，这个元素里面的内容将不会影响该元素的尺寸。
+
+### 使用百分比指定尺寸
+
+在 `width` 属性中使用百分比时是相对包含块的 `width` 属性来计算的。
+
+#### 在 margin 和 padding 上使用百分比
+
+**margin 和 padding 中的百分比是相对于包含块的 `width` 属性值进行计算的。**
+
+### `min-*` 和 `max-*`
+
+#### `max-width` 属性
+
+用来限制元素的最大宽度，它接受长度值或关键字：
+
+- 长度值：`px`、`em`、`%`、`vw`、`vh` 等。
+- 关键字
+    - `none`：默认值，表示不限制最大宽度。
+    - `max-content`：根据内容决定最大宽度。
+    - `min-content`：根据最小内容决定宽度。
+    - `fit-content`：尽量适应内容，受限于父容器。
+- 百分比。
+
+在图片上设置 `max-width: 100%` 时，如果图片的固有宽度小于包含块的宽度，那么这个图片不会被迫拉伸变大。如果是 `width: 100%`，那么这个图片会被拉伸变大，从而像素化。
+
+#### `min-height` 属性
+
+保证元素拥有一个最小的高度，但如果元素里的内容多于元素在其最小高度时的空间，则会变高。该属性可以在处理不定量内容时有效避免溢出。
+
+### 视口单位
+
+- `vh`：`1vh` 等于 `1%` 的视口高度。
+- `vw`：`1vw` 等于 `1%` 的视口宽度。
+
+当元素的高度设置为 `100vh` 时，它的高度等于整个浏览器视口的高度，因此会占满一屏，把其他内容推到下面，只有滚动页面才能看到后面的内容，这在处理动态元素时非常有用。

@@ -82,6 +82,7 @@
 | access | /ˈækses/ |
 | affair | /əˈfer/ |
 | algorithm | /ˈælɡərɪðəm/ |
+| align | /əˈlaɪn/ |
 | assess | /əˈses/ |
 | bind | /baɪnd/ |
 | bound | /baʊnd/ |
@@ -101,13 +102,17 @@
 | economist | /ɪˈkɑːnəmɪst/ |
 | economy | /ɪˈkɑːnəmi/ |
 | expert | /ˈekspɜːrt/ |
+| extrinsic | /ɪksˈtrɪnzɪk/ |
 | facade | /fəˈsɑːd/ |
+| finite | /ˈfaɪnaɪt/ |
 | frustrating | /ˈfrʌstreɪtɪŋ/ |
 | genre | /ˈʒɑːnrə/ |
 | heir | /er/ |
 | ichthyosaur | /ˈɪkθiəˌsɔːr/ |
 | idiosyncratic | /ˌɪdiəsɪŋˈkrætɪk/ |
 | indices | /ˈɪndɪsiːz/ |
+| infinite | /ˈɪnfɪnət/ |
+| intrinsic | /ɪnˈtrɪnzɪk/ |
 | isolate | /ˈaɪsəleɪt/ |
 | isolated | /ˈaɪsəleɪtɪd/ |
 | Israel | /ˈɪzrɪəl/ |
@@ -116,6 +121,8 @@
 | little | /ˈlɪt(ə)l/ |
 | modular | /ˈmɑːdʒələr/ |
 | niche | /niːʃ/ |
+| opacity | /oʊˈpæsəti/ |
+| opaque | /oʊˈpeɪk/ |
 | overturn | /ˌoʊvərˈtɜːrn/ |
 | parliament | /ˈpɑːrləmənt/ |
 | penalize | /ˈpiːnəlaɪz/ |
@@ -132,6 +139,7 @@
 | stimulation | /ˌstɪmjuˈleɪʃ(ə)n/ |
 | stretch | /stretʃ/ |
 | timely | /ˈtaɪmli/ |
+| versus | /ˈvɜːrsəs/ |
 | weekday | /ˈwiːkdeɪ/ |
 | weekend | /ˈwiːkend/ |
 
@@ -170,6 +178,7 @@
 | for quite some time | 相当长的一段时间 |  | I’ve been programming games for quite some time, but started using Unity only relatively recently. |
 | for the sake of performance | 出于性能考虑 |  |  |
 | from scratch | 从零开始、白手起家 | 旧时的体育竞赛中人们会在地面上划一条线作为起点，这条线就是 scratch（用指甲或棍子“划”出来的） | I learned German from scratch in six months. |
+| get you in the mood | 让你先感受一下气氛、帮你找找感觉、调动起你的兴趣 |  | The following table shows a few isolated examples to get you in the mood. |
 | given that | 鉴于 | 表示在某种条件或情况下，用于引出一个已知的事实或前提 |  |
 | go to great length | 不遗余力 | 指为达到某个目的而付出极大的努力和付出 |  |
 | got both | 两者都有 | 表示拥有两个或两种事物 |  |
@@ -183,6 +192,7 @@
 | on the fly | 即时地、动态地 | 边运行边处理，而不是预先准备好的 | The API is created on the fly, no code generation necessary. |
 | onward to | 继续前往 | 注意 onward to 并不是传统意义上的固定搭配而是省略动词的感叹/号召式表达，属于惯用修辞 | Onward to chapter 1! (Let’s go onward to chapter 1!) |
 | open-ended | 开放式的、无限制的 | [bjʊˈrɑːkrəsi] | Open-ended demands are a mandate for ever-expanding government bureaucracies with ever-expanding budgets and powers. |
+| over and over | 反复、再三、一次又一次 |  | In programming, a function is a piece of code that does a specific task. Functions are useful because you can write code once then reuse it many times instead of writing the same logic over and over. |
 | over time | 随着时间的推移 |  |  |
 | postal code | 邮政编码 | 美国用 zip code 表示邮政编码，其中 zip 是 Zone Improvement Plan 的首字母缩写 |  |
 | put on hold | 搁置、延期、暂停 |  | President Trump has said he doesn't want a "wasted meeting" after plans for a summit on Ukraine with Vladimir Putin in Bucharest were put on hold. |
@@ -194,6 +204,7 @@
 | resort to | 诉诸，求助于 |  | You might have to resort to using inline styles if your working environment is very restrictive. |
 | ripe for | 发展到适合某事发生的条件 | ripe for innovation：创新的条件已经具备、ripe for breakthrough：随时可能发生重大突破 |  |
 | run into | 撞上，碰上、遇到困难，遭遇 |  | You will often run into a situation where you know that a rule comes later in the stylesheet, but an earlier, conflicting rule is applied. |
+| scale down | 按比例缩小 |  | A common use of max-width is to cause images to scale down if there is not enough space to display them at their intrinsic width, while making sure they don't become larger than that width. |
 | set ... off | 突出、凸显 |  | All the source code in the book, whether in code listings or snippets, is in `a fixed-width font like this`, which sets it off from the surrounding text. |
 | show ... age | 显得过时、老旧 |  | As those tools started to show their age, I kept looking for better ways to develop games. |
 | so much that | 以至于 | 是一个常用的程度状语从句结构，用于强调前面所述动作或状态的极高程度，并表示这种程度所导致的直接结果 | I'm a big fan of resetting box-sizing to border-box, so much that we have a special day of the year around here. |
@@ -244,3 +255,11 @@
     - I'm dead on my feet.
     - I'm running on fumes.
     - I'm exhausted.
+- 收到。
+    - 标准/通用场合 (最安全、最常用的选择)：Got it, thanks.
+    - 正式/书面场合 (邮件、正式通知)：Well noted. / Noted with thanks.
+    - 确认/知悉（比较正式，通常用于确认重要安排或信息。）：Confirmed. / Acknowledged.
+    - 非正式/快速回复 (对同事、熟人)：Copy that.
+    - Thank you for the update.
+- 你有 WPS 会员吗？
+    - Do you have a WPS subscription?
