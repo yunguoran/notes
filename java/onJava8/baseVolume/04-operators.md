@@ -10,7 +10,7 @@ System.out.println("a = " + a); // a = 5
 System.out.println("b = " + b); // b = 1
 ```
 
-`System.out.println()` 使用了操作符 `+`，这里 `+` 意味着**字符串连接**。此处 a 和 b 经历了从 int 到 string 的类型转换。
+`System.out.println()` 使用了操作符 `+`，这里 `+` 意味着**字符串连接**。此处 `a` 和 `b` 经历了从 `int` 到 `string` 的类型转换。
 
 ## 赋值
 
@@ -53,7 +53,7 @@ int c = rand.nextInt(26) + 'a';
 
 ### 一元加减操作符
 
-一元加号的作用是把较小的数值类型自动转换为 int 类型。
+一元加号的作用是把较小的数值类型自动转换为 `int` 类型。
 
 ## 测试对象是否相等
 
@@ -132,7 +132,7 @@ Primitive int:
 
 ## 逻辑操作符
 
-将 `int` 作为布尔处理不是合法的 Java 写法：即 `&&`、`||` 和 `!` 不能用于 int 类型。
+将 `int` 作为布尔处理不是合法的 Java 写法：即 `&&`、`||` 和 `!` 不能用于 `int` 类型。
 
 ## 字面量
 
@@ -140,14 +140,14 @@ Java 里有一套约定来区分不同进制的字面量：
 
 - 二进制（Binary）以 `0b` 或 `0B` 开头。
 - 八进制（Octal）以 `0` 开头。
-- 十进制（Decimal）
+- 十进制（Decimal）。
     - `int` 类型直接写。
     - `long` 类型后面加大写的 L（小写 l 也可以，但容易与 1 混淆）。
     - `float` 类型后面加 `F` 或 `f`。
     - `double` 类型后面加 `D` 或 `d`。
 - 十六进制 (Hex)：以 `0x` 或 `0X` 开头。
 
-在 Long 型和 Integer 型中调用其静态的 `toBinaryString()` 方法即可。若将较小的类型传递给 `Integer.toBinaryString`() 时，类型将自动转换为 int。
+在 Long 型和 Integer 型中调用其静态的 `toBinaryString()` 方法即可。若将较小的类型传递给 `Integer.toBinaryString`() 时，类型将自动转换为 `int`。
 
 ### 八进制和二进制互相转化
 

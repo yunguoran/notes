@@ -41,13 +41,13 @@ p {
 
 ## 将 CSS 应用于 HTML
 
-- 外部样式表
+- 外部样式表。
     - 是一个 `.css` 结尾的文件。
     - 添加 `<link rel="stylesheet" href="styles.css" />` 到 `<head>` 标签中。
-- 内部样式表
+- 内部样式表。
     - 是一个 `<style>` 标签。
     - 也需要放在 `<head>` 中，这样 CSS 在页面渲染前加载，可以避免无样式内容闪烁（FOUC，即：Flash of unstyled content）。
-- 行内样式
+- 行内样式。
     - 是 HTML 元素上的 `style` 属性。
     - `style` 属性中的多个声明以分号（`;`）分隔。
 
@@ -250,6 +250,20 @@ h1 ~ p {
 
 **Web safe fonts**（网页安全字体）指的是在大多数操作系统和设备上都自带安装、无需额外下载的字体。因为它们几乎可以保证在不同平台上正常显示，所以叫 “web safe”。
 
+#### `font` 属性
+
+`font` 属性标准语法定义如下：
+
+```css
+font: [ <font-style> || <font-variant> || <font-weight> || <font-stretch> ]? <font-size> [ / <line-height> ]? <font-family>
+```
+
+注意：
+
+- 任何没有被指定的属性都会被设置为相应的初始值（可能会覆盖前面用非简写属性指定的值）。
+- `font-size` 和 `font-family` 是必须要写的，否则整条声明会被忽略。
+- `<line-height>` 属性必须以 `/` 开头。
+
 #### `font-family` 属性
 
 `font-family` 属性的值是按顺序写的多个字体名称，浏览器会依次寻找能用的字体，找到第一个可用的就用它。**通用字体族**通常写在最后作为兜底。下方例子中 `'Times New Roman'` 和 `Helvetica` 是字体名称，`sans-serif` 是通用字体族。`'Times New Roman'` 是带空格的字体，使用时必须加引号。
@@ -314,18 +328,18 @@ font-family: 'Times New Roman', Helvetica, sans-serif;
     - `bolder`：比父元素字体更粗（相对值）。
     - `lighter`：比父元素字体更细（相对值）。
 - 数值
-    - 范围：`100` ~ `900`
-    - 间隔：通常是每 100 一个级别
-    - 越小越细，越大越粗
-        - `100`：Thin
-        - `200`：Extra Light (Ultra Light)
-        - `300`：Light
-        - `400`：Normal
-        - `500`：Medium
-        - `600`：Semi Bold (Demi Bold)
-        - `700`：Bold
-        - `800`：Extra Bold (Ultra Bold)
-        - `900`：Black (Heavy)
+    - 范围：`100` ~ `900`。
+    - 间隔：通常是每 100 一个级别。
+    - 越小越细，越大越粗。
+        - `100`：Thin。
+        - `200`：Extra Light (Ultra Light)。
+        - `300`：Light。
+        - `400`：Normal。
+        - `500`：Medium。
+        - `600`：Semi Bold (Demi Bold)。
+        - `700`：Bold。
+        - `800`：Extra Bold (Ultra Bold)。
+        - `900`：Black (Heavy)。
 
 注意：不是所有字体都提供这么多粗细，大部分常见字体只支持 `400` 和 `700`（比如 Arial）。如果字体本身没有对应的字重，浏览器会用最接近的粗细来代替。
 
@@ -337,6 +351,27 @@ font-family: 'Times New Roman', Helvetica, sans-serif;
 - `italic`：使用字体的斜体字形，注意这里的斜体字形是字体设计师提前设计好的，笔画可能会有变化，并不只是简单地倾斜。
 - `oblique`：强制让字体倾斜显示（即机械地把正体字倾斜一定角度）。
 - `oblique <angle>`：可以指定倾斜角度。如：`oblique 10deg`。
+
+#### `font-size-adjust` 属性
+
+控制字体在字体替换（Fallback）时的视觉大小一致性。有些字体虽然 `font-size` 相同，但实际看起来的字高差别很大。`font-size-adjust` 用来根据小写字母 x 的高度比例来调整字体显示大小。
+
+```css
+font-size-adjust: none | <number>;
+```
+
+- none：默认值，不调整。
+- `<number>`：表示 “x-height ÷ font-size” 的比例。
+
+`font-size-adjust` 不是直接把字体变成某个倍数，而是根据你设定的理想比例去调整新字体的大小，使得视觉感受一致。
+
+#### `font-kerning` 属性
+
+控制字体中的字距调整是否启用。字距（Kerning）是指根据字母形状的不同，自动微调字符之间的间距，使排版更美观。现代浏览器在大多情况下会自动启用 kerning。
+
+```css
+font-kerning: auto | normal | none;
+```
 
 #### 加载第三方字体
 
@@ -447,7 +482,7 @@ h1 {
 - `normal`：`line-height: normal;` 浏览器的默认值。具体数值由浏览器和字体族决定。
 - 数值：`line-height: 1.5;` 表示相对于当前元素的 `font-size` 的倍数。
     - 具有继承性时，子元素会继承这个倍数，并根据自己的字体大小计算行高，不会产生意外的重叠问题。
-- 长度值：`line-height: 24px;` 或者 `line-height: 1.5em;`（效果上等同于 `line-height: 1.5`）
+- 长度值：`line-height: 24px;` 或者 `line-height: 1.5em;`（效果上等同于 `line-height: 1.5`）。
     - 当使用 `em` 并发生继承时，子元素继承的是计算后的固定值，而不是比例，可能导致子元素字体变大时行高不够用。
 - `percentage`：相对于当前元素的 `font-size` 进行计算。`line-height: 150%` 效果上等同于 `line-height: 1.5`。
     - 和 `em` 一样，存在继承问题。子元素继承的是计算后的固定值。
@@ -758,7 +793,7 @@ CSS 中 `transform` 的操作是基于元素的局部坐标系（Local Coordinat
 
 ### `background-color` 属性
 
-设置元素背景的颜色，默认情况下作用范围是 CSS box 模型中的 `content` + `padding` + `border`。常见取值如下：
+设置元素背景的颜色，默认情况下作用范围是 CSS box 模型中的 `content` + `padding`。常见取值如下：
 
 - 颜色名称：`red`、`blue`。
 - 十六进制：`#ff0000`。
@@ -778,8 +813,9 @@ CSS 中 `transform` 的操作是基于元素的局部坐标系（Local Coordinat
 
 注意：
 
-- 背景图片默认是叠在 `background-color` 上方。
+- 背景图片默认显示在 `background-color` 上方。
 - 如果只想要一个纯色背景，用 `background-color` 就行，不需要 `background-image`。
+- 默认情况下大尺寸图片不会缩小以适应盒子的尺寸，因此只能看到大图片的一角。小尺寸图片会平铺（Tile）以填充盒子。
 
 ### `background-position` 属性
 
@@ -810,14 +846,14 @@ CSS 中 `transform` 的操作是基于元素的局部坐标系（Local Coordinat
 
 ### `background-repeat` 属性
 
-控制背景图像在元素背景区域中的**平铺方式**，即：当图像的尺寸小于它容器的背景区域时，如何通过重复这个图像来填满整个区域。
+控制背景图像在元素背景区域中的**平铺行为**，即：当图像的尺寸小于它容器的背景区域时，如何通过重复这个图像来填满整个区域。
 
 - `repeat`：背景图在水平和垂直方向都重复填充（默认）。
 - `repeat-x`：只在水平方向平铺。
 - `repeat-y`：只在垂直方向平铺。
 - `no-repeat`：不平铺，只显示一张背景图。
-- `space`：背景图像在区域内重复，但会 均匀分布，使图像之间的间隙相等，可能会留下空白。
-- `round`：背景图像会被缩放，以保证整数次平铺且刚好填满容器。
+- `space`：背景图像在区域内尽可能重复，额外空间会均匀分布在图像之间。
+- `round`：背景图像在区域内尽可能重复，有额外空间时将会拉伸图像以填充任何多余的空间，以保证整数次平铺且刚好填满容器。
 
 ### `background-attachment` 属性
 
@@ -1085,6 +1121,9 @@ CSS 数值类型（Numeric）包含：
         - `line-height`：相对于自身的 `font-size`。
         - `transform: translateX(n%)`：相对于自身 `width` 属性的 n%。
         - `border-radius`：相对于自身的 `width` 和 `height` 来计算椭圆半径。
+
+相对父元素计算百分比时，如果父元素的 `box-sizing` 属性设置为 `border-box`，那么子元素在计算百分比时 `width` 首先要先减去
+`padding` 和 `border` 的值再开始计算。
 
 ### 颜色的取值
 
