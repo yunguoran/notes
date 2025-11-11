@@ -141,7 +141,10 @@
 | stimulation | /ˌstɪmjuˈleɪʃ(ə)n/ |
 | stretch | /stretʃ/ |
 | timely | /ˈtaɪmli/ |
+| variety | /vəˈraɪəti/ |
+| vary | /ˈveri/ |
 | versus | /ˈvɜːrsəs/ |
+| very | /ˈveri/ |
 | weekday | /ˈwiːkdeɪ/ |
 | weekend | /ˈwiːkend/ |
 
@@ -190,6 +193,7 @@
 | happen to be | 碰巧是 |  | Kuhl and Meltzoff, who happen to be married, share a certain glamour that comes with being at the top of their fields in a science ripe for breakthroughs. |
 | hook up | 连接、搭讪、提供帮助 | 指在物理上或功能上将两个或多个设备、系统或组件连接在一起或指为某人提供帮助、支持或资源。 |  |
 | in a nutshell | 简而言之 |  |  |
+| in due course | 在适当的时间、按照合理的顺序或在适当的时候 | 通常用于表示某事将会在合适的时候发生或完成，而不是立即或马上。 | The BBC says it will respond in due course to a threat of legal action over a documentary which misrepresented a speech made by President Trump. |
 | many years' worth of ... | 许多年来累积的… |  | It's been solving many years’ worth of database-schema problems. |
 | net result | 净结果、最终结果 | [net](https://www.youdao.com/result?word=net&lang=en) |  |
 | off-topic | 跑题 |  |  |

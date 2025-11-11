@@ -129,7 +129,7 @@ p,
 
 #### `:nth-*`
 
-- `:nth-child()` 伪类选择器用于选择父元素内的第 n 个子元素。它是基于所有子节点的顺序来计数的。
+- `:nth-child()` 伪类选择器用于选择父元素内的第 `n` 个子元素。它是基于所有子节点的顺序来计数的。
     - `:nth-child()` 接受一个参数，这个参数用于描述一个用于匹配同级元素列表中元素索引的模式。索引从 `1` 开始。该参数的常见取值如下：
         - 关键字。
             - `odd`。
@@ -139,11 +139,11 @@ p,
             - `B` 是一个整形的偏移量。
             - `n` 是一个非负整数，从 `0` 开始。
         - `of <selector>` 语法。
-            - 当传递一个选择器参数时，将会匹配第 n 个匹配这个选择器的元素。
+            - 当传递一个选择器参数时，将会匹配第 `n` 个匹配这个选择器的元素。
             - `:nth-child(-n + 3 of li.important)`：在同级元素中，只考虑那些匹配 `li.important` 的兄弟节点，然后在这些节点中选取前 3 个。
-            - `li.important:nth-child(-n + 3)`：选中那些既是第 1~3 个子节点、又具有类名 `important` 且是 `<li>` 元素的节点。
+            - `li.important:nth-child(-n + 3)`：选中那些既是第 `1`~`3` 个子节点、又具有类名 `important` 且是 `<li>` 元素的节点。
 - `:nth-last-child()` 的所有特性和 `:nth-child()` 完全一致，唯一不同的就是 `:nth-last-child()` **从后往前计数元素**。
-- `:nth-of-type()` 伪类选择器用于选择父元素内特定类型的第 n 个子元素。它的核心特点是**只在同一类型的元素兄弟节点中计数**。
+- `:nth-of-type()` 伪类选择器用于选择父元素内特定类型的第 `n` 个子元素。它的核心特点是**只在同一类型的元素兄弟节点中计数**。
 - `:nth-last-of-type()` 是 `:nth-of-type()` 的反向版本。它的核心特点是**从最后一个相同类型的兄弟元素开始数。**。
 
 注意：
@@ -179,7 +179,7 @@ a:focus {
 
 - 上述的代码给**未访问**过的链接设置为红色。
 - **已访问**链接的颜色设置为绿色。
-    - 当链接的 `href` 指向的 URL 在 浏览器的历史记录中存在时，该链接会被认为是“已访问（visited）的”。它和当前页面是否还开着无关，完全依赖于浏览器的历史记录。
+    - 当链接的 `href` 指向的 URL 在浏览器的历史记录中存在时，该链接会被认为是“已访问（visited）的”。它和当前页面是否还开着无关，完全依赖于浏览器的历史记录。
     - 只有手动清除浏览器关于该链接的历史记录才能从已访问状态回到未访问状态。
 - **鼠标悬停**在链接上时去掉链接的下划线。
 - **点击按下的瞬间**颜色设置为橘色。
@@ -360,7 +360,7 @@ font-family: 'Times New Roman', Helvetica, sans-serif;
 font-size-adjust: none | <number>;
 ```
 
-- none：默认值，不调整。
+- `none`：默认值，不调整。
 - `<number>`：表示 “x-height ÷ font-size” 的比例。
 
 `font-size-adjust` 不是直接把字体变成某个倍数，而是根据你设定的理想比例去调整新字体的大小，使得视觉感受一致。
@@ -457,7 +457,7 @@ text-shadow: offset-x offset-y blur-radius color;
 - `blur-radius`（可选）：模糊半径。
     - 0 表示阴影边缘清晰。
     - 数值越大，阴影越模糊、越柔和。
-- `color`（可选）：阴影颜色。可以使用 red、#ff0000、rgba(0,0,0,0.5) 等。
+- `color`（可选）：阴影颜色。可以使用 `red`、`#ff0000`、`rgba(0,0,0,0.5)` 等。
 
 可以一次性定义多个阴影，用逗号分隔，类似 Photoshop 的图层叠加：
 
@@ -576,27 +576,30 @@ h1 {
     - `none`。
 - `border-color`：边框颜色（如：`red`）。
 
-可以单独设置边框的每条边：
+可以单独设置边框的每条边，也可以单独设置边框的每条边的单个属性：
 
 - `border-top`。
+    - `border-top-width`。
+    - `border-top-style`。
+    - `border-top-color`。
 - `border-right`。
 - `border-bottom`。
 - `border-left`。
 
-box 模型的边界是 `border` 的外边距。
+Box 模型的边界是 `border` 的外边距。
 
 #### `border-radius` 属性
 
-`border-radius` 可以让元素的 四个角（上左、上右、下右、下左）变成圆角或椭圆角。常见取值如下：
+`border-radius` 可以让元素的四个角（上左、上右、下右、下左）变成圆角或椭圆角。常见取值如下：
 
 - 长度值：如 `px`、`em`，表示圆角半径。
 - 百分比：相对于元素自身的大小计算（更常用于做圆形/椭圆）。
 
 `border-radius` 的简写形式：
 
-- `border-radius: 10px;`：四个角都是 10px 的圆角。
-- `border-radius: 10px 20px;`：左上和右下角半径为 10px，右上和左下角半径为 20px。
-- `border-radius: 10px 20px 30px;`：左上角 10px，右上和左下 20px，右下 30px。
+- `border-radius: 10px;`：四个角都是 `10px` 的圆角。
+- `border-radius: 10px 20px;`：左上和右下角半径为 `10px`，右上和左下角半径为 `20px`。
+- `border-radius: 10px 20px 30px;`：左上角 `10px`，右上和左下 `20px`，右下 `30px`。
 - `border-radius: 10px 20px 30px 40px;`：左上、右上、右下、左下（顺时针）。
 
 注意：
@@ -612,10 +615,10 @@ box 模型的边界是 `border` 的外边距。
 
 `margin` 的简写形式：
 
-- `margin: 5px;`：上右下左都是 5px。
-- `margin: 10px 20px;`：上下 10px，左右 20px。
-- `margin: 0px 0px 5px;`：上 0px，左右 0px，下 5px。
-- `margin: 5px 10px 15px 20px;`：上 5px，右 10px，下 15px，左 20px（顺时针）。
+- `margin: 5px;`：上右下左都是 `5px`。
+- `margin: 10px 20px;`：上下 `10px`，左右 `20px`。
+- `margin: 0px 0px 5px;`：上 `0px`，左右 `0px`，下 `5px`。
+- `margin: 5px 10px 15px 20px;`：上 `5px`，右 `10px`，下 `15px`，左 `20px`（顺时针）。
 
 注意：
 
@@ -628,7 +631,7 @@ box 模型的边界是 `border` 的外边距。
 
 三种情况下会发生外边距折叠：
 
-- 相邻兄弟元素
+- 相邻兄弟元素。
     - 两个相邻的块级元素上下相接时，它们的 `margin-bottom` 和 `margin-top` 会折叠。
     - 例外：如果第二个元素使用了 `clear` 来避开浮动，则不会折叠。
 - 父子之间没有内容：当父元素与子元素之间没有边框、内边距、文字内容、或 clearance 时，它们的上下 `margin` 会折叠。
@@ -655,7 +658,7 @@ box 模型的边界是 `border` 的外边距。
 
 注意：
 
-- 当多个父子、兄弟、嵌套情况叠加时，折叠可能涉及 三层或更多 `margin` 一起折叠。
+- 当多个父子、兄弟、嵌套情况叠加时，折叠可能涉及三层或更多 `margin` 一起折叠。
 - 即使 `margin` 是 `0`，折叠机制仍然有效。
 - 折叠仅发生在垂直方向。
 - `Flex` 容器 和 `Grid` 容器内部永远不会发生 `margin` 折叠。
@@ -675,7 +678,7 @@ box 模型的边界是 `border` 的外边距。
 
 #### `box-sizing` 属性
 
-`box-sizing` 用来控制元素的 `width` 和 `height` 是指内容区（content）还是整个盒子（content + padding + border）。常见取值如下：
+`box-sizing` 用来控制元素的 `width` 和 `height` 是指内容区（Content）还是整个盒子（Content + Padding + Border）。常见取值如下：
 
 - `content-box`：默认值。`width`/`height` 只作用于 内容区，`padding` 和 `border` 会额外加在 `width`/`height` 上。
 - `border-box`：`width`/`height` 包括 `content` + `padding` + `border`。
@@ -787,23 +790,27 @@ transform with transform-origin = translate(origin) → apply transform → tran
 CSS 中 `transform` 的操作是基于元素的局部坐标系（Local Coordinate System）。
 
 - 因此元素一旦旋转，它的 X/Y 坐标轴也会跟着旋转。
-- `transform: rotate(45deg) translateX(180px);`：因为先旋转了 45° 所以平移方向也旋转了 45°。
+- `transform: rotate(45deg) translateX(180px);`：因为先旋转了 `45°` 所以平移方向也旋转了 `45°`。
 
 ## 背景（Background）
 
-### `background-color` 属性
+### 颜色背景（Background Colors）
+
+#### `background-color` 属性
 
 设置元素背景的颜色，默认情况下作用范围是 CSS box 模型中的 `content` + `padding`。常见取值如下：
 
 - 颜色名称：`red`、`blue`。
 - 十六进制：`#ff0000`。
-- RGB / RGBA：`rgb(255,0,0)`/ `rgba(255,0,0,0.5)`。
+- RGB / RGBA：`rgb(0 0 0 / 50%)` / `rgb(255,0,0)` / `rgba(255,0,0,0.5)`。
 - HSL / HSLA：`hsl(0, 100%, 50%)`。
 - `transparent`：透明。
 
-### `background-image` 属性
+### 图片背景（Background Images）
 
-`background-image` 属性用来给元素的背景设置**一张或多张**图片（多个值可以用逗号分隔，前面的图会覆盖在后面的图上）。常见取值如下：
+#### `background-image` 属性
+
+`background-image` 属性用来给元素的背景设置**一张或多张**图片（多个值可以用逗号分隔，前面的图会依次覆盖在后面的图上）。常见取值如下：
 
 - `none`：不显示背景图片（默认值）。
 - `<image>`
@@ -817,7 +824,7 @@ CSS 中 `transform` 的操作是基于元素的局部坐标系（Local Coordinat
 - 如果只想要一个纯色背景，用 `background-color` 就行，不需要 `background-image`。
 - 默认情况下大尺寸图片不会缩小以适应盒子的尺寸，因此只能看到大图片的一角。小尺寸图片会平铺（Tile）以填充盒子。
 
-### `background-position` 属性
+#### `background-position` 属性
 
 `background-position` 用来指定背景图像在元素背景区域中的起始位置。常见取值如下：
 
@@ -836,7 +843,10 @@ CSS 中 `transform` 的操作是基于元素的局部坐标系（Local Coordinat
 
 注意：
 
-- 百分比并不是单纯的偏移量，而是元素背景区域的百分比位置对应背景图像的百分比位置。`background-position: 50% 50%` 指的是：背景图的中心点对齐到元素背景区域的中心点。
+- `background-position` 的默认值是 `(0, 0)`，坐标系的原点位于屏幕的左上角。
+- 关键字可以和长度值或百分比混用。
+- 可以使用 4 值语法指定与盒子某些边缘的距离。`background-position: top 20px right 10px;` 表示背景图片距盒子上边缘 `20px`，右边缘 `10px`。
+- 百分比并不是单纯的偏移量，而是元素背景区域的百分比位置对应背景图像的百分比位置。`background-position: 50% 50%;` 指的是：背景图的中心点对齐到元素背景区域的中心点。
 - 如果定义了多个背景图，可以为每个图分别设置位置：
 
     ```css
@@ -844,7 +854,7 @@ CSS 中 `transform` 的操作是基于元素的局部坐标系（Local Coordinat
     background-position: left top, right bottom;
     ```
 
-### `background-repeat` 属性
+#### `background-repeat` 属性
 
 控制背景图像在元素背景区域中的**平铺行为**，即：当图像的尺寸小于它容器的背景区域时，如何通过重复这个图像来填满整个区域。
 
@@ -855,13 +865,62 @@ CSS 中 `transform` 的操作是基于元素的局部坐标系（Local Coordinat
 - `space`：背景图像在区域内尽可能重复，额外空间会均匀分布在图像之间。
 - `round`：背景图像在区域内尽可能重复，有额外空间时将会拉伸图像以填充任何多余的空间，以保证整数次平铺且刚好填满容器。
 
-### `background-attachment` 属性
+#### `background-size` 属性
 
-控制背景图像是跟随页面内容滚动，还是固定在视口（Viewport）上。
+调整图像的大小，使其适合其背景。接受两个以空格分隔的长度值或关键字。
 
-- `scroll`：背景图像会随着页面内容一起滚动。
-- `fixed`：背景图像固定在视口，不随内容滚动。常用于“视差滚动”效果。
-- `local`：背景图像相对于元素的内容（Content）滚动区域固定。如果元素有滚动条，背景图会随着元素的内容滚动。
+- `<length>`/`<percentage>`：
+    - `100px 50px;` 表示背景图宽度为 `100px`，高度为 `50px`。
+    - 如果只指定一个值，则高度会自动按比例（Aspect Ratio）计算。
+- 关键字。
+    - `cover`：背景图片等比例放大，完全覆盖元素区域。图片可能会超出元素范围。
+    - `contain`：背景图片等比例放大，完全显示在元素内部。元素可能留有空白区域。
+
+`background-size` 只影响图片显示，不会影响元素的盒模型大小。
+
+### 渐变背景（Gradient Backgrounds）
+
+渐变背景也使用 `background-image` 属性指定，接受 [`<gradient>`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/gradient) 类型的值。
+
+### 多图片背景（Multiple background images）
+
+可以在单个声明中指定多个**背景图像或渐变**，给 `background-image` 属性指定使用逗号分隔的多个值即可，此时前面的图会依次覆盖在后面的图上。
+
+其他 `background-*` 系列属性也可以使用逗号分隔的值，方法与 `background-image` 相同：
+
+```css
+background-image: url("image1.png"), url("image2.png"), url("image3.png"), url("image4.png");
+background-repeat: no-repeat, repeat-x, repeat;
+background-position: 10px 20px, top right;
+```
+
+当不同的属性拥有不同数量的值时，拥有较小数量的属性值将会循环应用。上述例子中 `image3` 将会应用 `background-position：10px 20px;`，`image4` 将会应用 `background-repeat: repeat` 和 `background-position：top right;`。
+
+### 背景附着方式（Background Attachment）
+
+#### `background-attachment` 属性
+
+控制背景是跟随页面内容滚动，还是固定在视口（Viewport）上。
+
+- `scroll`：背景会随着页面一起滚动，元素内容滚动，背景不会移动。事实上，背景被固定在页面上的同一位置，因此它随着页面的滚动而滚动。
+- `fixed`：背景固定在视口，不随页面和内容滚动。背景将始终保持在页面的同一位置。
+- `local`：会将背景固定在所设置的元素上。如果元素有滚动条，背景图会随着元素的内容滚动。
+
+[MDN background-attachment 在线样例](https://mdn.github.io/learning-area/css/styling-boxes/backgrounds/background-attachment.html)。
+
+### 使用 `background` 简写属性（Using the Background Shorthand Property）
+
+多个 `background` 之间使用逗号分隔。使用此属性时需要遵守一定的规则：
+
+- `background-color` 属性值只能在最后一个逗号之后指定。
+- `background-size` 属性值必须紧跟在 `background-position` 之后且使用 `/` 分隔。
+
+先定义的 `background` 会覆盖在后定义的 `background` 上层。
+
+### 关于 background 的无障碍注意事项（Accessibility Considerations with Backgrounds）
+
+- 当在背景图片或者颜色上层放置文字时，应注意文字的对比度，以使访问者能够清晰地阅读文本。
+- 屏幕阅读器无法解析背景图像。因此，任何重要的内容都应该是 HTML 页面的一部分，而不是包含在背景中。
 
 ## 列表（Lists）
 
@@ -1017,11 +1076,11 @@ body {
 
 多个 CSS 规则同时作用于同一个元素时，有三个因素共同决定样式的优先级（按重要性递增的顺序列出）：
 
-- 源码顺序（Source Order）
+- 源码顺序（Source Order）。
     - 特异性相同时，排在后面的规则将会覆盖前面的规则。
-- 特异性（Specificity）
+- 特异性（Specificity）。
     - 当 CSS 规则发生冲突时，并不是整个规则都被覆盖，而仅仅是那些被重复声明的属性会被更具体的规则所覆盖。
-- 重要性（Importance）
+- 重要性（Importance）。
 
 #### 特异性（Specificity）
 
@@ -1072,7 +1131,7 @@ CSS 提供了五个特殊的通用属性值来控制继承，每个 CSS 属性�
     - 初始值在每个属性的规范文档里都有明确说明，例如：`font-size` 的[正式定义](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size#formal_definition)中指定了该属性的初始值为 `medium`。
 - `revert`：将元素的属性值重置为浏览器默认样式表中的值，而不是 CSS 规范里的初始值。
     - CSS 规范里的初始值是 CSS 规范为每一个属性定义的“出厂默认值”。这个值不依赖于任何 HTML 元素，是一个纯粹的理论基准。
-    - 浏览器默认样式表（User-agent Stylesheets）是一段由浏览器厂商编写的、内置在浏览器中的CSS代码。它的主要目的是为各种 HTML 元素提供一套基本可用、符合常识的视觉样式。类似于实用预设。
+    - 浏览器默认样式表（User-agent Stylesheets）是一段由浏览器厂商编写的、内置在浏览器中的 CSS 代码。它的主要目的是为各种 HTML 元素提供一套基本可用、符合常识的视觉样式。类似于实用预设。
     - 一个 `<div>` 标签之所以是块级元素，不是因为它的 CSS 初始值是 `block`，而是因为浏览器默认样式表强制把它设成了 `block`。
 - `revert-layer`：将属性值恢复到前一个层叠层（Cascade Layer）中定义的值。
 - `unset`：将属性重置为其自然值。`unset` 会判断属性是否默认可继承。
@@ -1091,7 +1150,7 @@ CSS 数值类型（Numeric）包含：
 - `<number>`：十进制数字，可以带也可以不带小数点。
 - `<dimension>`：尺寸，是 `<number>` 后面跟着单位。包含：
     - `<length>`：CSS 中所有 `<length>` 都是基于视觉感知（Perceptual Units）定义的，而不是物理长度，因此并不严格对应现实中的物理长度。
-        - 绝对长度单位（Absolute Length Units）
+        - 绝对长度单位（Absolute Length Units）。
             - `cm`：Centimeters。1cm = 37.8px = 25.2/64in。
             - `mm`：Millimeters。1mm = 1/10th of 1cm。
             - `Q`：Quarter—millimeters。1Q = 1/40th of 1cm。
@@ -1099,16 +1158,16 @@ CSS 数值类型（Numeric）包含：
             - `pc`：Picas。1pc = 1/6th of 1in = 16px。
             - `pt`：Points。1pt = 1/72nd of 1in = 4/3px。
             - `px`：Pixels。1px = 1/96th of 1in。
-        - 相对长度单位（Relative Length Units）
+        - 相对长度单位（Relative Length Units）。
             - `em`：相对于当前元素的 `font-size` 属性值。如果是对 `font-size` 属性本身应用 `em` 单位，那么相对的是父元素的 `font-size` 属性值。
             - `rem`：相对于根元素（大多数情况下是 `<html>` 元素）的 `font-size` 属性值。
             - `vh`：相对于视口（Viewport）的高度。
                 - 视口是指浏览器中用来呈现网页内容的可视区域。
                 - `10vh` 指的是视口高度的 10%。
             - `vw`：相对于视口的宽度。
-    - `<angle>`
-    - `<time>`
-    - `<resolution>`
+    - `<angle>`。
+    - `<time>`。
+    - `<resolution>`。
 - `<percentage>`：百分比。百分比值的参照对象并不统一，而是取决于具体属性和上下文。
     - 相对于父元素的同名属性。
         - `width`。
@@ -1119,7 +1178,7 @@ CSS 数值类型（Numeric）包含：
         - `margin`。
     - 相对于自身的某些属性。
         - `line-height`：相对于自身的 `font-size`。
-        - `transform: translateX(n%)`：相对于自身 `width` 属性的 n%。
+        - `transform: translateX(n%)`：相对于自身 `width` 属性的 `n%`。
         - `border-radius`：相对于自身的 `width` 和 `height` 来计算椭圆半径。
 
 相对父元素计算百分比时，如果父元素的 `box-sizing` 属性设置为 `border-box`，那么子元素在计算百分比时 `width` 首先要先减去
@@ -1175,21 +1234,21 @@ CSS 数值类型（Numeric）包含：
 `<position>` 表示在二维平面中某个点的位置，通常由水平和垂直两个分量组成。
 
 - 关键字：`center` 既可用于水分量也可用于垂直分量，如果只指定了一个轴的分量，那么另一个轴的值默认为 `center`。
-    - `top`
-    - `bottom`
-    - `left`
-    - `right`
-    - `center`
+    - `top`。
+    - `bottom`。
+    - `left`。
+    - `right`。
+    - `center`。
 - 百分比：百分比是相对于包含块的大小计算的。
     - 水平方向：相对于容器的宽度。
     - 垂直方向：相对于容器的高度。
     - `background-position: 50% 0%;` 代表背景图的**中心点**在容器的顶部中间。
 - 长度值：表示从容器的对应边缘偏移的距离。
-    - `background-position: 20px 10px;` 表示图片左上角距离容器左边 20px、上边 10px。
+    - `background-position: 20px 10px;` 表示图片左上角距离容器左边 `20px`、上边 `10px`。
 
 ### 字符串和标识符（Identifier）
 
-CSS 中使用关键字当作属性值时，这里的关键字可以被更精确的描述为标识符（），标识符是两侧是没有引号的。
+CSS 中使用关键字当作属性值时，这里的关键字可以被更精确的描述为标识符（字符串两侧有引号），标识符是两侧是没有引号的。
 
 ### 函数类型作为属性值
 
