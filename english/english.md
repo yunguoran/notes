@@ -84,6 +84,8 @@
 | algorithm | /ˈælɡərɪðəm/ |
 | align | /əˈlaɪn/ |
 | assess | /əˈses/ |
+| assign | /əˈsaɪn/ |
+| axis | /ˈæksɪs/ |
 | bind | /baɪnd/ |
 | bound | /baʊnd/ |
 | cease | /siːs/ |
@@ -92,10 +94,12 @@
 | conservation | /ˌkɑːnsərˈveɪʃ(ə)n/ |
 | conservative | /kənˈsɜːrvətɪv/ |
 | conserve | /kənˈsɜːrv/ |
+| convict | /kənˈvɪkt/ |
 | create | /kriˈeɪt/ |
 | curiosity | /ˌkjʊriˈɑːsəti/ |
 | curious | /ˈkjʊriəs/ |
 | debt | /det/ |
+| democratic | /ˌdeməˈkrætɪk/ |
 | descendant | /dɪˈsendənt/ |
 | despite | /dɪˈspaɪt/ |
 | economics | /ˌiːkəˈnɑːmɪks/ |
@@ -158,7 +162,7 @@
 | apply to | 适用于 |  |  |
 | around here | 在我们这儿 | 可以指物理区域：“Is there a good coffee shop around here?”，也可以指工作或社交环境：“That’s how we do things around here.”。 |  |
 | as a whole | 作为一个整体 |  | The CSS box model as a whole applies to block boxes and defines how the different parts of a box — margin, border, padding, and content — work together to create a box that you can see on a page. |
-| as with ... | 正如、与…一样、就…来说 |  | As with any shorthand property, any individual value that is not specified is set to its corresponding initial value |
+| as with ... | 正如、与…一样、就…来说 |  | As with any shorthand property, any individual value that is not specified is set to its corresponding initial value. |
 | at the speed of | 以…的速度 |  | AI video generation is advancing at the speed of light. |
 | at the time | 在当时 |  |  |
 | be abbreviated as | 被缩写成 | [əˈbriːvieɪtɪd] |  |

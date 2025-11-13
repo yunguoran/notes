@@ -25,19 +25,19 @@ p {
 ## 元素类型
 
 - Non-replaced elements：没有被外部资源替换的、HTML 自己的内容元素。
-    - `<span>`
-    - `<a>`
-    - `<strong>`
-    - `<em>`
-    - `<code>`
-    - `<div>`
-    - `<p>`
+    - `<span>`。
+    - `<a>`。
+    - `<strong>`。
+    - `<em>`。
+    - `<code>`。
+    - `<div>`。
+    - `<p>`。
 - Replaced elements：内容是由外部资源替换进来的，比如：图片或视频文件。
-    - `<img>`
-    - `<video>`
-    - `<iframe>`
-    - `<embed>`
-    - `<fencedframe>`
+    - `<img>`。
+    - `<video>`。
+    - `<iframe>`。
+    - `<embed>`。
+    - `<fencedframe>`。
 
 ## 将 CSS 应用于 HTML
 
@@ -422,22 +422,22 @@ text-decoration: <line> || <style> || <color> || <thickness>;
 上述代码中的 `||` 表示这些属性值可以以任意顺序出现在简写中。
 
 - `text-decoration-line`：指定哪种线（或多种线）要绘制，下面的这些值是可以组合的。
-    - `underline`
-    - `overline`
-    - `line-through`
-    - `none`
+    - `underline`。
+    - `overline`。
+    - `line-through`。
+    - `none`。
 - `text-decoration-style`：指定线的样式。
-    - `solid`
-    - `double`
-    - `dotted`
-    - `dashed`
-    - `wavy`
-- `text-decoration-color`
+    - `solid`。
+    - `double`。
+    - `dotted`。
+    - `dashed`。
+    - `wavy`。
+- `text-decoration-color`。
     - 任意颜色（`#hex`、`rgb()`、`currentColor` 等）。
     - 如果未显式设置，装饰线通常采用 `currentColor`（即：文本颜色）。
 - `text-decoration-thickness`：控制装饰线的粗细。
-    - `auto`
-    - `from-font`
+    - `auto`。
+    - `from-font`。
     - 长度或百分比。
 
 #### `text-shadow` 属性
@@ -1181,8 +1181,7 @@ CSS 数值类型（Numeric）包含：
         - `transform: translateX(n%)`：相对于自身 `width` 属性的 `n%`。
         - `border-radius`：相对于自身的 `width` 和 `height` 来计算椭圆半径。
 
-相对父元素计算百分比时，如果父元素的 `box-sizing` 属性设置为 `border-box`，那么子元素在计算百分比时 `width` 首先要先减去
-`padding` 和 `border` 的值再开始计算。
+相对父元素计算百分比时，如果父元素的 `box-sizing` 属性设置为 `border-box`，那么子元素在计算百分比时 `width` 首先要先减去 `padding` 和 `border` 的值再开始计算。
 
 ### 颜色的取值
 
@@ -1339,3 +1338,16 @@ div {
 - `vw`：`1vw` 等于 `1%` 的视口宽度。
 
 当元素的高度设置为 `100vh` 时，它的高度等于整个浏览器视口的高度，因此会占满一屏，把其他内容推到下面，只有滚动页面才能看到后面的内容，这在处理动态元素时非常有用。
+
+## 内容溢出（Overflow）
+
+当内容过多，无法装入盒子时，就会出现溢出。
+
+### `overflow` 属性
+
+接受一个或两个关键字作为属性值。单个关键字表示 x 轴和 y 轴共用此关键字，两个关键字时，第一个关键字指定 `overflow-x` 的值，第二个关键字指定 `overflow-y` 的值。
+
+- `visible`：默认值，内容不会被裁剪，会溢出到盒子外。
+- `hidden`：内容被裁剪，盒子外的内容会消失。
+- `scroll`：内容被裁剪，但无论是否需要，始终显示滚动条。
+- `auto`：内容被裁剪，仅在需要时显示滚动条。
