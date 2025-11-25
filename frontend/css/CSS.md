@@ -39,6 +39,23 @@ p {
     - `<embed>`。
     - `<fencedframe>`。
 
+CSS 无法影响 Replaced elements 的内部布局。浏览器在默认情况下，会使用图片或视频本身固有的尺寸来显示它们，从而保持其固有的宽高比。这意味着：
+
+- 如果只设置了图片的 `width`，而没有设置 `height`，浏览器会自动根据其宽高比计算出正确的 `height`，以防止图片变形。反之亦然。
+- 如果图片加载慢，且没有提前指定好尺寸，当图片加载完成后，它会撑开页面布局，导致页面内容突然跳动，这被称为**累积布局偏移**，是一种不好的用户体验。
+
+替换元素成为特定布局系统（例如网格或弹性盒）的一部分时，具有与非替换元素不同的默认行为，本质上是为了避免它们被布局奇怪地拉伸。
+
+### `object-fit` 属性
+
+`object-fit` 属性用来控制替换元素（Replaced Elements）在其容器中的缩放、裁剪和填充方式。**该属性只有在替换元素本身的大小被限定时才会生效。**
+
+- `fill`：拉伸内容以完全填充容器，不保持原始宽高比，内容可能会被扭曲变形。
+- `contain`：保持宽高比，缩放内容以完全放入容器，内容完整显示，但可能会有空白区域。
+- `cover`：保持宽高比，缩放内容以完全覆盖容器，内容可能被裁剪，但容器被完全填满。
+- `none`：保持原始尺寸，不进行缩放，按实际大小显示，可能超出容器或被裁剪。
+- `scale-down`：在 `none` 和 `contain` 中选择较小的尺寸，内容要么按原始大小显示，要么缩放到能完全放入容器。
+
 ## 将 CSS 应用于 HTML
 
 - 外部样式表。
@@ -910,14 +927,51 @@ background-position: 10px 20px, top right;
 
 ### 使用 `background` 简写属性（Using the Background Shorthand Property）
 
-多个 `background` 之间使用逗号分隔。使用此属性时需要遵守一定的规则：
+`background` 是以下属性的简写属性（初始值附在各个属性之后）：
 
-- `background-color` 属性值只能在最后一个逗号之后指定。
-- `background-size` 属性值必须紧跟在 `background-position` 之后且使用 `/` 分隔。
+- `background-image: none`。
+- `background-position: 0% 0%`。
+- `background-size: auto auto`。
+- `background-repeat: repeat`。
+- `background-attachment: scroll`。
+- `background-origin: padding-box`。
+- `background-clip: border-box`。
+- `background-color: transparent`。
 
-先定义的 `background` 会覆盖在后定义的 `background` 上层。
+#### 单个图层
 
-### 关于 background 的无障碍注意事项（Accessibility Considerations with Backgrounds）
+- `background-position` 和 `background-size` 必须使用斜杠 `/` 分隔，且必须紧邻出现。例如：`center / 40px`。
+- `background-color` 存在的话必须写在最后。
+- 其他属性之间顺序任意。
+- 常见结构为：`[image] [position] / [size] [repeat] [attachment] [origin clip] [color]`。
+
+```css
+.content {
+  background:
+    url("https://mdn.github.io/shared-assets/images/examples/big-star.png") top 5px right 15px / 40px no-repeat #eeeeff;
+}
+```
+
+#### 多图层
+
+- 多个图层之间使用逗号 `,` 分隔。
+- `background-position` 和 `background-size` 必须使用斜杠 `/` 分隔，且必须紧邻出现。例如：`center / 40px`。
+- `background-color` 属性值只能在最后一个逗号之后指定，但 `background-color` 不属于某一层，而是整个元素的背景底色。
+- 先定义的图层会覆盖在后定义的图层上面。
+
+```css
+.box {
+  width: 500px;
+  height: 300px;
+  padding: 0.5em;
+  background:
+    linear-gradient(105deg, rgb(255 255 255 / 20%) 39%, rgb(51 56 57 / 100%) 96%) center center / 400px 200px no-repeat,
+    url("https://mdn.github.io/shared-assets/images/examples/big-star.png") center no-repeat,
+    rebeccapurple;
+}
+```
+
+### 关于 `background` 的无障碍注意事项（Accessibility Considerations with Backgrounds）
 
 - 当在背景图片或者颜色上层放置文字时，应注意文字的对比度，以使访问者能够清晰地阅读文本。
 - 屏幕阅读器无法解析背景图像。因此，任何重要的内容都应该是 HTML 页面的一部分，而不是包含在背景中。
@@ -1137,6 +1191,18 @@ CSS 提供了五个特殊的通用属性值来控制继承，每个 CSS 属性�
 - `unset`：将属性重置为其自然值。`unset` 会判断属性是否默认可继承。
     - 对于可继承属性（如：`color`），`unset` = `inherit`。
     - 对于不可继承属性（如：`margin`），`unset` = `initial`。
+
+在某些浏览器中，表单元素默认不继承字体样式。 因此，如果想确保表单字段使用正文或父元素上定义的字体，则应将下面的规则添加到 CSS 中。
+
+```css
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+}
+```
 
 #### [`all`](https://developer.mozilla.org/en-US/docs/Web/CSS/all) 属性
 
