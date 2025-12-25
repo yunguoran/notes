@@ -48,13 +48,66 @@ CSS 无法影响 Replaced elements 的内部布局。浏览器在默认情况下
 
 ### `object-fit` 属性
 
-`object-fit` 属性用来控制替换元素（Replaced Elements）在其容器中的缩放、裁剪和填充方式。**该属性只有在替换元素本身的大小被限定时才会生效。**
+`object-fit` 属性用来控制替换元素的内容在其元素 box 中的缩放、裁剪和填充方式。
 
 - `fill`：拉伸内容以完全填充容器，不保持原始宽高比，内容可能会被扭曲变形。
-- `contain`：保持宽高比，缩放内容以完全放入容器，内容完整显示，但可能会有空白区域。
+- `contain`：保持宽高比，缩放内容以完全放入容器，内容完整显示，但容器可能会有空白区域。
 - `cover`：保持宽高比，缩放内容以完全覆盖容器，内容可能被裁剪，但容器被完全填满。
 - `none`：保持原始尺寸，不进行缩放，按实际大小显示，可能超出容器或被裁剪。
 - `scale-down`：在 `none` 和 `contain` 中选择较小的尺寸，内容要么按原始大小显示，要么缩放到能完全放入容器。
+
+注意：
+
+- 该属性不影响 box 的大小，只影响内容在容器内的显示方式。
+- **该属性只有在替换元素本身的大小被限定时才会生效。**
+
+### 布局中替换的元素
+
+在网格布局中，默认情况下元素会拉伸以填充其整个网格区域。但 `<img>` 元素不会拉伸，它们与网格区域的起点对齐。
+
+```html
+<div class="wrapper">
+  <img
+    alt="star"
+    src="https://mdn.github.io/shared-assets/images/examples/big-star.png" />
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+```
+
+```css
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100px 100px;
+  gap: 20px;
+}
+
+.wrapper > div {
+  background-color: rebeccapurple;
+  border-radius: 0.5em;
+}
+```
+
+### 规范化表单行为
+
+```css
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+textarea {
+  overflow: auto;
+}
+```
 
 ## 将 CSS 应用于 HTML
 
@@ -1191,18 +1244,6 @@ CSS 提供了五个特殊的通用属性值来控制继承，每个 CSS 属性�
 - `unset`：将属性重置为其自然值。`unset` 会判断属性是否默认可继承。
     - 对于可继承属性（如：`color`），`unset` = `inherit`。
     - 对于不可继承属性（如：`margin`），`unset` = `initial`。
-
-在某些浏览器中，表单元素默认不继承字体样式。 因此，如果想确保表单字段使用正文或父元素上定义的字体，则应将下面的规则添加到 CSS 中。
-
-```css
-button,
-input,
-select,
-textarea {
-  font-family: inherit;
-  font-size: 100%;
-}
-```
 
 #### [`all`](https://developer.mozilla.org/en-US/docs/Web/CSS/all) 属性
 

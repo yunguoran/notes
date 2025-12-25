@@ -88,6 +88,7 @@
 | axis | /ˈæksɪs/ |
 | bind | /baɪnd/ |
 | bound | /baʊnd/ |
+| bounty | /ˈbaʊnti/ |
 | cease | /siːs/ |
 | ceasefire | /ˈsiːsfaɪər/ |
 | cellist | /ˈtʃelɪst/ |
@@ -102,6 +103,7 @@
 | democratic | /ˌdeməˈkrætɪk/ |
 | descendant | /dɪˈsendənt/ |
 | despite | /dɪˈspaɪt/ |
+| distort | /dɪˈstɔːrt/ |
 | economics | /ˌiːkəˈnɑːmɪks/ |
 | economist | /ɪˈkɑːnəmɪst/ |
 | economy | /ɪˈkɑːnəmi/ |
@@ -168,6 +170,7 @@
 | be abbreviated as | 被缩写成 | [əˈbriːvieɪtɪd] |  |
 | be endowed with | 具有某种特定的品质或特征 | 指某人或某物天生或被赋予了某种特定的品质或特征。 | Sri Lanka's tea country is endowed with cascading waterfalls, rising mountain tops, natural beauty and diverse flora and fauna. |
 | be indebted to | 感激、感恩 | [ɪnˈdetɪd] | I am also indebted to the community at the Game Development site on Stack Exchange. |
+| be intended for | 被设计给/被用来给/是为了…而准备的 | 表示某物的预期用途、目标用户或目的。 | MySQL Server is intended for mission-critical, heavy-load production systems as well as for embedding into mass-deployed software. |
 | be meant to | 注定要 | 表示某事是命中注定或计划好的，通常用于描述某人或某事的目的或预期结果。 |  |
 | be named after | 以…命名 |  |  |
 | be saddled with | 受…所拖累、被迫负担、承担 |  | Most other game development tools that have a central visual editor are also saddled with limited and inflexible scripting support, but Unity doesn’t suffer from that disadvantage. |
@@ -233,6 +236,7 @@
 | under the hood | 在表面之下 | 指在某物的内部工作过程中。 | How does it work under the hood? |
 | water down | 稀释 |  | As for other aspects of game development, extensive coverage of art disciplines would water down how much the book can cover and would be largely about software external to Unity (for example, the animation software used). |
 | with ... for scale | 用…当作比例参考 | 用于直观体现物体的大小、壮观、规模感。 | Starship with humans for scale. |
+| work toward | 朝着某个方向努力、逐步实现 | 强调这是一个进行中的、有意识的目标，而不是已经完成的状态。 | One of our main goals with the product is to continue to work toward compliance with the SQL standard, but without sacrificing speed or reliability. |
 
 ## Sentence
 
@@ -276,3 +280,8 @@
     - Thank you for the update.
 - 你有 WPS 会员吗？
     - Do you have a WPS subscription?
+- 我想打包带走。
+    - To go, please.
+    - I’ll take these to go.
+    - Can I get these to go, please?
+    - I’d like these to go.
