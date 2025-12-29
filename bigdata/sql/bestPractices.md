@@ -1,6 +1,6 @@
-# Bast Practices
+# 最佳实践
 
-## Column to Row
+## 列转行
 
 | week | utmSourceType | payerNum | orderNum |
 | ------ | ------ | ------ | ------ |
@@ -108,4 +108,171 @@ print(dictTest)
 
 for k,v in dictTest.items():
     print(f'StartDate is {k} and corresponding endDate is {v}.')
+```
+
+## 低版本 Hive 生成日期序列
+
+```sql
+SELECT date_add('2026-01-01', pos) AS `date`
+FROM (
+    SELECT posexplode(split(space(datediff('2026-12-31', '2026-01-01')), ' ')) AS (pos, val)
+) AS t;
+```
+
+## 日期维表生成 SQL
+
+```sql
+SELECT
+    `date`,
+    date_id,
+    date_name,
+    CASE
+        WHEN `date` = '2026-12-30' THEN '2026W53'
+        WHEN `date` = '2026-12-31' THEN '2026W53'
+        ELSE concat('2026W', week_id)
+    END AS week_id,
+    ten_id,
+    month_id,
+    season_id,
+    half_id,
+    year_id,
+    week_day,
+    row_number() OVER (PARTITION BY ten_id ORDER BY `date`) AS ten_day,
+    month_day,
+    season_day,
+    half_day,
+    year_day,
+    week,
+    cast(substr(ten_id, 6, 8) AS INT) AS ten,
+    month,
+    season,
+    half_year,
+    CASE
+        WHEN week_day IN (1, 2, 3, 4, 5) AND `date` NOT IN (
+            '2026-01-01', '2026-01-02', -- 元旦
+            '2026-02-16', '2026-02-17', '2026-02-18', '2026-02-19', '2026-02-20', '2026-02-23', -- 春节
+            '2026-04-06', -- 清明节
+            '2026-05-01', '2026-05-04', '2026-05-05', -- 劳动节
+            '2026-06-19', -- 端午节
+            '2026-09-25', -- 中秋节
+            '2026-10-01', '2026-10-02', '2026-10-05', '2026-10-06', '2026-10-07' -- 国庆节
+            ) THEN '是'
+        WHEN is_exchange = '是' THEN '是'
+        ELSE '否'
+    END AS is_workday,
+    is_national,
+    is_labour,
+    is_spring,
+    is_exchange
+FROM (
+    SELECT
+        row_number() OVER (ORDER BY `date`) AS num,
+        `date`,
+        date_format(`date`, 'yyyyMMdd') AS date_id,
+        concat(year(`date`), '年', date_format(`date`, 'MM'), '月', date_format(`date`, 'dd'), '日') AS date_name,
+        CASE
+            WHEN weekofyear(`date`) < 10 THEN concat('0', weekofyear(`date`))
+            ELSE string(weekofyear(`date`))
+        END AS week_id,
+        CASE
+            WHEN `date` BETWEEN '2026-01-01' AND '2026-01-10' THEN '2026T01'
+            WHEN `date` BETWEEN '2026-01-11' AND '2026-01-20' THEN '2026T02'
+            WHEN `date` BETWEEN '2026-01-21' AND '2026-01-31' THEN '2026T03'
+            WHEN `date` BETWEEN '2026-02-01' AND '2026-02-10' THEN '2026T04'
+            WHEN `date` BETWEEN '2026-02-11' AND '2026-02-20' THEN '2026T05'
+            WHEN `date` BETWEEN '2026-02-21' AND '2026-02-28' THEN '2026T06'
+            WHEN `date` BETWEEN '2026-03-01' AND '2026-03-10' THEN '2026T07'
+            WHEN `date` BETWEEN '2026-03-11' AND '2026-03-20' THEN '2026T08'
+            WHEN `date` BETWEEN '2026-03-21' AND '2026-03-31' THEN '2026T09'
+            WHEN `date` BETWEEN '2026-04-01' AND '2026-04-10' THEN '2026T10'
+            WHEN `date` BETWEEN '2026-04-11' AND '2026-04-20' THEN '2026T11'
+            WHEN `date` BETWEEN '2026-04-21' AND '2026-04-30' THEN '2026T12'
+            WHEN `date` BETWEEN '2026-05-01' AND '2026-05-10' THEN '2026T13'
+            WHEN `date` BETWEEN '2026-05-11' AND '2026-05-20' THEN '2026T14'
+            WHEN `date` BETWEEN '2026-05-21' AND '2026-05-31' THEN '2026T15'
+            WHEN `date` BETWEEN '2026-06-01' AND '2026-06-10' THEN '2026T16'
+            WHEN `date` BETWEEN '2026-06-11' AND '2026-06-20' THEN '2026T17'
+            WHEN `date` BETWEEN '2026-06-21' AND '2026-06-30' THEN '2026T18'
+            WHEN `date` BETWEEN '2026-07-01' AND '2026-07-10' THEN '2026T19'
+            WHEN `date` BETWEEN '2026-07-11' AND '2026-07-20' THEN '2026T20'
+            WHEN `date` BETWEEN '2026-07-21' AND '2026-07-31' THEN '2026T21'
+            WHEN `date` BETWEEN '2026-08-01' AND '2026-08-10' THEN '2026T22'
+            WHEN `date` BETWEEN '2026-08-11' AND '2026-08-20' THEN '2026T23'
+            WHEN `date` BETWEEN '2026-08-21' AND '2026-08-31' THEN '2026T24'
+            WHEN `date` BETWEEN '2026-09-01' AND '2026-09-10' THEN '2026T25'
+            WHEN `date` BETWEEN '2026-09-11' AND '2026-09-20' THEN '2026T26'
+            WHEN `date` BETWEEN '2026-09-21' AND '2026-09-30' THEN '2026T27'
+            WHEN `date` BETWEEN '2026-10-01' AND '2026-10-10' THEN '2026T28'
+            WHEN `date` BETWEEN '2026-10-11' AND '2026-10-20' THEN '2026T29'
+            WHEN `date` BETWEEN '2026-10-21' AND '2026-10-31' THEN '2026T30'
+            WHEN `date` BETWEEN '2026-11-01' AND '2026-11-10' THEN '2026T31'
+            WHEN `date` BETWEEN '2026-11-11' AND '2026-11-20' THEN '2026T32'
+            WHEN `date` BETWEEN '2026-11-21' AND '2026-11-30' THEN '2026T33'
+            WHEN `date` BETWEEN '2026-12-01' AND '2026-12-10' THEN '2026T34'
+            WHEN `date` BETWEEN '2026-12-11' AND '2026-12-20' THEN '2026T35'
+            WHEN `date` BETWEEN '2026-12-21' AND '2026-12-31' THEN '2026T36'
+        END AS ten_id,
+        date_format(`date`, 'yyyyMM') AS month_id,
+        CASE
+            WHEN `date` BETWEEN '2026-01-01' AND '2026-03-31' THEN '2026Q1'
+            WHEN `date` BETWEEN '2026-04-01' AND '2026-06-30' THEN '2026Q2'
+            WHEN `date` BETWEEN '2026-07-01' AND '2026-09-30' THEN '2026Q3'
+            WHEN `date` BETWEEN '2026-10-01' AND '2026-12-31' THEN '2026Q4'
+        END AS season_id,
+        CASE
+            WHEN `date` BETWEEN '2026-01-01' AND '2026-06-30' THEN '2026H1'
+            WHEN `date` BETWEEN '2026-07-01' AND '2026-12-31' THEN '2026H2'
+        END AS half_id,
+        year(`date`) AS year_id,
+        dayOfWeek(date_add(`date`, -1)) AS week_day,
+        dayOfMonth(`date`) AS month_day,
+        CASE
+            WHEN `date` BETWEEN '2026-01-01' AND '2026-03-31' THEN datediff(`date`, '2026-01-01') + 1
+            WHEN `date` BETWEEN '2026-04-01' AND '2026-06-30' THEN datediff(`date`, '2026-04-01') + 1
+            WHEN `date` BETWEEN '2026-07-01' AND '2026-09-30' THEN datediff(`date`, '2026-07-01') + 1
+            WHEN `date` BETWEEN '2026-10-01' AND '2026-12-31' THEN datediff(`date`, '2026-10-01') + 1
+        END AS season_day,
+        CASE
+            WHEN `date` BETWEEN '2026-01-01' AND '2026-06-30' THEN datediff(`date`, '2026-01-01') + 1
+            WHEN `date` BETWEEN '2026-07-01' AND '2026-12-31' THEN datediff(`date`, '2026-07-01') + 1
+        END AS half_day,
+        row_number() OVER (ORDER BY `date`) AS year_day,
+        CASE
+            WHEN `date` = '2026-12-30' THEN '53'
+            WHEN `date` = '2026-12-31' THEN '53'
+            ELSE weekofyear(`date`)
+        END AS week,
+        month(`date`) AS month,
+        CASE
+            WHEN `date` BETWEEN '2026-01-01' AND '2026-03-31' THEN 1
+            WHEN `date` BETWEEN '2026-04-01' AND '2026-06-30' THEN 2
+            WHEN `date` BETWEEN '2026-07-01' AND '2026-09-30' THEN 3
+            WHEN `date` BETWEEN '2026-10-01' AND '2026-12-31' THEN 4
+        END AS season,
+        CASE
+            WHEN `date` BETWEEN '2026-01-01' AND '2026-06-30' THEN 1
+            WHEN `date` BETWEEN '2026-07-01' AND '2026-12-31' THEN 2
+        END AS half_year,
+        if(`date` BETWEEN '2026-10-01' AND '2026-10-07', '是', '否') AS is_national,
+        if(`date` BETWEEN '2026-05-01' AND '2026-05-05', '是', '否') AS is_labour,
+        if(`date` BETWEEN '2026-02-15' AND '2026-02-23', '是', '否') AS is_spring,
+        CASE
+            WHEN `date` IN (
+                '2026-01-04', -- 元旦调休
+                '2026-02-14', '2026-02-28', -- 春节调休
+                -- '2026-04-07', -- 清明节调休
+                '2026-05-09', -- 劳动节调休
+                -- '2026-09-14', -- 中秋节调休
+                '2026-09-20', '2026-10-10' -- 国庆节调休
+            ) THEN '是'
+            ELSE '否'
+        END AS is_exchange
+    FROM (
+        SELECT date_add('2026-01-01', pos) AS `date`
+        FROM (
+            SELECT posexplode(split(space(datediff('2026-12-31', '2026-01-01')), ' ')) AS (pos, val)
+        ) AS t
+    ) AS t
+) AS t
+ORDER BY `date`;
 ```
