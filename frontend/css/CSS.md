@@ -1053,6 +1053,53 @@ background-position: 10px 20px, top right;
     - 如果图片加载失败，会回退到 `list-style-type`。
     - 通常配合 `list-style-type: none` 去除默认样式。
 
+## 表格（Tables）
+
+```css
+table {
+  table-layout: fixed;
+  width: 90%;
+  margin: 10px auto;
+  border-collapse: collapse;
+}
+```
+
+### `table-layout` 属性
+
+`table-layout` 属性是 CSS 中用于控制表格列宽计算方式的属性，它直接影响表格的渲染性能、列宽稳定性和布局行为。
+
+- `auto`：默认值，浏览器根据单元格内容自动计算列宽。
+    - 表格需要等内容加载完成后再确定宽度。
+    - 列宽会随内容变化。
+    - 对于大表格来讲性能较差。
+- `fixed`：列宽在渲染初期就确定，不会根据单元格内容重新计算。
+    - 计算规则优先级为：`<col>` / `<colgroup>` 上的 `width` > 第一行单元格（`th` / `td`）的 `width` > 表格剩余宽度平均分配。
+    - 渲染速度快。
+    - 列宽稳定。
+    - 内容过长不会撑开表格。
+
+### `border-collapse` 属性
+
+`border-collapse` 属性是专门用于 HTML 表格的 CSS 属性，用来决定有边框的情况下表格边框是合并成一条，还是每个单元格各自独立。
+
+- `separate`：默认值，单元格之间会出现空隙，相邻边框是两条线。
+- `collapse`：相邻单元格的边框合并为一条，表格线条更紧凑、清晰。
+
+### `vertical-align` 属性
+
+`vertical-align` 是 CSS 中用来控制行内级元素或表格单元格在垂直方向上的对齐方式的属性，**它不用于块级元素的垂直居中**。
+
+- `bottom`：默认值，内容贴下边框。
+- `top`：内容贴上边框。
+- `middle`：垂直居中。
+
+### `caption-side` 属性
+
+`caption-side` 是专门用于表格标题 `<caption>` 的 CSS 属性，用来控制表格标题显示在表格的上方还是下方。
+
+- `top`：默认值。
+- `bottom`。
+
 ## `@rules`
 
 `@rules` 是 CSS 的元规则，控制 CSS 的适用范围和扩展能力。常见用途如下：
