@@ -982,7 +982,7 @@ QuickTime 插件播放 MOV 视频文件。
 </object>
 ```
 
-## iFrame
+## `<iframe>` 标签
 
 `<iframe>` 标签用于在网页里面嵌入其他网页。
 
@@ -996,8 +996,6 @@ QuickTime 插件播放 MOV 视频文件。
   <p><a href="https://www.baidu.com">点击打开嵌入页面</a></p>
 </iframe>
 ```
-
-上述代码由于同源策略限制
 
 `<iframe>` 的属性如下：
 
@@ -1037,7 +1035,7 @@ QuickTime 插件播放 MOV 视频文件。
 
 `<iframe>` 指定的网页会立即加载，有时这不是希望的行为。`<iframe>` 滚动进入视口以后再加载，这样会比较节省带宽。
 
-loading属性可以触发 `<iframe>` 网页的懒加载。该属性可以取以下三个值。
+`loading` 属性可以触发 `<iframe>` 网页的懒加载。该属性可以取以下三个值：
 
 - `auto`：浏览器的默认行为，与不使用 `loading` 属性效果相同。
 - `lazy`：`<iframe>` 的懒加载，即将滚动进入视口时开始加载。
@@ -1048,6 +1046,22 @@ loading属性可以触发 `<iframe>` 网页的懒加载。该属性可以取以�
 - `<iframe>` 的宽度和高度为4像素或更小。
 - 样式设为 `display: none` 或 `visibility: hidden`。
 - 使用定位坐标为负X或负Y，将 `<iframe>` 放置在屏幕外。
+
+### `<fencedframe>` 标签
+
+`<fencedframe>` 是 一种正在标准化中的 HTML 新标签，主要用于在网页中安全地嵌入第三方内容，目标是成为 `<iframe>` 的更安全替代方案（尤其用于广告、跨站内容等场景）。
+
+`<fencedframe>` 用来嵌入一个被强隔离的子页面，子页面与父页面之间的信息通道被严格限制，设计目标是：
+
+- 防止用户被跨站追踪。
+- 防止嵌入内容泄露或获取父页面信息。
+- 支持隐私保护相关的 Web API（如 Privacy Sandbox）。
+
+`<fencedframe>` 有以下属性：
+
+- `src`：指定被嵌入页面的地址，是一个必需属性。父页面无法读取或修改这个 URL，子页面也无法知道自己的嵌入来源。
+- `width` / `height`：设置 fenced frame 的尺寸。但子页面无法通过 JavaScript 获取自己的尺寸，防止利用尺寸进行指纹识别。
+- `loading`：控制是否延迟加载。可选值有 `lazy` 和 `eager` 两个。`eager` 是默认值。
 
 ## 表格标签
 
