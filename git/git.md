@@ -51,7 +51,18 @@ git log --stat
 git remote set-url origin https://github.com/yunguoran/notes.git
 ```
 
-### git stash show
+### `git mv`
+
+`git mv` 命令的作用是：在 Git 的版本控制下移动或重命名文件或目录，并让 Git 正确地记录这次变更历史。主要有两个作用：
+
+- 告诉 Git 这是同一个文件的位置或名字变了，而不是删除又新建了一个文件。
+- Git 对文件名大小写不敏感，此时如果想重命名文件就只能使用 `git mv` 命令，使用 Windows 系统自带的重命名功能 Git 是无法感知的。
+
+```shell
+git mv CSS.md css.md
+```
+
+### `git stash show`
 
 ```shell
 # 看概要（文件级别统计）
@@ -79,7 +90,7 @@ git reset --mixed HEAD^
 git reset --hard HEAD^
 ```
 
-### 撤销已 push 的 commit
+### 撤销已 `push` 的 commit
 
 ```shell
 # 本地执行再 push
@@ -88,9 +99,9 @@ git revert --no-edit <commitID>
 
 ### [合并 commit](https://www.baeldung.com/ops/git-squash-commits)
 
-Squashing commits helps keep our Git history clean and easy to understand.
+合并提交可以使 Git 历史保持干净并且容易理解。
 
-#### 使用 git reset
+#### 使用 `git reset`
 
 该种方式适用开发者在个人分支上使用。
 
@@ -101,7 +112,7 @@ git commit -m "commit message"
 git push -f
 ```
 
-#### 使用 git rebase -i
+#### 使用 `git rebase -i`
 
 该种方式适用开发者在个人分支上使用，且控制的颗粒度比 `git reset` 更加精细。
 
@@ -111,9 +122,9 @@ git rebase -i c497509
 git push -f
 ```
 
-#### 使用 git merge --squash
+#### 使用 `git merge --squash`
 
-该种方式会 squash 整个分支的提交历史，而不是只 squash 最近几个提交。
+该种方式会 `squash` 整个分支的提交历史，而不是只 `squash` 最近几个提交。
 
 ```shell
 git checkout main
