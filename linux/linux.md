@@ -11,25 +11,25 @@
 - [Systemd 入门教程：命令篇](https://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
 - [SSH 教程](https://wangdoc.com/ssh/)
 
-## Basic
+## 基础
 
 - 单引号中的任何内容都会被字面意义地保留。
 - 双引号中的内容会进行变量替换，并会解释某些特殊字符（如：换行符、制表符等）。
-- `echo "${var:-default}"`：如果 var 未定义或者为空值，则使用默认值 default。
+- `echo "${var:-default}"`：如果 `var` 未定义或者为空值，则使用默认值 `default`。
 - `$()` 可以执行一个命令并捕获其输出。
-- `kinit`
-- `java -xvf test.jar`
+- `kinit`。
+- `java -xvf test.jar`。
 - 清空文件：`> test.sh`。
 - 拼接变量名和变量值：`echo 'MONTH:' "${MONTH}"`。
 - `!!` 会执行上一条命令。
 
-## Summaries
+## 本地化环境变量
 
-[Locale Environment Variables](https://www.baeldung.com/linux/locale-environment-variables)
+[Locale Environment Variables](https://www.baeldung.com/linux/locale-environment-variables).
 
-## Command
+## 常用命令
 
-### dirs & pushd & popd
+### `dirs`、`pushd` 和 `popd`
 
 While the `pushd` command adds a directory on top of the stack, on the other hand, the `popd` command removes an item from the top.
 
@@ -50,7 +50,7 @@ pushd -n <directory>
 popd
 ```
 
-### su
+### `su`
 
 用以切换用户。
 
@@ -65,7 +65,7 @@ su user
 su - user
 ```
 
-### sudo
+### `sudo`
 
 用以临时执行。
 
@@ -133,7 +133,7 @@ zip -jr archive.zip dir/
 
 综上所述 `zip -Dj` 选项中的 `D` 选项完全没用，因为 `j` 选项就把所有目录剔除掉了。
 
-### [openssl](https://www.geeksforgeeks.org/linux-unix/practical-uses-of-openssl-command-in-linux/)
+### [`openssl`](https://www.geeksforgeeks.org/linux-unix/practical-uses-of-openssl-command-in-linux/)
 
 查看版本。
 
@@ -162,7 +162,7 @@ export PASSWORD=password
 openssl enc -aes-256-cbc -d -salt -in <inputfile> -out <outputfile> -pass env:PASSWORD
 ```
 
-### [dc](https://www.geeksforgeeks.org/linux-unix/dc-command-in-linux-with-examples/)
+### [`dc`](https://www.geeksforgeeks.org/linux-unix/dc-command-in-linux-with-examples/)
 
 `dc` 的主要功能是来计算**逆波兰式**。
 
@@ -188,7 +188,7 @@ dc -e '65 p'
 # 65 (有换行)
 ```
 
-### date
+### `date`
 
 [Date format](https://www.man7.org/linux/man-pages/man1/date.1.html).
 
@@ -269,4 +269,52 @@ date -d '20250902' '+%F'
 # 2025-09-02
 date -d '20250902' '+%Y 年 %m 月 %d 日'
 # 2025 年 09 月 02 日
+```
+
+### `du` 和 `df`
+
+`du`（Disk Usage）：统计文件或目录实际占用的磁盘空间，统计时是逐个文件累加统计的。
+
+- **稀疏文件**是一种特殊类型的文件，它只存储实际包含数据的部分，而不分配存储空间给全零的空洞部分，操作系统会记录文件中哪些部分是空洞，并在读取时动态返回零值。
+- `du` 看的是已分配的块。对于稀疏文件来说 `du` 和 `ls` 统计出来的磁盘空间会差很多。
+- 文件被进程占用时，此时删除文件但空间没释放。那么 `du` 看不到，`df` 会看到。
+
+```shell
+# 不加选项会遍历 testDir 目录，列出来其中每一个目录以及其子目录所占用磁盘的大小，单位是 KB。
+du testDir
+# -h（human-readable）：以人类可读方式显示。
+du -h testDir
+# -s（summary）：只显示总大小，不变遍历子目录。
+du -sh testDir
+# -a：显示所有文件（不只是目录）。
+du -ah testDir
+# --max-depth=N：限制遍历目录层级深度。
+du -h --max-depth=1 testDir
+# 显示总计。
+du -h --max-depth=1 testDir -c
+```
+
+`df`（Disk Free）：看磁盘或文件系统的整体空间。统计已用、可用和总容量等，适合用来判断磁盘是否满了。
+
+- Inode（Index Node）是 Unix/Linux 文件系统中用于描述文件和目录的元数据的数据结构。它存储了文件的所有属性信息，但不包含文件名和文件内容本身。
+- `df` 统计的是整个文件系统，包含已删除但仍被进程占用的文件和文件系统保留空间（如 ext4 为 root 保留 5%）。
+
+```shell
+# -h（human-readable）：以人类可读方式显示。
+df -h
+# -T：显示文件系统类型。
+df -Th
+# -i：查看 inode 使用情况。
+df -ih
+# 指定路径：查看某路径所在的文件系统。
+df -h testDir
+```
+
+常见使用方式如下：
+
+```shell
+# 统计当前目录下所有目录的占用空间大小，并以人类可读的方式从大到小排列（不包含隐藏文件）。
+du -sh * | sort -rh
+# 统计 .snapshot 目录以及其子目录占用空间大小，并以人类可读的方式从大到小排列。
+du -h --max-depth=1 .snapshot | sort -rh
 ```
