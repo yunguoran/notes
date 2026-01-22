@@ -269,6 +269,47 @@ a:focus {
 - `:focus-visible`：是 `:focus` 的增强版，使用键盘 Tab 导航获得焦点时匹配。用于改善无障碍体验。
 - `:focus-within`：匹配自身或其任何子元素获得焦点的元素，常用于为整个容器提供聚焦状态样式。
 
+#### `:where()` 和 `:is()`
+
+`:is()` 和 `:where()` 的核心功能非常相似，它们都能将多个选择器组合成一个选择器群组，从而简化重复的代码。它们之间唯一的、也是最重要的区别在于特异性。
+
+- `:is()`：其特异性由括号内特异性最高的选择器决定。
+- `:where()`：其特异性始终为 `0`，无论括号里写了什么。
+
+```html
+<section id="main-content">
+  <p class="text">这段文字是什么颜色？</p>
+</section>
+```
+
+```css
+/* 特异性：(1, 0, 0) + (0, 0, 1) = (1, 0, 1) */
+:is(#main-content, .sidebar) p {
+  color: blue;
+}
+
+/* 特异性：(0, 1, 0) */
+.text {
+  color: red;
+}
+```
+
+结果：文字是蓝色。 原因：`:is()` 里的 `#main-content` 是 ID 选择器，特异性远高于 `.text`。即使 `.text` 写在后面，也无法覆盖  `:is()` 的样式。
+
+```css
+/* 特异性：(0, 0, 0) + (0, 0, 1) = (0, 0, 1) */
+:where(#main-content, .sidebar) p {
+  color: blue;
+}
+
+/* 特异性：(0, 1, 0) */
+.text {
+  color: red;
+}
+```
+
+结果：文字是红色。 原因：尽管 `#main-content` 是 ID 选择器，但因为它在 `:where()` 中，整个组合的特异性变成了 `0`。后面的 `.text` 类选择器特异性更高，成功覆盖了它。
+
 ### [伪元素选择器](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)
 
 伪元素（Pseudo-elements）是一种特殊的选择器，用来选中元素中不存在的“虚拟部分”，然后对这些部分进行样式设置。它以双冒号（`::`）开头。
