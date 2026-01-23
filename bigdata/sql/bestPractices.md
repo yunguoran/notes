@@ -276,3 +276,48 @@ FROM (
 ) AS t
 ORDER BY `date`;
 ```
+
+## UTF-8 编码下四字节的 Unicode 字符
+
+Unicode 的字符空间被划分为 17 个平面，每个平面包含 $2^{16}$ (65,536) 个码点（Code Points）。
+
+- 基本多语言平面 (BMP - Basic Multilingual Plane)。
+    - 这是第 0 号平面（Plane 0），码点范围从 `U+0000` 到 `U+FFFF`。
+    - 涵盖了世界上绝大多数现代文字（汉字、英文、藏文等）以及最常用的标点符号。
+    - 在 UTF-8 编码下通常占用 **1 到 3 个字节**。
+- 增补平面 (Supplementary Planes)：这是第 1 到 16 号平面，码点范围从 `U+10000` 到 `U+10FFFF`。
+    - 第 1 平面包含绝大多数现代 Emoji 表情（如🥰，码点为 `U+1F970`）。
+    - 在 UTF-8 中必须使用 **4 个字节**。
+    - 许多旧的正则引擎将这些字符视为两个代理对（Surrogate Pairs），如果只搜索单字符属性（如 `\p{So}`），引擎可能只会识别到代理对的一部分从而匹配失败。
+
+Hive 元数据库 (Metastore) 的编码限制。
+
+- Hive 的元数据（表名、分区名、字段备注等）存储在外部关系型数据库中（通常是 MySQL），
+- 很多 MySQL 默认设置的 `utf8` 字符集实际上只支持最多 3 字节的字符。
+- 当含有 🥰 的数据进入分区字段或触发某些元数据操作时，由于 MySQL 无法存储 4 字节字符，会导致数据库报错（如 `Incorrect string value`），从而让整个 Hive 任务失败。
+
+```sql
+-- 匹配 Unicode 基本多语言平面内的字符。
+SELECT *
+FROM your_table
+WHERE your_column RLIKE '[\x{0000}-\x{FFFF}]';
+
+-- 匹配 Unicode 增补平面内的字符。
+SELECT *
+FROM your_table
+WHERE your_column RLIKE '[\\x{10000}-\\x{10FFFF}]';
+
+-- 提取第一个 Unicode 增补平面内的字符。
+SELECT regexp_extract(your_column, '([\\x{10000}-\\x{10FFFF}])', 1)
+FROM your_table
+WHERE your_column RLIKE '[\\x{10000}-\\x{10FFFF}]';
+
+-- 提取全部Unicode 增补平面内的字符。
+SELECT regexp_extract_all(your_column, '([\\x{10000}-\\x{10FFFF}])', 1)
+FROM your_table
+WHERE your_column RLIKE '[\\x{10000}-\\x{10FFFF}]';
+
+-- 去掉 Unicode 增补平面内的字符。
+SELECT regexp_replace(your_column, '[\\x{10000}-\\x{10FFFF}]', '') AS cleaned_column
+FROM your_table;
+```
