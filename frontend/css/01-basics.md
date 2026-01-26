@@ -10,9 +10,10 @@ p {
 }
 ```
 
-上述代码的整个结构被称为规则集（Ruleset）。
+上述代码的整个结构被称为规则或规则集（Ruleset）。
 
 - `p` 被称为选择器（Selector）。
+- 用 `{}`（Curly Brace）包裹起来的内容是声明块（Declaration Block）。
 - 大括号中以 `;`（Semicolon）分隔的每一行称为一个声明（Declaration）。
 - 第一个声明中的 `color` 被称为属性（Property）。
 - 第一个声明中的 `red` 被称为属性值（Property Value）。
@@ -1287,7 +1288,41 @@ body {
     @import url('components.css') layer(components);
     ```
 
-- `!important` 优先级高于 `@layer` 层顺序。
+- 在 `!important` 下，优先级顺序完全反转。未分层 important < 后创建的 layer important < 先创建的 layer important。
+
+### `@scope`
+
+`@scope` 的核心作用是将 CSS 样式的生效范围限制在 DOM 树的特定部分。它的主要功能有以下三点：
+
+- 样式隔离。页面上其他地方的 `img` 或 `.title` 完全不受这段代码影响。
+
+    ```css
+    /* 只有在 .card 组件内部的 img 和 .title 才会受到影响。 */
+    @scope (.card) {
+      img {
+        border-radius: 50%;
+      }
+
+      .title {
+        font-weight: bold;
+      }
+    }
+    ```
+
+- 甜甜圈作用域（Donut Scoping）。允许定义样式的开始位置和结束位置。
+
+    ```css
+    /* 语法：@scope (开始节点) to (结束节点) */
+    @scope (.media-card) to (.content) {
+      p {
+        color: gray; /* 这个样式只会应用在 .media-card 和 .content 之间的区域 */
+      }
+    }
+    ```
+
+- 简化权重。
+    - 在使用 `@scope` 之前，为了覆盖样式，我们经常不得不写很长的选择器来增加权重。
+    - 使用 `@scope` 后，由于有作用域邻近度（Scoping Proximity）规则，只需要写简短的选择器，浏览器会自动优先采用离元素最近的 Scope 里定义的样式。
 
 ## 处理冲突（Handling Conflicts）
 
