@@ -236,3 +236,350 @@ h2 {
   -webkit-text-fill-color: transparent;
 }
 ```
+
+## 层叠（Cascade）
+
+### 特异性（Specificity）
+
+特异性是一种算法，浏览器用它来决定哪个属性值适用于某个元素。
+
+不同的选择器类型有不同的特异性：
+
+- 类型（元素）选择器和伪元素选择器具有相同的特异性，优先级较低。
+- 类选择器、属性选择器和伪类选择器具有相同的特异性，优先级中等。
+- ID 选择器优先级较高。
+
+注意：
+
+- 通用选择器、组合器选择器和特异性调整选择器（`:where()`）对特异性计算没有影响。
+- 每种选择器有自己的特异性级别，高特异性的选择器不能被低特异性的选择器所覆盖。即：一百万个类选择器加起来也无法覆盖一个 ID 选择器。
+- 内联样式没有任何的选择器，但具有比 ID 选择器更高的特异性，因此优先级比所有的选择器都要高。
+
+### `!important`
+
+`!important` 标志拥有最高的优先级（比内联样式还要高），它作用在单个声明上（即一个属性和属性值对上）。
+
+- **除非万不得已，否则请不要使用它**。因为 `!important` 改变了层叠的正常工作方式，这会导致在大型的样式表中调试起来非常困难。
+- 覆盖 `!important` 的唯一方法是在源代码顺序的较后位置包含另一个具有相同特殊性的 `!important`，或具有更高特殊性的 `!important`。
+
+### 层叠算法
+
+层叠算法是指浏览器在多个 CSS 规则同时作用到同一个元素、同一个属性时，如何一步步决定到底用哪一个值，其完整决策流程如下：
+
+- 相关性（Relevance）：先初步筛选哪些规则能用得上。
+    - 浏览器首先会寻找所有与该元素匹配的选择器声明块，如果一个属性在任何地方都没有被定义，则可能使用继承值或初始值。
+- 重要性（Importance）：浏览器将规则分为普通声明和重要声明。
+    - 带有 `!important` 标记的规则优先级高于不带该标记的规则。
+- 来源（Origin）：区分规则来自那个来源。三种来源如下：
+    - `user-agent stylesheets`：用户代理样式（浏览器默认样式）。
+    - `user stylesheets`：用户样式（如阅读模式）。
+    - `author stylesheets`：开发者写的 CSS。
+- 层叠层（Cascade Layers）：同一来源内，按 `@layer` 再排序。
+    - 普通声明：先声明的 layer > 后声明的 layer > 未分层样式。
+    - 重要声明：未分层 important > 最后声明的 layer important > 最先声明的 layer important。
+- 特异性（Specificity）：比谁的选择器更精确。
+    - `inline` > `id` > `class` > `element`。
+    - 只有在前面步骤完全打平时才看特异性。
+- 作用域接近度（Scoping Proximity）：这是 Scoped CSS 专用规则。
+    - 当特异性相同时，谁离作用域根更近谁就赢。
+- 声明顺序（Order of Appearance）：谁写在后面用谁。
+
+#### 来源和重要性
+
+- 浏览器根据来源和重要性将每个声明分为六类，加上动画和过渡样式，优先级等级分为八个，从低到高依次为：
+    - `user-agent normal styles`：浏览器默认样式。
+    - `user normal styles`：用户自定义样式。
+    - `author normal styles`：开发者写的普通 CSS。
+    - `styles being animated`：正在被 CSS animation 控制的属性。
+    - `author important styles`：开发者写的 `!important` 样式。
+    - `user important styles`：用户自定义的 `!important` 样式。
+    - `user-agent important styles`：浏览器的 `!important` 样式。
+    - `styles being transitioned`：正在被 CSS transition 改变的属性。
+- 其中有三类角色，分别为：
+    - 用户代理（User Agent）就是代表用户获取、解析、渲染网页内容的软件程序，在绝大多数情况下，它指的是网页浏览器。
+    - 用户（User）是指网站的访问者。
+    - 作者（Author）是指开发者。
+        - 写在 HTML 元素 `style` 属性中的样式属于开发者样式。
+- 为什么动画优先级要低于 `!important`？
+    - 动画可以长时间运行，必须可以被强制打断，而 `!important` 正是来做这件事情的。
+- 为什么过渡状态必须是最高优先级？
+    - 过渡是状态变化的视觉连续性保障。
+    - 过渡不声明目标值，它只是让已有的变化变平滑。
+    - 过渡运行时间极短，不应该被强制打断。
+
+#### 来源和特异性
+
+- 当重要性、来源和层叠层都一致时才比较特异性。不同来源的选择器，永远不会互相比较特异性。
+
+    ```html
+    <p><a href="https://example.org">User agent styles</a></p>
+    <p><a class="author" href="https://example.org">Author styles</a></p>
+    ```
+
+    ```css
+    :where(a.author) {
+    text-decoration: overline;
+    color: red;
+    }
+    ```
+
+- 当重要性、来源、层叠层和特异性都一致时才比较出现顺序。
+
+### 层叠层（Cascade Layers）
+
+`@layer` 是 CSS Cascade Layers（层叠层）的一部分，是在 CSS Cascade Level 5 中引入的新特性，用来显式控制不同样式来源的层叠顺序，从而让样式的优先级管理更可控、更清晰。
+
+```css
+/* 声明顺序 */
+@layer yellow, purple, green;
+
+@layer yellow {
+  #outer div ul .nav a {
+    padding: 5px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+}
+
+@layer purple {
+  div div li a {
+    color: rebeccapurple;
+  }
+}
+
+@layer green {
+  a {
+    color: lightgreen;
+  }
+}
+
+/* 嵌套层 */
+@layer framework {
+  @layer reset, components;
+
+  @layer reset {
+    * { margin: 0; }
+  }
+
+  @layer components {
+    button { border-radius: 4px; }
+  }
+}
+
+@layer reset, theme, components;
+
+@import url('reset.css') layer(reset);
+@import url('theme.css') layer(theme);
+@import url('components.css') layer(components);
+
+/* 也可以导入到一个匿名层中 */
+@import "style.css" layer;
+```
+
+- 后声明的层优先级更高，无层样式优先级高于所有在 `@layer` 内定义的样式。
+- 如果在 `@layer` 后声明的层级先前已存在，那么该层不会被创建，且该层优先级高于此次新创建的层。
+- 可以嵌套定义多个层，便于结构化管理。上述嵌套层的优先级顺序是 `framework.reset < framework.components`。
+- 可以在 `@import` 时指定该文件属于某个 `layer`。
+- 在 `!important` 下，优先级顺序完全反转。先声明的层优先级更高，且所有在 `@layer` 内定义的样式，优先级高于无层样式。
+
+```css
+/* 无层样式 */
+body {
+  color: #333333;
+}
+
+/* 创建第一层：layout */
+@layer layout {
+  main {
+    display: grid;
+  }
+}
+
+/* 创建第二层：匿名层 <anonymous(01)> */
+@layer {
+  body {
+    margin: 0;
+  }
+}
+
+/* 创建第三、四层: theme 和 utilities */
+@layer theme, layout, utilities;
+
+/* 添加样式给已经存在的 layout 层 */
+@layer layout {
+  main {
+    color: black;
+  }
+}
+
+/* 创建第五层：匿名层 <anonymous(02)> */
+@layer {
+  body {
+    margin: 1vw;
+  }
+}
+```
+
+- 创建后无法更改图层顺序。
+- 匿名层是通过向层叠层指定样式而不命名图层来创建的。只能在创建匿名层时添加样式且无法引用匿名层。
+- 所有的无层样式都会处于一个隐式层中。
+
+#### 层叠层创建和媒体查询
+
+```css
+@media (width >= 50em) {
+  @layer site;
+}
+
+@layer page {
+  h1 {
+    text-decoration: overline;
+    color: red;
+  }
+}
+
+@layer site {
+  h1 {
+    text-decoration: underline;
+    color: green;
+  }
+}
+```
+
+#### 使用 `@import` 将样式表导入具名和匿名层叠层
+
+- `@import` 前面只能有 `@layer` 声明的层和 `@charset` 规则，其他的任何规则和样式都不能出现在 `@import` 之前。
+- 可以将样式表导入到具名层中、嵌套层中和匿名层中。
+- 可以将多个样式表导入到同一个层叠层中。
+- 可以使用媒体查询和特性查询导入样式并根据特定条件创建层叠层。
+
+```css
+/* 将样式表导入到具名层中、嵌套层中和匿名层中 */
+@import "components-lib.css" layer(components);
+@import "dialog.css" layer(components.dialog);
+@import "marketing.css" layer();
+
+/* 将多个样式表导入到同一个层中 */
+@import "comments.css" layer(social);
+@import "sm-icons.css" layer(social);
+
+/* 使用媒体查询和特性查询导入样式并根据特定条件创建层叠层 */
+@import "ruby-narrow.css" layer(international) supports(display: ruby) (width < 32rem);
+@import "ruby-wide.css" layer(international) supports(display: ruby) (width >= 32rem);
+```
+
+#### 嵌套层叠层
+
+```css
+@import "components-lib.css" layer(components);
+@import "narrow-theme.css" layer(components.narrow);
+@import "layers1.css" layer(example);
+
+@layer example.layout {
+  main {
+    width: 50vw;
+  }
+}
+```
+
+#### 根据层的顺序确定优先级
+
+##### 常规层
+
+```css
+@import "A.css" layer(firstLayer);
+@import "B.css" layer(secondLayer);
+@import "C.css";
+```
+
+优先级从低到高排序如下：
+
+- firstLayer normal styles (A.css).
+- secondLayer normal styles (B.css).
+- unlayered normal styles (C.css).
+- inline normal styles.
+- animating styles.
+- unlayered important styles (C.css).
+- secondLayer important styles (B.css).
+- firstLayer important styles (A.css).
+- inline important styles.
+- transitioning styles.
+
+```html
+<div>
+  <h1 style="color: yellow; background-color: maroon !important;">
+    Inline styles
+  </h1>
+</div>
+```
+
+```css
+@layer A, B;
+
+h1 {
+  font-family: sans-serif;
+  margin: 1em;
+  padding: 0.2em;
+  color: orange;
+  background-color: green;
+  text-decoration: overline pink !important;
+  box-shadow: 5px 5px lightgreen !important;
+}
+
+@layer A {
+  h1 {
+    color: grey;
+    background-color: black !important;
+    text-decoration: line-through grey;
+    box-shadow: -5px -5px lightblue !important;
+    font-style: normal;
+    font-weight: normal !important;
+  }
+}
+
+@layer B {
+  h1 {
+    color: aqua;
+    background: yellow !important;
+    text-decoration: underline aqua;
+    box-shadow: -5px 5px magenta !important;
+    font-style: italic;
+    font-weight: bold !important;
+  }
+}
+```
+
+##### 嵌套层
+
+```css
+div {
+  background-color: wheat;
+  color: pink !important;
+}
+
+@layer components {
+  div {
+    background-color: yellow;
+    border: 1rem dashed red;
+    color: orange !important;
+  }
+}
+
+@layer components.narrow {
+  div {
+    background-color: skyblue;
+    border: 1rem dashed blue;
+    color: purple !important;
+    border-radius: 50%;
+  }
+}
+
+@layer components.wide {
+  div {
+    background-color: limegreen;
+    border: 1rem dashed green;
+    color: seagreen !important;
+    border-radius: 20%;
+  }
+}
+```
