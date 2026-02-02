@@ -266,7 +266,8 @@
     - Did you get home yet?
     - Have you got home?
     - Have you arrived home?
-- 累炸了。
+- 累了。
+    - I'm spent.
     - I'm wiped out.
     - I'm beat.
     - I'm dead on my feet.
@@ -285,3 +286,7 @@
     - I’ll take these to go.
     - Can I get these to go, please?
     - I’d like these to go.
+- 这只猫看起来想刀人。
+    - That look could kill.
+    - if looks could kill, I'd be dead.
+    - This cat is giving me death stares.

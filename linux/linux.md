@@ -19,7 +19,9 @@
 - `$()` 可以执行一个命令并捕获其输出。
 - `kinit`。
 - `java -xvf test.jar`。
-- 清空文件：`> test.sh`。
+- 清空文件：`> test.txt`。
+    - `>` 本质是输出重定向，重定向机制会在写入前先截断（truncate）目标文件。
+    - 该命令执行时如果文件存在，先清空，再写入，但这里没有提供任何内容可供写入，因此文件被清空。
 - 拼接变量名和变量值：`echo 'MONTH:' "${MONTH}"`。
 - `!!` 会执行上一条命令。
 
@@ -44,7 +46,7 @@ dirs -p
 dirs -c
 # 切换到 directory 目录，并将 directory 目录压入栈顶
 pushd <directory>
-# 不改变当前目录，并将 directory 目录压入栈底
+# 不改变当前目录，并将 directory 目录压入栈顶
 pushd -n <directory>
 # 回到上一次执行 pushd 命令时所在的目录，并移除栈顶元素。注意 cd - 回到的是上一次访问的目录，这与 pushd 行为不同
 popd
