@@ -218,6 +218,7 @@
 | resonance imaging | 共振成像 | [ˈrezənəns] |  |
 | resort to | 诉诸，求助于 |  | You might have to resort to using inline styles if your working environment is very restrictive. |
 | ripe for | 发展到适合某事发生的条件 | ripe for innovation：创新的条件已经具备、ripe for breakthrough：随时可能发生重大突破。 |  |
+| round off | 使完美、完善 |  | We round off the module by looking at applying custom fonts to your page, and styling lists and links. |
 | run into | 撞上，碰上、遇到困难，遭遇 |  | You will often run into a situation where you know that a rule comes later in the stylesheet, but an earlier, conflicting rule is applied. |
 | scale down | 按比例缩小 |  | A common use of max-width is to cause images to scale down if there is not enough space to display them at their intrinsic width, while making sure they don't become larger than that width. |
 | set ... off | 突出、凸显 |  | All the source code in the book, whether in code listings or snippets, is in `a fixed-width font like this`, which sets it off from the surrounding text. |
