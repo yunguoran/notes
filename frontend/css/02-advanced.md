@@ -583,3 +583,226 @@ div {
   }
 }
 ```
+
+## 多文本方向（Multiple text directions）
+
+处理不同文本方向是现代 Web 开发的重要部分，特别是对于支持多种语言的国际化应用。CSS 提供了多种机制来处理从左到右（LTR）和从右到左（RTL）的文本方向。
+
+### 书写模式（Writing Modes）
+
+`writing-mode` 属性定义了文本行块的流动方向，以及行内内容的排列方向。
+
+```css
+/* 水平书写模式 */
+.horizontal-tb { writing-mode: horizontal-tb; } /* 默认值，水平从上到下 */
+
+/* 垂直书写模式 */
+.vertical-rl { writing-mode: vertical-rl; } /* 垂直从右到左 */
+.vertical-lr { writing-mode: vertical-lr; } /* 垂直从左到右 */
+```
+
+块级元素和内联元素的方向并不是固定的，而是随着文字书写方向改变的。
+
+- 块级方向是块级元素在页面上排列的方向。
+    - 在 `horizontal-tb`（水平）模式下，块级方向是从上到下。
+    - 在 `vertical-rl`（垂直）模式下，块级方向变为水平地从右向左。
+- 内联方向始终指代句子流动的方向（即一行文字书写的方向）。
+
+```html
+<div class="wrapper">
+  <div class="box horizontal">
+    <h2>Heading</h2>
+    <p>A paragraph demonstrating writing modes in CSS.</p>
+  </div>
+  <div class="box vertical">
+    <h2>Heading</h2>
+    <p>A paragraph demonstrating writing modes in CSS.</p>
+  </div>
+</div>
+```
+
+```css
+body {
+  font-family: sans-serif;
+  height: 300px;
+}
+.wrapper {
+  display: flex;
+}
+
+.box {
+  border: 1px solid #cccccc;
+  padding: 0.5em;
+  margin: 10px;
+}
+
+.horizontal {
+  writing-mode: horizontal-tb;
+}
+
+.vertical {
+  writing-mode: vertical-rl;
+}
+```
+
+### 方向（Direction）
+
+`direction` 属性指定块级元素中文本的基线方向。
+
+```css
+/* 从左到右（默认） */
+.ltr { direction: ltr; }
+
+/* 从右到左 */
+.rtl { direction: rtl; }
+```
+
+### 文本方向（Text Direction）
+
+`text-direction` 属性控制行内文本的方向，通常与 `direction` 属性配合使用。
+
+```css
+/* 自动检测文本方向 */
+.auto-dir { unicode-bidi: embed; }
+
+/* 强制双向算法覆盖 */
+.bidi-override { unicode-bidi: bidi-override; }
+```
+
+### 逻辑属性和值（Logical Properties and Values）
+
+逻辑属性和值提供了一种与书写模式无关的方式来设置样式，它们基于文档的逻辑流而不是物理方向。
+
+#### 逻辑尺寸（Sizing）
+
+```css
+.size-logical {
+  /* 块级方向的尺寸 */
+  block-size: 100px;
+  min-block-size: 50px;
+  max-block-size: 200px;
+
+  /* 行内方向的尺寸 */
+  inline-size: 200px;
+  min-inline-size: 100px;
+  max-inline-size: 300px;
+}
+```
+
+```html
+<div class="wrapper">
+  <div class="box horizontal">
+    <h2>Heading</h2>
+    <p>A paragraph demonstrating writing modes in CSS.</p>
+    <p>These boxes have inline-size.</p>
+  </div>
+  <div class="box vertical">
+    <h2>Heading</h2>
+    <p>A paragraph demonstrating writing modes in CSS.</p>
+    <p>These boxes have inline-size.</p>
+  </div>
+</div>
+```
+
+```css
+.wrapper {
+  display: flex;
+}
+
+.box {
+  border: 1px solid #cccccc;
+  padding: 0.5em;
+  margin: 10px;
+  inline-size: 100px;
+}
+
+.horizontal {
+  writing-mode: horizontal-tb;
+}
+
+.vertical {
+  writing-mode: vertical-rl;
+}
+```
+
+#### 逻辑边距（Margin）
+
+```css
+/* 物理属性 */
+.margin-physical {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+/* 逻辑属性 */
+.margin-logical {
+  margin-inline-start: 10px;  /* 对应 LTR 的 left，RTL 的 right */
+  margin-inline-end: 20px;    /* 对应 LTR 的 right，RTL 的 left */
+  margin-block-start: 15px;   /* 对应 top */
+  margin-block-end: 10px;     /* 对应 bottom */
+}
+```
+
+#### 逻辑内边距（Padding）
+
+```css
+.padding-logical {
+  padding-inline-start: 10px;
+  padding-inline-end: 20px;
+  padding-block-start: 15px;
+  padding-block-end: 10px;
+}
+```
+
+#### 逻辑边框（Border）
+
+```css
+.border-logical {
+  border-inline-start: 1px solid black;  /* 对应 LTR 的 left，RTL 的 right */
+  border-inline-end: 1px solid black;    /* 对应 LTR 的 right，RTL 的 left */
+  border-block-start: 1px solid black;   /* 对应 top */
+  border-block-end: 1px solid black;     /* 对应 bottom */
+}
+```
+
+### 实际应用示例
+
+```html
+<div class="container" dir="rtl">
+  <p class="text">هذا نص عربي من اليمين إلى اليسار</p>
+  <div class="box">
+    <span class="item">عنصر 1</span>
+    <span class="item">عنصر 2</span>
+  </div>
+</div>
+```
+
+```css
+.container {
+  writing-mode: horizontal-tb;
+  direction: rtl;
+}
+
+.text {
+  margin-inline-start: 20px;  /* 在 RTL 中表现为右边距 */
+  margin-inline-end: 10px;    /* 在 RTL 中表现为左边距 */
+}
+
+.box {
+  display: flex;
+  gap: 10px;
+}
+
+.item {
+  padding-inline: 10px;       /* 在 RTL 中 start 是右边，end 是左边 */
+  border-inline-start: 1px solid #ccc;  /* 在 RTL 中表现为右边框 */
+  border-inline-end: 1px solid #ddd;    /* 在 RTL 中表现为左边框 */
+}
+```
+
+### 最佳实践
+
+- 在需要支持多语言的项目中，优先使用逻辑属性而非物理属性，这样可以确保样式在不同文本方向下都能正确显示。
+- 开发过程中使用 `dir="rtl"` 测试页面在从右到左文本方向下的表现。
+- 对于需要支持中文、日文、韩文等语言的应用，考虑使用垂直书写模式。
+- 许多现代 CSS 框架提供了工具类来处理文本方向，利用这些工具可以简化开发过程。
