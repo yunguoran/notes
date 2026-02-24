@@ -806,3 +806,257 @@ body {
 - 开发过程中使用 `dir="rtl"` 测试页面在从右到左文本方向下的表现。
 - 对于需要支持中文、日文、韩文等语言的应用，考虑使用垂直书写模式。
 - 许多现代 CSS 框架提供了工具类来处理文本方向，利用这些工具可以简化开发过程。
+
+## 组织 CSS 代码
+
+<https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Code_style_guide/CSS>
+
+### CSS 代码组织最佳实践
+
+#### 保持一致性
+
+在项目中保持一致性是最重要的原则。这包括：
+
+- 类名命名约定。
+- 颜色描述方式。
+- 代码格式（使用制表符还是空格，缩进几个字符）。
+
+#### 格式化可读的 CSS
+
+有两种常见的 CSS 格式：
+
+```css
+/* 单行格式 */
+.box {background-color: #567895; }
+h2 {background-color: black; color: white; }
+
+/* 多行格式（推荐） */
+.box {
+  background-color: #567895;
+}
+
+h2 {
+  background-color: black;
+  color: white;
+}
+```
+
+#### 注释你的 CSS
+
+```css
+/* 这是一个 CSS 注释
+可以跨多行 */
+
+/* || 通用样式 */
+/* || 排版 */
+/* || 头部和主导航 */
+```
+
+#### 创建逻辑分段
+
+```css
+/* || 通用样式 */
+body {
+  /* ... */
+}
+
+h1, h2, h3, h4 {
+  /* ... */
+}
+
+/* || 工具类 */
+.no-bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* || 全站样式 */
+.main-nav {
+  /* ... */
+}
+
+.logo {
+  /* ... */
+}
+
+/* || 商店页面 */
+.product-listing {
+  /* ... */
+}
+
+.product-box {
+  /* ... */
+}
+```
+
+#### 避免过度具体的选择器
+
+```css
+/* 不好的做法 */
+article.main p.box {
+  border: 1px solid #cccccc;
+}
+
+/* 好的做法 */
+.box {
+  border: 1px solid #cccccc;
+}
+```
+
+### CSS 方法论 (CSS Methodologies)
+
+CSS 方法论提供结构化的 CSS 编写和组织指南，强调可重用性和一致性，便于团队协作。
+
+#### OOCSS（面向对象 CSS）
+
+OOCSS 的核心思想是将 CSS 分离成可重用的对象，可以在网站任何地方使用。
+
+传统方法的问题：
+
+```css
+.comment {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.comment img {
+  border: 1px solid grey;
+}
+
+.comment .content {
+  font-size: 0.8rem;
+}
+
+.list-item {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  border-bottom: 1px solid grey;
+}
+
+.list-item .content {
+  font-size: 0.8rem;
+}
+```
+
+OOCSS 方法：
+
+```css
+.media {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.media .content {
+  font-size: 0.8rem;
+}
+
+.comment img {
+  border: 1px solid grey;
+}
+
+.list-item {
+  border-bottom: 1px solid grey;
+}
+```
+
+HTML 使用：
+
+```html
+<!-- 评论 -->
+<div class="media comment">
+  <img src="" alt="" />
+  <div class="content"></div>
+</div>
+
+<!-- 列表项 -->
+<ul>
+  <li class="media list-item">
+    <img src="" alt="" />
+    <div class="content"></div>
+  </li>
+</ul>
+```
+
+#### BEM（块元素修饰符）
+
+BEM 将组件分为三个部分：
+
+- 块：独立实体（如按钮、菜单）。
+- 元素：与块相关的部分（如列表项、标题）。
+- 修饰符：改变样式或行为的标志。
+
+```html
+<form class="form form--theme-xmas form--simple">
+  <label class="label form__label" for="inputId"></label>
+  <input class="form__input" type="text" id="inputId" />
+
+  <input
+    class="form__submit form__submit--disabled"
+    type="submit"
+    value="Submit" />
+</form>
+```
+
+对应的 CSS：
+
+```css
+.form { }
+.form--theme-xmas { }
+.form--simple { }
+.form__label { }
+.form__input { }
+.form__submit { }
+.form__submit--disabled { }
+```
+
+### CSS 预处理器：Sass
+
+Sass 是一种 CSS 预处理器，提供额外的功能来增强 CSS。
+
+#### 变量定义
+
+```scss
+$base-color: #c6538c;
+
+.alert {
+  border: 1px solid $base-color;
+}
+```
+
+编译后的 CSS：
+
+```css
+.alert {
+  border: 1px solid #c6538c;
+}
+```
+
+#### 组件样式表编译
+
+使用 Sass 的部分功能（partials）来组织代码：
+
+目录结构：
+
+```text
+foundation/
+├── _code.scss
+├── _lists.scss
+├── _footer.scss
+└── _links.scss
+```
+
+使用 `@use` 规则导入：
+
+```scss
+// foundation/_index.scss
+@use "code";
+@use "lists";
+@use "footer";
+@use "links";
+
+// style.scss
+@use "foundation";
+```
+
+这样可以将多个小样式表编译成一个或少数几个最终的样式表。
