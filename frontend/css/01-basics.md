@@ -336,8 +336,8 @@ a:focus {
     ```
 
 - `::after`：在元素内容之后插入生成的内容。
-- `::first-line`：选择文本的第一行。
 - `::first-letter`：选择文本的第一个字母。
+- `::first-line`：选择文本的第一行。
 - `::selection`：选中（高亮）文本时应用样式。
 - `::marker`：选中列表项前的项目符号或编号。
 - `::placeholder`：选中 `<input>` 或 `<textarea>` 的占位文本。
