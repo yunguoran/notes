@@ -321,3 +321,9 @@ WHERE your_column RLIKE '[\\x{10000}-\\x{10FFFF}]';
 SELECT regexp_replace(your_column, '[\\x{10000}-\\x{10FFFF}]', '') AS cleaned_column
 FROM your_table;
 ```
+
+## 日期字符串 yyyyMMdd 转化为 yyyy-MM-dd
+
+```sql
+SELECT regexp_replace('20260124', '(\\d{4})(\\d{2})(\\d{2})', '$1-$2-$3');
+```
